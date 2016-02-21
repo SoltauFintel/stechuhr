@@ -101,6 +101,7 @@ public class BearbeitenWindowController {
 	public void onSave() {
 		try {
 			int i = grid.getSelectionModel().getSelectedIndex();
+			if (i < 0) return;
 			Stunden s = grid.getItems().get(i);
 			if (s == null) return;
 

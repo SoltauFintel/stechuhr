@@ -92,7 +92,7 @@ public abstract class Window<CTR> {
 		Alert alert = new Alert(AlertType.ERROR);
 		alert.setTitle("Fehler");
 		alert.setHeaderText("");
-		alert.setContentText(ex.getMessage());
+		alert.setContentText(ex.getClass().getSimpleName() + ": " + ex.getMessage());
 		alert.showAndWait();
 	}
 
