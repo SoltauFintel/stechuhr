@@ -11,4 +11,4 @@ before_install:
   - sudo apt-get update
   - sudo apt-get install --only-upgrade -y oracle-java8-installer
       
-script: gradle -b stechuhr/build.gradle fatJar
+script: gradle -b stechuhr/build.gradle check fatJar
