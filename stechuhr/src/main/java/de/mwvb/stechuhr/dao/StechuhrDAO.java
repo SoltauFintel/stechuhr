@@ -12,6 +12,7 @@ import java.util.List;
 
 import de.mwvb.base.xml.XMLDocument;
 import de.mwvb.base.xml.XMLElement;
+import de.mwvb.stechuhr.VortagCheck;
 import de.mwvb.stechuhr.entity.Exportstunden;
 import de.mwvb.stechuhr.entity.StechuhrModel;
 import de.mwvb.stechuhr.entity.Stunden;
@@ -42,6 +43,7 @@ public class StechuhrDAO {
 				model.getStundenliste().add(s);
 			}
 		}
+		new VortagCheck().check(model);
 		return model;
 	}
 	
@@ -122,10 +124,10 @@ public class StechuhrDAO {
 		}
 	}
 	
-	private File getStechuhrModelFile(LocalDate tag) {
+	public File getStechuhrModelFile(LocalDate tag) {
 		return new File(pfad.toString() + "/" + tag.getYear() + "/" + tag.getMonthValue() + "/" + tag.toString() + ".xml");
 	}
-
+	
 	private File getExportFile(LocalDate tag) {
 		String vorne = pfad.toString() + "/" + tag.getYear() + "/" + tag.getMonthValue() + "/" + tag.toString() + "_Export-";
 		String hinten = ".txt";
