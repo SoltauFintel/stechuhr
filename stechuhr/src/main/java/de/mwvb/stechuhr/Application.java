@@ -1,8 +1,7 @@
 package de.mwvb.stechuhr;
 
-import java.time.LocalDate;
-
 import de.mwvb.stechuhr.dao.StechuhrDAO;
+import de.mwvb.stechuhr.entity.StechuhrModel;
 import de.mwvb.stechuhr.gui.stechuhr.StechuhrWindow;
 import javafx.stage.Stage;
 
@@ -22,7 +21,7 @@ public class Application extends javafx.application.Application {
 	public static void main(String[] args) {
 		StechuhrDAO.init();
 		config = new StechuhrConfig();
-		StechuhrWindow.model = new StechuhrDAO().load(LocalDate.now());
+		StechuhrWindow.model = new StechuhrDAO().load(StechuhrModel.today());
 		launch(Application.class, new String[] {});
 	}
 

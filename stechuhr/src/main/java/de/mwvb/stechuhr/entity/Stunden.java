@@ -9,7 +9,7 @@ import java.time.LocalTime;
 public class Stunden {
 	public static final String PAUSE = "PAUSE";
 	public static final String STOP = "STOP";
-	private LocalDate tag = LocalDate.now();
+	private LocalDate tag = StechuhrModel.today();
 	private LocalTime uhrzeit;
 	private String ticket;
 	private String leistung = "";
@@ -17,7 +17,7 @@ public class Stunden {
 	private String dauer = "";
 	
 	public Stunden() {
-		uhrzeit = LocalTime.now().withSecond(0).withNano(0);
+		uhrzeit = StechuhrModel.now();
 	}
 
 	public Stunden(LocalTime uhrzeit) {

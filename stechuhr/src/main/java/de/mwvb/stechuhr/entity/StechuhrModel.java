@@ -2,6 +2,7 @@ package de.mwvb.stechuhr.entity;
 
 import java.time.Duration;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.ArrayList;
@@ -124,5 +125,19 @@ public class StechuhrModel {
 				export.remove(i);
 			}
 		}
+	}
+	
+	/**
+	 * Zentrale Stelle, die das Tagesdatum liefert.
+	 */
+	public static LocalDate today() {
+		return LocalDate.now();
+	}
+	
+	/**
+	 * Zentrale Stelle, die die aktuelle Uhrzeit liefert.
+	 */
+	public static LocalTime now() {
+		return LocalTime.now().withSecond(0).withNano(0);
 	}
 }
