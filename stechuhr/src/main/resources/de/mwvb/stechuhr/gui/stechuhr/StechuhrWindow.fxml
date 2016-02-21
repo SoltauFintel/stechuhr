@@ -13,9 +13,9 @@
 	<top>
 		<MenuBar>
 	    	<menus>
-				<Menu text="Datei">
+				<Menu text="_Datei">
 					<items>
-						<MenuItem onAction="#onBeenden" text="Beenden"/>
+						<MenuItem onAction="#onBeenden" text="Beenden" accelerator="Alt+X"/>
 					</items>
 				</Menu>
 			</menus>

@@ -32,7 +32,7 @@
 	<bottom>
 		<VBox>
 			<GridPane hgap="8" vgap="8">
-				<padding><Insets top="12" bottom="12"/></padding>
+				<padding><Insets bottom="12"/></padding>
 				
 				<Label text="Uhrzeit:" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
 				<TextField fx:id="uhrzeit" maxHeight="2" GridPane.rowIndex="1" GridPane.columnIndex="2" maxWidth="55"/>
