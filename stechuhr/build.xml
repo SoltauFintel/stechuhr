@@ -1,10 +1,13 @@
 <project name="stechuhr" basedir="." default="eclipse">
 
 	<target name="build">
-		<gradle task="installDist"/>
+		<gradle task="fatJar"/>
 	</target>
 	<target name="eclipse">
 		<gradle task="eclipse"/>
+	</target>
+	<target name="clean">
+		<gradle task="clean"/>
 	</target>
 
 	<macrodef name="gradle">
