@@ -1,7 +1,7 @@
 <project name="stechuhr" basedir="." default="eclipse">
 
 	<target name="build">
-		<gradle task="fatJar"/>
+		<gradle task="check fatJar"/>
 	</target>
 	<target name="eclipse">
 		<gradle task="eclipse"/>
@@ -10,7 +10,7 @@
 		<gradle task="clean"/>
 	</target>
 	<target name="compile">
-		<gradle task="compileJava"/>
+		<gradle task="compileJava compileTestJava"/>
 	</target>
 
 	<macrodef name="gradle">
