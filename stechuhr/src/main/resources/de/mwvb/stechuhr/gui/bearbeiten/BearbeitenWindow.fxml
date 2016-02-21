@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?language javascript?>
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.cell.*?>
+<?import javafx.scene.layout.HBox?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml">
+	<padding><Insets top="8" right="8" bottom="8" left="8"/></padding>
+
+	<center>
+		<TableView fx:id="grid">
+			<columns>
+				<TableColumn text="Uhrzeit" prefWidth="60">
+					<cellValueFactory><PropertyValueFactory property="uhrzeitString"/></cellValueFactory>
+				</TableColumn>
+				<TableColumn text="Ticket" prefWidth="120">
+					<cellValueFactory><PropertyValueFactory property="ticket"/></cellValueFactory>
+				</TableColumn>
+				<TableColumn text="Leistung" prefWidth="490">
+					<cellValueFactory><PropertyValueFactory property="leistung"/></cellValueFactory>
+				</TableColumn>
+				<TableColumn text="Dauer" prefWidth="60">
+					<cellValueFactory><PropertyValueFactory property="dauer"/></cellValueFactory>
+				</TableColumn>
+			</columns>
+		</TableView>
+	</center>
+	<bottom>
+		<VBox>
+			<GridPane hgap="8" vgap="8">
+				<padding><Insets top="12" bottom="12"/></padding>
+				
+				<Label text="Uhrzeit:" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+				<TextField fx:id="uhrzeit" maxHeight="2" GridPane.rowIndex="1" GridPane.columnIndex="2" maxWidth="55"/>
+	
+				<Label text="Ticket:" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+				<TextField fx:id="ticket" maxHeight="2" GridPane.rowIndex="2" GridPane.columnIndex="2" maxWidth="150"/>
+	
+				<Label text="Leistung:" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+				<TextField fx:id="leistung" maxHeight="2" GridPane.rowIndex="3" GridPane.columnIndex="2"/>
+				
+				<Label text="Notiz privat:" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+				<TextArea fx:id="notizPrivat" prefHeight="70" GridPane.rowIndex="4" GridPane.columnIndex="2"/>
+			</GridPane>
+			<HBox spacing="12">
+				<Button text="Speichern" minWidth="100" fx:id="save" onAction="#onSave"/>
+				<Button text="Löschen!" minWidth="100" fx:id="delete" onAction="#onDelete"/>
+				<Pane HBox.hgrow="ALWAYS"/>
+				<Button onAction="#onClose" text="Schließen" minWidth="100" fx:id="close"/>
+			</HBox>
+		</VBox>
+	</bottom>
+
+</BorderPane>
+
+ 

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?language javascript?>
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.cell.*?>
+<?import javafx.scene.image.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml">
+
+	<top>
+		<MenuBar>
+	    	<menus>
+				<Menu text="Datei">
+					<items>
+						<MenuItem onAction="#onBeenden" text="Beenden"/>
+					</items>
+				</Menu>
+			</menus>
+		</MenuBar>
+	</top>
+	<center>
+		<BorderPane>
+			<padding><Insets top="0" right="0" bottom="0" left="16"/></padding>
+			<center>
+				<HBox spacing="32">
+					<VBox spacing="12" >
+						<padding><Insets top="12" bottom="12"/></padding>
+						<ComboBox editable="true" fx:id="ticket"></ComboBox>
+						<HBox spacing="12">
+							<Button minWidth="57" fx:id="play" onAction="#onPlay">
+								<tooltip><Tooltip text="Play (Tätigkeit beginnen) / F6"/></tooltip>
+								<graphic>
+									<ImageView style="-fx-background-color: transparent;">
+										<Image url="de/mwvb/stechuhr/gui/stechuhr/play.gif"/>
+									</ImageView>
+								</graphic>
+							</Button>
+							<Button onAction="#onPause" minWidth="57">
+								<tooltip><Tooltip text="Pause / F7"/></tooltip>
+								<graphic>
+									<ImageView>
+										<Image url="de/mwvb/stechuhr/gui/stechuhr/pause.png"/>
+									</ImageView>
+								</graphic>
+							</Button>
+							<Button onAction="#onStop">
+								<tooltip><Tooltip text="Stop (Feierabend)"/></tooltip>
+								<graphic>
+									<ImageView>
+										<Image url="de/mwvb/stechuhr/gui/stechuhr/stop.png"/>
+									</ImageView>
+								</graphic>
+							</Button>
+						</HBox>
+						<Pane VBox.vgrow="ALWAYS"/>
+						<Button text="Bearbeiten..." minWidth="116" onAction="#onBearbeiten">
+							<tooltip><Tooltip text="F8"/></tooltip>
+							<graphic>
+								<ImageView style="-fx-background-color: transparent;">
+									<Image url="de/mwvb/stechuhr/gui/stechuhr/bleistift.gif"/>
+								</ImageView>
+							</graphic>
+						</Button>
+					</VBox>
+					<VBox spacing="12" alignment="BOTTOM_LEFT">
+						<padding><Insets top="12" bottom="12"/></padding>
+						<Button minWidth="100" fx:id="quick1"/>
+						<Button minWidth="100" fx:id="quick2"/>
+						<Button minWidth="100" fx:id="quick3"/>
+						<Button minWidth="100" fx:id="quick4"/>
+						<Button minWidth="100" fx:id="quick5"/>
+					</VBox>
+					<VBox spacing="12" alignment="BOTTOM_LEFT">
+						<padding><Insets top="12" bottom="12"/></padding>
+						<Button minWidth="100" fx:id="quick6"/>
+						<Button minWidth="100" fx:id="quick7"/>
+						<Button minWidth="100" fx:id="quick8"/>
+						<Button minWidth="100" fx:id="quick9"/>
+						<Button minWidth="100" fx:id="quick10"/>
+					</VBox>
+				</HBox>
+			</center>
+		</BorderPane>
+	</center>
+	<bottom>
+		<VBox>
+			<padding><Insets top="0" right="16" bottom="16" left="16"/></padding>
+			<Label fx:id="info"/>
+		</VBox>
+	</bottom>
+
+</BorderPane>
+
+ 

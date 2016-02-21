@@ -1,0 +1,19 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'application'
+
+sourceCompatibility = 1.8
+group = 'de.mwvb.stechuhr'
+version = '0.1'
+
+mainClassName = 'de.mwvb.stechuhr.Application'
+
+dependencies {
+    compile 'de.mwvb:xmldocument:0.1.0'
+
+	testCompile 'junit:junit:4.12'
+}
+
+repositories {
+	mavenCentral()
+}
