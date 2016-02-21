@@ -1,0 +1,12 @@
+eclipse.preferences.version=1
+encoding//src/main/java/de/mwvb/stechuhr/Application.java=UTF-8
+encoding//src/main/java/de/mwvb/stechuhr/StechuhrConfig.java=UTF-8
+encoding//src/main/java/de/mwvb/stechuhr/dao/StechuhrDAO.java=UTF-8
+encoding//src/main/java/de/mwvb/stechuhr/entity/Exportstunden.java=UTF-8
+encoding//src/main/java/de/mwvb/stechuhr/entity/StechuhrModel.java=UTF-8
+encoding//src/main/java/de/mwvb/stechuhr/gui/Window.java=UTF-8
+encoding//src/main/java/de/mwvb/stechuhr/gui/bearbeiten/BearbeitenWindow.java=UTF-8
+encoding//src/main/java/de/mwvb/stechuhr/gui/bearbeiten/BearbeitenWindowController.java=UTF-8
+encoding//src/main/java/de/mwvb/stechuhr/gui/stechuhr/StechuhrWindow.java=UTF-8
+encoding//src/main/java/de/mwvb/stechuhr/gui/stechuhr/StechuhrWindowController.java=UTF-8
+encoding/<project>=UTF-8

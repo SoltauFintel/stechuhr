@@ -21,7 +21,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 /**
- * Stechuhr-Einträge bearbeiten
+ * Stechuhr-EintrÃ¤ge bearbeiten
  * 
  * @author Marcus Warm
  */
@@ -53,7 +53,7 @@ public class BearbeitenWindowController {
 				display((Stunden) sel);
 			});
 			
-			Platform.runLater(() -> leistung.requestFocus()); // Annahme: Man möchte i.d.R. eine Leistung eingeben
+			Platform.runLater(() -> leistung.requestFocus()); // Annahme: Man mÃ¶chte i.d.R. eine Leistung eingeben
 		} catch (Exception e) {
 			Window.errorAlert(e);
 		}
@@ -139,7 +139,7 @@ public class BearbeitenWindowController {
 			}
 			if (u.isBefore(davor)) {
 				Window.alert("Bitte gebe eine Uhrzeit nach " + davor.toString() + " ein!"
-						+ "\nAlternativ kann auch der Vorgängerdatensatz geändert werden.");
+						+ "\nAlternativ kann auch der VorgÃ¤ngerdatensatz geÃ¤ndert werden.");
 				return null;
 			}
 		} catch (Exception e) {
@@ -169,9 +169,10 @@ public class BearbeitenWindowController {
 	
 	private boolean shallDelete(String ticket) {
 		Alert alert = new Alert(AlertType.CONFIRMATION);
-		alert.setTitle("Löschen");
+		alert.setTitle("LÃ¶schen");
 		alert.setHeaderText("");
-		alert.setContentText("Hiermit löschst Du den " + ticket + " Datensatz.");
+		alert.setContentText("Hiermit lÃ¶schst Du den " + ticket + " Datensatz.");
+		// TODO Buttons beschriften: LÃ¶schen - Nicht lÃ¶schen
 		Optional<ButtonType> result = alert.showAndWait();
 		return result.get() == ButtonType.OK;
 	}
@@ -179,7 +180,7 @@ public class BearbeitenWindowController {
 	private void updateGrid_andSave() {
 		StechuhrWindow.model.calculateDauer();
 		
-		grid.getColumns().get(0).setVisible(false);  // Workaround für Refresh der Zeile
+		grid.getColumns().get(0).setVisible(false);  // Workaround fï¿½r Refresh der Zeile
 		grid.getColumns().get(0).setVisible(true);
 		
 		new StechuhrDAO().save(StechuhrWindow.model);

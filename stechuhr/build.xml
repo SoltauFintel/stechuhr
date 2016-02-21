@@ -9,6 +9,9 @@
 	<target name="clean">
 		<gradle task="clean"/>
 	</target>
+	<target name="compile">
+		<gradle task="compileJava"/>
+	</target>
 
 	<macrodef name="gradle">
 		<attribute name="task"/>

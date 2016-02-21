@@ -17,7 +17,7 @@ import de.mwvb.stechuhr.entity.StechuhrModel;
 import de.mwvb.stechuhr.entity.Stunden;
 
 /**
- * alleinige Klasse für Persistierung
+ * alleinige Klasse fÃ¼r Persistierung
  */
 public class StechuhrDAO {
 	private static String pfad;

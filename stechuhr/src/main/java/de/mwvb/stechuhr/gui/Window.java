@@ -44,10 +44,10 @@ public abstract class Window<CTR> {
 	private void onCloseRequest(final Stage stage) {
 		stage.setOnCloseRequest(event -> {
 			int mode = onClose();
-			if (mode == 1) { // Fenster ganz normal schlieﬂen
+			if (mode == 1) { // Fenster ganz normal schlie√üen
 				Application.config.saveWindowPosition(getName(), stage);
 			} else {
-				event.consume(); // Fenster nicht schlieﬂen
+				event.consume(); // Fenster nicht schlie√üen
 				if (mode == 2) { // Fenster ausblenden
 					stage.setIconified(true);
 				}
@@ -72,7 +72,7 @@ public abstract class Window<CTR> {
 	}
 	
 	protected int onClose() {
-		return 1; // Schlieﬂen ok
+		return 1; // SchlieÔøΩen ok
 	}
 
 	protected Parent root() {

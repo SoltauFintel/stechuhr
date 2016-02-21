@@ -8,7 +8,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 
 /**
- * Fertiger Stundendatensatz für Export
+ * Fertiger Stundendatensatz fÃ¼r Export
  */
 public class Exportstunden {
 	private LocalDate tag;

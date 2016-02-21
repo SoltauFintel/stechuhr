@@ -11,7 +11,7 @@ import java.util.List;
 import de.mwvb.stechuhr.dao.StechuhrDAO;
 
 /**
- * Tagesdatum und alle Stechuhr-Eintr‰ge
+ * Tagesdatum und alle Stechuhr-Eintr√§ge
  */
 public class StechuhrModel {
 	private final LocalDate tag;
