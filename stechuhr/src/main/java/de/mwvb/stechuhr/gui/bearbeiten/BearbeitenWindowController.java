@@ -71,8 +71,10 @@ public class BearbeitenWindowController {
 
 			StechuhrWindow.model.calculateDauer();
 			grid.getItems().addAll(StechuhrWindow.model.getStundenliste());
-			if (!grid.getItems().isEmpty()) {
-				grid.getSelectionModel().select(grid.getItems().size() - 1);
+			final int index = grid.getItems().size() - 1;
+			if (index >= 0) {
+				grid.getSelectionModel().select(index);
+				Platform.runLater(() -> grid.scrollTo(index));
 			}
 		} catch (Exception e) {
 			Window.errorAlert(e);
