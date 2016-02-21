@@ -3,5 +3,8 @@ language: java
 env:  
   global:  
   - TERM=dumb
-  
-script: gradle -b traviata-interface/build.gradle installApp
+
+jdk:
+  - oraclejdk8
+    
+script: gradle -b stechuhr/build.gradle installApp
