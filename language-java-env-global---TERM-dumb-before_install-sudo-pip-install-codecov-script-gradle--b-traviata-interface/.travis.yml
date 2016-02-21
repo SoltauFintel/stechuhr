@@ -1,7 +1,0 @@
-language: java
-
-env:  
-  global:  
-  - TERM=dumb
-  
-script: gradle -b stechuhr/build.gradle installApp
