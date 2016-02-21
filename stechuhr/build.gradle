@@ -4,7 +4,7 @@ apply plugin: 'application'
 
 sourceCompatibility = 1.8
 group = 'de.mwvb.stechuhr'
-version = '0.1'
+version = '0.2-SNAPSHOT'
 
 mainClassName = 'de.mwvb.stechuhr.Application'
 

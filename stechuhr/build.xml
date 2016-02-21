@@ -1,7 +1,7 @@
 <project name="stechuhr" basedir="." default="eclipse">
 
 	<target name="build">
-		<gradle task="installApp"/>
+		<gradle task="installDist"/>
 	</target>
 	<target name="eclipse">
 		<gradle task="eclipse"/>
