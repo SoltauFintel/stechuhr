@@ -143,7 +143,6 @@ public class StechuhrWindowController {
 	public void onPlay() {
 		try {
 			String nr = ticket.getEditor().getText();
-			System.out.println("play: "+nr);
 			if (nr != null && !nr.trim().isEmpty()) {
 				nr = nr.trim();
 				newEntry(nr);
@@ -227,7 +226,7 @@ public class StechuhrWindowController {
 	}
 
 	private void updateInfo(String pText) {
-		String text = StechuhrWindow.model.getWTTagString();
+		String text = Stunden.formatWTDate(StechuhrWindow.model.getTag());
 		if (!pText.isEmpty()) {
 			text += "  |  " + pText;
 		}

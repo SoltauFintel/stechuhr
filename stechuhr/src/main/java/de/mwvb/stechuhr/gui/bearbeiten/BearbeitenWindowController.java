@@ -120,34 +120,49 @@ public class BearbeitenWindowController {
 	}
 
 	private String validate(int i) {
+		// Uhrzeit valide?
 		String ut = uhrzeit.getText();
-		if (!ut.contains(":")) {
+		ut = validateUhrzeit(ut);
+		if (ut == null) {
+			return null;
+		}
+		
+		// Nicht vor Vorgängeruhrzeit?
+		LocalTime davor = LocalTime.MIDNIGHT;
+		if (i > 0) {
+			davor = grid.getItems().get(i - 1).getUhrzeit();
+		}
+		if (LocalTime.parse(ut).isBefore(davor)) {
+			Window.alert("Bitte gebe eine Uhrzeit nach " + davor.toString() + " ein!"
+					+ "\nAlternativ kann auch der Vorgängerdatensatz geändert werden.");
+			return null;
+		}
+		return ut;
+	}
+	
+	/**
+	 * Eingegebene Uhrzeit validieren.
+	 * @param uhrzeit eingegebene Uhrzeit
+	 * @return formatierte Uhrzeit, oder null wenn die Uhrzeit nicht ok ist. Es wurde in dem Fall eine entsprechende Meldung ausgegeben.
+	 */
+	public static String validateUhrzeit(String uhrzeit) {
+		uhrzeit = uhrzeit.replace(",", ":"); // Eingabevereinfachung
+		if (!uhrzeit.contains(":")) { // Aus Kurzfurm "9" wird "09:00".
 			try {
-				int h = Integer.parseInt(ut);
-				if ("0".equals(ut) || h > 0) {
-					ut += ":00";
+				int h = Integer.parseInt(uhrzeit);
+				if ("0".equals(uhrzeit) || h > 0) {
+					uhrzeit += ":00";
 				}
-			} catch (NumberFormatException ignore) {
+			} catch (NumberFormatException ignore) { //
 			}
 		}
 		try {
-			LocalTime u = LocalTime.parse(ut);
-			LocalTime davor;
-			if (i > 0) {
-				davor = grid.getItems().get(i - 1).getUhrzeit();
-			} else {
-				davor = LocalTime.of(0, 0);
-			}
-			if (u.isBefore(davor)) {
-				Window.alert("Bitte gebe eine Uhrzeit nach " + davor.toString() + " ein!"
-						+ "\nAlternativ kann auch der Vorgängerdatensatz geändert werden.");
-				return null;
-			}
+			LocalTime ret = LocalTime.parse(uhrzeit).withSecond(0).withNano(0);
+			return ret.toString();
 		} catch (Exception e) {
 			Window.alert("Bitte gebe eine Uhrzeit im Format SS:MM ein!");
 			return null;
 		}
-		return ut;
 	}
 	
 	@FXML

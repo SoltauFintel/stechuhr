@@ -2,6 +2,7 @@ package de.mwvb.stechuhr.entity;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Stechuhr-Eintrag
@@ -79,5 +80,13 @@ public class Stunden {
 
 	public void setDauer(String dauer) {
 		this.dauer = dauer;
+	}
+
+	/**
+	 * @param date darf nicht null sein
+	 * @return Wochentag TT.MM.JJJJ
+	 */
+	public static String formatWTDate(LocalDate date) {
+		return date.format(DateTimeFormatter.ofPattern("EEEE dd.MM.yyyy"));
 	}
 }

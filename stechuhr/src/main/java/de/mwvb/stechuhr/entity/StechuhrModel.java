@@ -12,6 +12,8 @@ import de.mwvb.stechuhr.dao.StechuhrDAO;
 
 /**
  * Tagesdatum und alle Stechuhr-Einträge
+ * 
+ * @author Marcus Warm
  */
 public class StechuhrModel {
 	private final LocalDate tag;
@@ -30,8 +32,7 @@ public class StechuhrModel {
 	}
 
 	public String getWTTagString() {
-		DateTimeFormatter f = DateTimeFormatter.ofPattern("EEEE dd.MM.yyyy");
-		return tag.format(f);
+		return Stunden.formatWTDate(tag);
 	}
 
 	public List<Stunden> getStundenliste() {
@@ -64,12 +65,10 @@ public class StechuhrModel {
 		return i < 10 ? "0" + i : "" + i;
 	}
 
+	// TODO Stechuhr-Datei nach STOP umbenennen? Wenn Anwender erneut Stechuhr starten würde, würde er mit nackter Datei anfangen.
 	public void stop() {
 		List<Exportstunden> export = createExportstunden();
 		optimieren(export);
-		for (Exportstunden x : export) {
-			System.out.println(x);
-		}
 		new StechuhrDAO().saveExport(export);
 	}
 

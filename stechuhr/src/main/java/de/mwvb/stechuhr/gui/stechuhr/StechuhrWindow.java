@@ -1,6 +1,7 @@
 package de.mwvb.stechuhr.gui.stechuhr;
 
 import de.mwvb.stechuhr.Application;
+import de.mwvb.stechuhr.VortagCheck;
 import de.mwvb.stechuhr.entity.StechuhrModel;
 import de.mwvb.stechuhr.gui.Window;
 import javafx.scene.Scene;
@@ -48,6 +49,12 @@ public class StechuhrWindow extends Window<StechuhrWindowController> {
 				controller.showQuickButtons();
 			}
 		});
+	}
+	
+
+	@Override
+	protected void displayed() {
+		new VortagCheck().check(StechuhrWindow.model);
 	}
 	
 	@Override

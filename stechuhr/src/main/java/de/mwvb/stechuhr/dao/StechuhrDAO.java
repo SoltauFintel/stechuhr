@@ -12,15 +12,18 @@ import java.util.List;
 
 import de.mwvb.base.xml.XMLDocument;
 import de.mwvb.base.xml.XMLElement;
-import de.mwvb.stechuhr.VortagCheck;
 import de.mwvb.stechuhr.entity.Exportstunden;
 import de.mwvb.stechuhr.entity.StechuhrModel;
 import de.mwvb.stechuhr.entity.Stunden;
 
 /**
  * alleinige Klasse für Persistierung
+ * 
+ * @author Marcus Warm
  */
 public class StechuhrDAO {
+	/** Dateiversion für den Fall, dass sich das Dateiformat zukünftig mal ändern könnte. */
+	private static final int DATEI_VERSION = 0;
 	private static String pfad;
 	
 	public static void init() {
@@ -43,7 +46,6 @@ public class StechuhrDAO {
 				model.getStundenliste().add(s);
 			}
 		}
-		new VortagCheck().check(model);
 		return model;
 	}
 	
@@ -51,7 +53,7 @@ public class StechuhrDAO {
 		File file = getStechuhrModelFile(model.getTag());
 		file.getParentFile().mkdirs();
 		
-		XMLDocument dok = new XMLDocument("<Stechuhr/>");
+		XMLDocument dok = new XMLDocument("<Stechuhr version=\"" + DATEI_VERSION + "\"/>");
 		XMLElement root = dok.getElement();
 		root.setValue("tag", model.getTagString());
 		for (Stunden s : model.getStundenliste()) {
@@ -126,6 +128,10 @@ public class StechuhrDAO {
 	
 	public File getStechuhrModelFile(LocalDate tag) {
 		return new File(pfad.toString() + "/" + tag.getYear() + "/" + tag.getMonthValue() + "/" + tag.toString() + ".xml");
+	}
+	
+	public boolean existsStechuhrModelFile(LocalDate tag) {
+		return getStechuhrModelFile(tag).exists();
 	}
 	
 	private File getExportFile(LocalDate tag) {
