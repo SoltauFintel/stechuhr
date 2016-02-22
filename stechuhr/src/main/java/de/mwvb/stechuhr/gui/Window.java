@@ -38,9 +38,40 @@ public abstract class Window<CTR> {
 			stage.showAndWait();
 		} else {
 			stage.show();
+			displayed();
 		}
 	}
+	
+	protected void keyBindings(Scene scene) {
+		// Template-Methode
+	}
 
+	protected void initWindow(Stage stage) {
+		// Template-Methode
+	}
+	
+	public static void disableTabKey(final TextArea textArea) {
+		textArea.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+			if (event.getCode().equals(KeyCode.TAB)) {
+				TextAreaSkin skin = (TextAreaSkin) textArea.getSkin();
+				if (event.isShiftDown()) {
+					skin.getBehavior().traversePrevious();
+				} else {
+					skin.getBehavior().traverseNext();
+				}
+				event.consume();
+			}
+		});
+	}
+
+	protected String getName() {
+		return getClass().getSimpleName();
+	}
+
+	protected void displayed() {
+		// Template Methode
+	}
+	
 	private void onCloseRequest(final Stage stage) {
 		stage.setOnCloseRequest(event -> {
 			int mode = onClose();
@@ -55,24 +86,13 @@ public abstract class Window<CTR> {
 		});
 	}
 	
+	protected int onClose() {
+		return 1; // Schließen ok
+	}
+	
+	/** Liefert Dateiname des Fenstericons, ohne Pfad */
 	protected String getIcon() {
 		return getClass().getSimpleName() + ".png";
-	}
-
-	protected void initWindow(Stage stage) {
-		// Template-Methode
-	}
-	
-	protected void keyBindings(Scene scene) {
-		// Template-Methode
-	}
-
-	protected String getName() {
-		return getClass().getSimpleName();
-	}
-	
-	protected int onClose() {
-		return 1; // Schlie�en ok
 	}
 
 	protected Parent root() {
@@ -88,33 +108,20 @@ public abstract class Window<CTR> {
 	
 	protected abstract CTR createController();
 	
-	public static void errorAlert(Exception ex) {
-		Alert alert = new Alert(AlertType.ERROR);
-		alert.setTitle("Fehler");
-		alert.setHeaderText("");
-		alert.setContentText(ex.getClass().getSimpleName() + ": " + ex.getMessage());
-		alert.showAndWait();
-	}
-
-	public static void disableTabKey(final TextArea textArea) {
-		textArea.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
-			if (event.getCode().equals(KeyCode.TAB)) {
-				TextAreaSkin skin = (TextAreaSkin) textArea.getSkin();
-				if (event.isShiftDown()) {
-					skin.getBehavior().traversePrevious();
-				} else {
-					skin.getBehavior().traverseNext();
-				}
-				event.consume();
-			}
-		});
-	}
-	
 	public static void alert(String meldung) {
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Meldung");
 		alert.setHeaderText("");
 		alert.setContentText(meldung);
+		alert.showAndWait();
+	}
+	
+	public static void errorAlert(Exception ex) {
+		Alert alert = new Alert(AlertType.ERROR);
+		alert.setTitle("Fehler");
+		alert.setHeaderText("");
+		alert.setContentText(ex.getClass().getSimpleName() + ": " + ex.getMessage());
+		// TODO Es wäre nicht schlecht, ein Teil des Stacktraces anzuzeigen.
 		alert.showAndWait();
 	}
 }
