@@ -145,8 +145,8 @@ public class StechuhrWindowController {
 			String nr = ticket.getEditor().getText();
 			if (nr != null && !nr.trim().isEmpty()) {
 				nr = nr.trim();
-				newEntry(nr);
 				updateOldTickets(nr);
+				newEntry(nr);
 			}
 		} catch (Exception e) {
 			Window.errorAlert(e);
@@ -173,6 +173,7 @@ public class StechuhrWindowController {
 		StechuhrWindow.model.getStundenliste().add(new Stunden(ticket));
 		updateInfo();
 		new StechuhrDAO().save(StechuhrWindow.model);
+		this.ticket.getEditor().setText(ticket);
 	}
 
 	@FXML
