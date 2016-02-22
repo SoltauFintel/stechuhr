@@ -9,6 +9,9 @@ env:
 
 before_install:
   - sudo apt-get update
+  - sudo pip install codecov
   - sudo apt-get install --only-upgrade -y oracle-java8-installer
       
-script: gradle -b stechuhr/build.gradle check fatJar
+script: gradle -b stechuhr/build.gradle check jacocoTestReport fatJar
+
+after_success: codecov
