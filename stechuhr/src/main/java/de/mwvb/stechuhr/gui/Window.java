@@ -85,7 +85,7 @@ public abstract class Window<CTR> {
 			}
 		});
 	}
-	
+
 	protected int onClose() {
 		return 1; // Schließen ok
 	}

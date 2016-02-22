@@ -190,7 +190,7 @@ public class StechuhrWindowController {
 			updateInfo("");
 			newEntry(Stunden.STOP);
 			StechuhrWindow.model.stop();
-			getStage().close(); // Programm beenden
+			quit();
 		} catch (Exception e) {
 			Window.errorAlert(e);
 		}
@@ -208,9 +208,15 @@ public class StechuhrWindowController {
 	
 	@FXML
 	public void onBeenden() {
-		getStage().close();
+		quit();
 	}
 	
+	private void quit() {
+		Application.config.saveWindowPosition(StechuhrWindow.class.getSimpleName(), getStage());
+		getStage().close();
+		// Programm ist nun beendet.
+	}
+
 	public void minimize() {
 		getStage().setIconified(true);
 	}

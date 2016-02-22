@@ -3,6 +3,7 @@ package de.mwvb.stechuhr.gui.bearbeiten;
 import java.time.LocalTime;
 import java.util.Optional;
 
+import de.mwvb.stechuhr.Application;
 import de.mwvb.stechuhr.dao.StechuhrDAO;
 import de.mwvb.stechuhr.entity.Stunden;
 import de.mwvb.stechuhr.gui.Window;
@@ -65,7 +66,7 @@ public class BearbeitenWindowController {
 				KeyCode code = event.getCode();
 				if (KeyCode.ESCAPE.equals(code)) {
 					event.consume();
-					getStage().close();
+					onClose();
 				}
 			});
 
@@ -205,6 +206,7 @@ public class BearbeitenWindowController {
 	@FXML
 	public void onClose() {
 		try {
+			Application.config.saveWindowPosition(BearbeitenWindow.class.getSimpleName(), getStage());
 			getStage().close();
 		} catch (Exception e) {
 			Window.errorAlert(e);
