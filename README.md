@@ -13,9 +13,10 @@ ist wie ein Kassettenrekorder aufgebaut: **Play / Pause / Stop**.
 Bei jeder Eingabe des Tickets klickt man Play an. Dann läuft die Zeit für dieses Arbeitsthema.
 Zu Beginn der Mittagspause klickt man auf Pause. Damit unterbricht man die Arbeit am Arbeitsthema.
 Nach der Pause wählt man die vorige Ticketnummer aus der Combobox und klickt erneut Play an.
-Zum Feierabend hin klickt man einfach auf Stop. Damit endet das aktuelle Arbeitsthema für diese Tag.
+Zum Feierabend hin klickt man einfach auf Stop. Damit endet das aktuelle Arbeitsthema für diesen Tag.
 Die Stunden werden für den Export vorbereitet, optimiert und als Textdatei ausgegeben. Die Stechuhr
-wird dann beendet.
+wird dann beendet. Falls man am Vortag nicht auf Stop geklickt hat, fragt die Stechuhr die
+Vortag-Feierabend-Uhrzeit ab und beendet den Tag.
 
 An der rechten Seite gibt es bis zu 10 vorbelegbare Schnellbuttons. Diese werden nur angezeigt,
 wenn sie mit einer Ticketnummer vorbelegt sind - oder man die Strg-Taste gedrückt hält. Mit
@@ -36,10 +37,10 @@ lokale Festplatte geschrieben.
 
 ## Build und Ausführung
 
-Ant-Datei build.xml (Taget build) ausführen. Die ausführbare Anwendung liegt dann im Ordner stechuhr/build/install/stechuhr
-und kann mit bin/stechuhr.bat auf einem Windows-PC gestartet werden.
+Ant-Datei build.xml (Taget build) ausführen. Die ausführbare Anwendung liegt dann im Ordner stechuhr/build/libs
+und kann im Windows-Explorer durch Doppelklicken auf stechuhr-x.x.jar gestartet werden.
 
-Tooling: Java 8, JavaFX, Gradle 2.10, Ant, Eclipse Mars.1
+Tooling: Java 8, GUI mit JavaFX, Build mit Gradle 2.10, Ant, Travis CI und codecov, IDE: Eclipse Mars.1, SCM+Bugtracker: github
 
 ## Lizenz
 
