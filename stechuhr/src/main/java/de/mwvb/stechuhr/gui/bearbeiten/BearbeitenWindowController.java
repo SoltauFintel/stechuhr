@@ -106,11 +106,18 @@ public class BearbeitenWindowController {
 			Stunden s = grid.getItems().get(i);
 			if (s == null) return;
 
-			String ut = validate(i);
+			// Validierung
+			String ut = validateUhrzeit(i);
 			if (ut == null) return;
+			String nr = ticket.getText().trim();
+			if (nr.isEmpty()) {
+				Window.alert("Bitte Ticketnummer eingeben!");
+				return;
+			}
 			
+			// Eingaben übernehmen
 			s.setUhrzeit(LocalTime.parse(ut));
-			s.setTicket(ticket.getText().trim());
+			s.setTicket(nr);
 			s.setLeistung(leistung.getText().trim());
 			s.setNotizPrivat(notizPrivat.getText());
 
@@ -120,7 +127,7 @@ public class BearbeitenWindowController {
 		}
 	}
 
-	private String validate(int i) {
+	private String validateUhrzeit(int i) {
 		// Uhrzeit valide?
 		String ut = uhrzeit.getText();
 		ut = validateUhrzeit(ut);
