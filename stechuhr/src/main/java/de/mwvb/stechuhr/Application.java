@@ -17,6 +17,7 @@ public class Application extends javafx.application.Application {
 	public static final String APP_NAME = "Stechuhr";
 	public static final String APP_VERSION = "0.2-20160222";
 	public static StechuhrConfig config;
+	public static IStechuhrPlugin plugin = null;
 	
 	public static void main(String[] args) {
 		StechuhrDAO.init();

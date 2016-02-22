@@ -8,6 +8,7 @@ import java.time.format.FormatStyle;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.mwvb.stechuhr.Application;
 import de.mwvb.stechuhr.dao.StechuhrDAO;
 
 /**
@@ -69,7 +70,11 @@ public class StechuhrModel {
 	public void stop() {
 		List<Exportstunden> export = createExportstunden();
 		optimieren(export);
-		new StechuhrDAO().saveExport(export);
+		if (Application.plugin == null) {
+			new StechuhrDAO().saveExport(export);
+		} else {
+			Application.plugin.export(export);
+		}
 	}
 
 	private List<Exportstunden> createExportstunden() {
