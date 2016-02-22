@@ -38,7 +38,7 @@ lokale Festplatte geschrieben.
 Ant-Datei build.xml (Taget build) ausführen. Die ausführbare Anwendung liegt dann im Ordner stechuhr/build/install/stechuhr
 und kann mit bin/stechuhr.bat auf einem Windows-PC gestartet werden.
 
-Tooling: Java 8, JavaFX, Gradle 1.9, Ant, Eclipse Mars.1
+Tooling: Java 8, JavaFX, Gradle 2.10, Ant, Eclipse Mars.1
 
 ## Lizenz
 
