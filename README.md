@@ -2,12 +2,12 @@
 [ ![Test Code Coverage](http://img.shields.io/codecov/c/github/SoltauFintel/stechuhr.svg) ](https://codecov.io/github/SoltauFintel/stechuhr)
 
 # Stechuhr
-Stechuhr zur einfachen Erfassung von Stunden des aktuellen Tages
+Stechuhr zur einfachen Erfassung von Arbeitsstunden des aktuellen Tages
 
 ## Beschreibung
 
 Mit dem Programm Stechuhr kann man für den aktuellen Tag Stunden erfassen.
-Man gibt dabei eine Ticketnummer oder sonstigen Begriff (z.B. "Besprechung") ein. Die Stechuhr
+Man gibt dabei eine Ticketnummer, Auftragsnummer oder sonstigen Begriff (z.B. "Besprechung") ein. Die Stechuhr
 ist wie ein Kassettenrekorder aufgebaut: **Play / Pause / Stop**.
 
 Bei jeder Eingabe des Tickets klickt man Play an. Dann läuft die Zeit für dieses Arbeitsthema.
