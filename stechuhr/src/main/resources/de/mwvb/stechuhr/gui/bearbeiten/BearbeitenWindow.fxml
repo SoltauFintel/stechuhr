@@ -35,7 +35,7 @@
 				<padding><Insets bottom="12"/></padding>
 				
 				<Label text="Uhrzeit:" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
-				<TextField fx:id="uhrzeit" maxHeight="2" GridPane.rowIndex="1" GridPane.columnIndex="2" maxWidth="55"/>
+				<TextField fx:id="uhrzeit" maxHeight="2" GridPane.rowIndex="1" GridPane.columnIndex="2" maxWidth="60"/>
 	
 				<Label text="Ticket:" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
 				<TextField fx:id="ticket" maxHeight="2" GridPane.rowIndex="2" GridPane.columnIndex="2" maxWidth="150"/>
