@@ -153,29 +153,6 @@ public class StechuhrWindowController {
 		}
 	}
 
-	private void updateOldTickets(String nr) {
-		ObservableList<String> items = ticket.getItems();
-		for (int i = items.size() - 1; i >= 0; i--) {
-			if (items.get(i).equals(nr)) {
-				items.remove(i);
-			}
-		}
-		items.add(0, nr);
-		ticket.getSelectionModel().select(0);
-		Application.config.getOldTickets().clear();
-		for (String t : items) {
-			Application.config.getOldTickets().add(t);
-		}
-		Application.config.saveOldTickets();
-	}
-	
-	private void newEntry(String ticket) {
-		StechuhrWindow.model.getStundenliste().add(new Stunden(ticket));
-		updateInfo();
-		new StechuhrDAO().save(StechuhrWindow.model);
-		this.ticket.getEditor().setText(ticket);
-	}
-
 	@FXML
 	public void onPause() {
 		try {
@@ -205,6 +182,29 @@ public class StechuhrWindowController {
 		} catch (Exception e) {
 			Window.errorAlert(e);
 		}
+	}
+
+	private void updateOldTickets(String nr) {
+		ObservableList<String> items = ticket.getItems();
+		for (int i = items.size() - 1; i >= 0; i--) {
+			if (items.get(i).equals(nr)) {
+				items.remove(i);
+			}
+		}
+		items.add(0, nr);
+		ticket.getSelectionModel().select(0);
+		Application.config.getOldTickets().clear();
+		for (String t : items) {
+			Application.config.getOldTickets().add(t);
+		}
+		Application.config.saveOldTickets();
+	}
+	
+	private void newEntry(String nr) {
+		StechuhrWindow.model.getStundenliste().add(new Stunden(nr));
+		updateInfo();
+		new StechuhrDAO().save(StechuhrWindow.model);
+		ticket.getEditor().setText(nr);
 	}
 	
 	@FXML
