@@ -1,8 +1,10 @@
 apply plugin: 'java'
 apply plugin: 'eclipse'
-apply plugin: 'application'
 
 sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+project.description = 'Stechuhr - einfache Stundenerfassung'
 group = 'de.mwvb.stechuhr'
 version = '0.2-SNAPSHOT'
 
@@ -16,6 +18,7 @@ repositories {
 	mavenCentral()
 }
 
+// Mit diesem task wird die Anwendung gebaut. Man erhaelt dann eine doppelklickbare StandAlone-JAR.
 task fatJar(type: Jar) {
 	manifest {
         attributes 'Main-Class': 'de.mwvb.stechuhr.Application'
@@ -23,4 +26,25 @@ task fatJar(type: Jar) {
     baseName = project.name
     from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
     with jar
+}
+
+apply plugin: 'jacoco'
+
+jacoco {
+	toolVersion = '0.7.1.201405082137'
+}
+
+jacocoTestReport {
+	reports {
+		xml.enabled true
+		html.enabled true
+	}
+}
+
+test {
+	jacoco {
+		append = false
+		destinationFile = file("$buildDir/jacoco/jacocoTest.exec")
+		classDumpFile = file("$buildDir/jacoco/classpathdumps")
+	}
 }
