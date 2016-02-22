@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/soltaufintel/stechuhr.png?branch=master)](https://travis-ci.org/soltaufintel/stechuhr)
+
 # Stechuhr
 Stechuhr zur einfachen Erfassung von Stunden des aktuellen Tages
 
