@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/SoltauFintel/stechuhr.png?branch=master)](https://travis-ci.org/SoltauFintel/stechuhr)
+[ ![Test Code Coverage](http://img.shields.io/codecov/c/github/SoltauFintel/stechuhr.svg) ](https://codecov.io/github/SoltauFintel/stechuhr)
 
 # Stechuhr
 Stechuhr zur einfachen Erfassung von Stunden des aktuellen Tages
