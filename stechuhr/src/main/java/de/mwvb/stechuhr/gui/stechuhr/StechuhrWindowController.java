@@ -122,6 +122,7 @@ public class StechuhrWindowController {
 		ticket.getEditor().addEventFilter(KeyEvent.KEY_PRESSED, event -> {
 			KeyCode code = event.getCode();
 			if (KeyCode.ENTER.equals(code)) {
+				System.out.println("CB > ENTER > PLAY: " + ticket.getEditor().getText());
 				onPlay();
 			} else if (KeyCode.ESCAPE.equals(code)) {
 				minimize();
