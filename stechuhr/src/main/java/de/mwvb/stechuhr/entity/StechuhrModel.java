@@ -66,6 +66,13 @@ public class StechuhrModel {
 		return i < 10 ? "0" + i : "" + i;
 	}
 
+	public void stop(LocalTime stopUhrzeit) {
+		Stunden s = new Stunden(stopUhrzeit);
+		s.setTicket(Stunden.STOP);
+		stundenliste.add(s);
+		stop();
+	}
+	
 	// TODO Stechuhr-Datei nach STOP umbenennen? Wenn Anwender erneut Stechuhr starten würde, würde er mit nackter Datei anfangen.
 	public void stop() {
 		List<Exportstunden> export = createExportstunden();
@@ -107,9 +114,10 @@ public class StechuhrModel {
 		boolean nochmal;
 		do {
 			nochmal = false;
-			for (int i = 0; i < export.size(); i++) {
+			int n = export.size();
+			for (int i = 0; i < n; i++) {
 				Exportstunden a = export.get(i);
-				for (int j = 0; j < i; j++) {
+				for (int j = i + 1; j < n; j++) {
 					Exportstunden b = export.get(j);
 					if (a.getLeistung().equals(b.getLeistung()) && a.getTicket().equals(b.getTicket()) && a.getTag().equals(b.getTag())) {
 						// a und b zusammenfassen

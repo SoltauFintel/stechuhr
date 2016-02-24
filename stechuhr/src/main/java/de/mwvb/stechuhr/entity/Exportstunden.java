@@ -68,7 +68,7 @@ public class Exportstunden {
 
 	public void inc(Exportstunden b) {
 		stunden += b.stunden;
-		minuten += b.stunden;
+		minuten += b.minuten;
 		while (minuten >= 60) {
 			stunden++;
 			minuten -= 60;
@@ -87,9 +87,11 @@ public class Exportstunden {
 	    return bd.doubleValue();
 	}
 	
+	public String getSSMM() {
+		return stunden + ":" + StechuhrModel.zweistellig(minuten);
+	}
+	
 	public String toFileString() {
-		return getTagString() + ";"
-				+ stunden + ":" + StechuhrModel.zweistellig(getMinuten()) + ";" + getDezimaldauer() + ";"
-				+ getTicket() + ";" + getLeistung();
+		return getTagString() + ";" + getSSMM() + "; " + getDezimaldauer() + " ;" + getTicket() + ";" + getLeistung();
 	}
 }
