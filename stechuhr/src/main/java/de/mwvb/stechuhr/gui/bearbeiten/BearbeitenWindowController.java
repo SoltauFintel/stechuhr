@@ -122,6 +122,10 @@ public class BearbeitenWindowController {
 			s.setNotizPrivat(notizPrivat.getText());
 
 			updateGrid_andSave();
+			
+			uhrzeit.setText(ut);
+			ticket.setText(nr);
+			leistung.setText(s.getLeistung());
 		} catch (Exception e) {
 			Window.errorAlert(e);
 		}
@@ -129,7 +133,7 @@ public class BearbeitenWindowController {
 
 	private String validateUhrzeit(int i) {
 		// Uhrzeit valide?
-		String ut = uhrzeit.getText();
+		String ut = uhrzeit.getText().trim();
 		ut = validateUhrzeit(ut);
 		if (ut == null) {
 			return null;
@@ -155,6 +159,9 @@ public class BearbeitenWindowController {
 	 */
 	public static String validateUhrzeit(String uhrzeit) {
 		uhrzeit = uhrzeit.replace(",", ":"); // Eingabevereinfachung
+		if ((uhrzeit.length() == "S:MM".length() && uhrzeit.charAt(1) == ':') || (uhrzeit.length() == "S".length() && uhrzeit.charAt(0) != ':')) {
+			uhrzeit = "0" + uhrzeit;
+		}
 		if (!uhrzeit.contains(":")) { // Aus Kurzfurm "9" wird "09:00".
 			try {
 				int h = Integer.parseInt(uhrzeit);
