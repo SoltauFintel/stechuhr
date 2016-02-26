@@ -34,8 +34,8 @@ public class VortagCheck {
 	 * ist die Lücke größer. Zur Vermeidung einer Endlosschleife wird max. 100 Tage zurück gesucht.
 	 */
 	private LocalDate sucheVortag() {
-		StechuhrDAO access = new StechuhrDAO();
-		LocalDate d = StechuhrModel.today().minusDays(1);
+		StechuhrDAO access = getAccess();
+		LocalDate d = today().minusDays(1);
 		int loop = 0;
 		while (loop < 100 && !access.existsStechuhrModelFile(d)) {
 			d = d.minusDays(1);
@@ -49,7 +49,7 @@ public class VortagCheck {
 	 * @return null wenn Tag "d" mit STOP endet, sonst StechuhrModel von Tag "d"
 	 */
 	private StechuhrModel endsWithStop(LocalDate d) {
-		StechuhrModel vmodel = new StechuhrDAO().load(d);
+		StechuhrModel vmodel = getAccess().load(d);
 		List<Stunden> stundenliste = vmodel.getStundenliste();
 		int n = stundenliste.size();
 		return (n == 0 || Stunden.STOP.equals(stundenliste.get(n - 1).getTicket())) ? null : vmodel;
@@ -67,7 +67,7 @@ public class VortagCheck {
 			Stunden stop = new Stunden(feierabendUhrzeit);
 			stop.setTicket(Stunden.STOP);
 			vmodel.getStundenliste().add(stop);
-			new StechuhrDAO().save(vmodel);
+			getAccess().save(vmodel);
 			vmodel.stop();
 		}
 	}
@@ -88,7 +88,7 @@ public class VortagCheck {
 		return LocalTime.parse(uhrzeit); // Erfolg
 	}
 	
-	private Optional<String> askForVortagEndeUhrzeit(LocalDate d, String vorschlag) {
+	Optional<String> askForVortagEndeUhrzeit(LocalDate d, String vorschlag) {
 		TextInputDialog dialog = new TextInputDialog(vorschlag);
 		dialog.setTitle("Vortag");
 		dialog.setHeaderText("Am " + Stunden.formatWTDate(d) + " wurde nicht auf STOP gedrückt."
@@ -96,5 +96,13 @@ public class VortagCheck {
 				+ "\nWie spät wurde an dem Tag Feierabend gemacht?");
 		dialog.setContentText("Feierabend Uhrzeit:");
 		return dialog.showAndWait();
+	}
+	
+	StechuhrDAO getAccess() {
+		return new StechuhrDAO();
+	}
+	
+	LocalDate today() {
+		return StechuhrModel.today();
 	}
 }
