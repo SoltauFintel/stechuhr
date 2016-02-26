@@ -12,6 +12,9 @@
 	<target name="compile">
 		<gradle task="compileJava compileTestJava"/>
 	</target>
+	<target name="test">
+		<gradle task="check"/>
+	</target>
 
 	<macrodef name="gradle">
 		<attribute name="task"/>

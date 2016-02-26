@@ -8,11 +8,11 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import de.mwvb.stechuhr.AbstractStundenTest;
 import de.mwvb.stechuhr.Application;
 import de.mwvb.stechuhr.IStechuhrPlugin;
 
-public class ExportstundenTest {
-	private StechuhrModel model;
+public class ExportstundenTest extends AbstractStundenTest {
 	private List<Exportstunden> exportstunden;
 	
 	@Before
@@ -60,15 +60,6 @@ public class ExportstundenTest {
 		Assert.assertEquals("2) toFileString() falsch!", "20.02.2016;2:30; 2,50 ;B;B-1", exportstunden.get(1).toFileString());
 	}
 
-	private Stunden createStunden(LocalTime uhrzeit, String ticket, String leistung) {
-		Stunden s = new Stunden(uhrzeit);
-		s.setTag(model.getTag());
-		s.setTicket(ticket);
-		s.setLeistung(leistung);
-		model.getStundenliste().add(s);
-		return s;
-	}
-	
 	private IStechuhrPlugin getPlugin() {
 		return new IStechuhrPlugin() {
 			@Override

@@ -50,15 +50,15 @@ public class StechuhrModel {
 			Duration d = Duration.between(a.getUhrzeit(), b.getUhrzeit());
 			long s = 0;
 			long m = d.toMinutes();
+			String dauer = "";
 			if (m >= 0) {
 				while (m >= 60) {
 					s++;
 					m -= 60;
 				}
-				a.setDauer(s + ":" + zweistellig(m));
-			} else {
-				a.setDauer("");
+				dauer = s + ":" + zweistellig(m);
 			}
+			a.setDauer(dauer);
 		}
 	}
 	
