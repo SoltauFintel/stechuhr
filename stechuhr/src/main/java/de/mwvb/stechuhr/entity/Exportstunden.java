@@ -3,9 +3,11 @@ package de.mwvb.stechuhr.entity;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
+import java.util.Locale;
 
 /**
  * Fertiger Stundendatensatz für Export
@@ -22,7 +24,7 @@ public class Exportstunden {
 	}
 
 	public String getTagString() {
-		return tag.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM));
+		return tag.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)); // TODO Locale
 	}
 
 	public void setTag(LocalDate tag) {
@@ -77,7 +79,8 @@ public class Exportstunden {
 
 	public String getDezimaldauer() {
 		double m = minuten / 60d + stunden;
-		return new DecimalFormat("0.00").format(m);
+		DecimalFormatSymbols sy = new DecimalFormatSymbols(Locale.GERMAN);
+		return new DecimalFormat("0.00", sy).format(m);
 	}
 	
 	public static double round(double value, int places) {

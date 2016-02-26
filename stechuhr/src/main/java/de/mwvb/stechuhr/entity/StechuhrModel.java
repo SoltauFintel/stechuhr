@@ -29,7 +29,7 @@ public class StechuhrModel {
 	}
 
 	public String getTagString() {
-		return tag.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM));
+		return tag.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)); // TODO Locale
 	}
 
 	public String getWTTagString() {
