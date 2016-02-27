@@ -3,8 +3,6 @@ package de.mwvb.stechuhr.entity;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,7 +27,7 @@ public class StechuhrModel {
 	}
 
 	public String getTagString() {
-		return tag.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)); // TODO Locale
+		return Exportstunden.formatDate(tag);
 	}
 
 	public String getWTTagString() {

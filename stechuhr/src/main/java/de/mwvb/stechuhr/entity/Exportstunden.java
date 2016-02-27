@@ -6,7 +6,6 @@ import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
 import java.util.Locale;
 
 /**
@@ -24,7 +23,11 @@ public class Exportstunden {
 	}
 
 	public String getTagString() {
-		return tag.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)); // TODO Locale
+		return formatDate(tag);
+	}
+	
+	public static String formatDate(LocalDate datum) {
+		return datum.format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
 	}
 
 	public void setTag(LocalDate tag) {
