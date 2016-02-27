@@ -41,7 +41,7 @@ public class VortagCheck {
 			d = d.minusDays(1);
 			loop++;
 		}
-		return access.getStechuhrModelFile(d).exists() ? d : null;
+		return access.existsStechuhrModelFile(d) ? d : null;
 	}
 	
 	/**
