@@ -24,6 +24,7 @@ import javafx.stage.Stage;
  */
 public abstract class Window<CTR> {
 	protected CTR controller;
+	public static boolean testmodus = false;
 	
 	public final void show(final Stage stage, boolean modal) {
 		stage.getIcons().add(new Image(getClass().getResourceAsStream(getIcon())));
@@ -109,6 +110,7 @@ public abstract class Window<CTR> {
 	protected abstract CTR createController();
 	
 	public static void alert(String meldung) {
+		if (testmodus) return;
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Meldung");
 		alert.setHeaderText("");

@@ -17,16 +17,27 @@ import javafx.scene.control.TextInputDialog;
  * Falls nicht: mit Benutzerinteraktion STOP nachträglich durchführen.
  */
 public class VortagCheck {
-
-	public void check(StechuhrModel model) {
-		if (!model.getStundenliste().isEmpty()) return; // Stop wird nur als vergessen angesehen, wenn es noch keine Stunden für den akt. Tag gibt.
+	
+	/**
+	 * Prüft, ob der Vortag gestoppt werden muss und führt ggf. Stop mit Benutzerinteraktion durch.
+	 * 
+	 * @param model StechuhrModel des aktuellen Tages
+	 * @return
+	 * 0: Vortag wurde korrekt gestoppt.<br>
+	 * 1: Vortag wurde nun nachträglich gestoppt.<br>
+	 * -1: Vortag muss gestoppt werden; Aktion wurde aber durch Anwender abgebrochen<br>
+	 * -2: Es gibt bereits Stunden für den aktuellen Tag,<br>
+	 * -3: Es gibt keine Vortag-Daten.<br>
+	 */
+	public int check(StechuhrModel model) {
+		if (!model.getStundenliste().isEmpty()) return -2; // Stop wird nur als vergessen angesehen, wenn es noch keine Stunden für den akt. Tag gibt.
 		
 		LocalDate vortagDate = sucheVortag();
-		if (vortagDate == null) return; // Es wurde keine Vortagsdatei mit vertretbarem Aufwand gefunden.
+		if (vortagDate == null) return -3; // Es wurde keine Vortagsdatei mit vertretbarem Aufwand gefunden.
 		StechuhrModel vmodel = endsWithStop(vortagDate);
-		if (vmodel == null) return; // Vortag wurde korrekt gestoppt.
+		if (vmodel == null) return 0; // Vortag wurde korrekt gestoppt.
 		
-		vortagWurdeNichtGestoppt(vmodel, vortagDate);
+		return vortagWurdeNichtGestoppt(vmodel, vortagDate);
 	}
 	
 	/**
@@ -55,7 +66,7 @@ public class VortagCheck {
 		return (n == 0 || Stunden.STOP.equals(stundenliste.get(n - 1).getTicket())) ? null : vmodel;
 	}
 
-	private void vortagWurdeNichtGestoppt(final StechuhrModel vmodel, final LocalDate vortagDate) {
+	private int vortagWurdeNichtGestoppt(final StechuhrModel vmodel, final LocalDate vortagDate) {
 		LocalTime nichtVor = vmodel.getStundenliste().get(vmodel.getStundenliste().size() - 1).getUhrzeit();
 		String vorschlag = "17:15"; // TODO Diese Uhrzeit könnte man aus Altdaten erraten.
 		if (LocalTime.parse(vorschlag).isBefore(nichtVor)) {
@@ -69,7 +80,9 @@ public class VortagCheck {
 			vmodel.getStundenliste().add(stop);
 			getAccess().save(vmodel);
 			vmodel.stop();
+			return 1;
 		}
+		return -1;
 	}
 	
 	private LocalTime ermittleFeierabendUhrzeit(final LocalDate vortagDate, final String vorschlag, final LocalTime nichtVor) {
