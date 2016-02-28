@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/SoltauFintel/stechuhr.png?branch=master)](https://travis-ci.org/SoltauFintel/stechuhr)
-[ ![Test Code Coverage](http://img.shields.io/codecov/c/github/SoltauFintel/stechuhr.svg) ](https://codecov.io/github/SoltauFintel/stechuhr) [![Apache 2.0 Lizenz](https://img.shields.io/badge/license-Apache2-4cc61e.svg)](https://github.com/SoltauFintel/stechuhr/blob/master/LICENSE)
+[ ![Test Code Coverage](http://img.shields.io/codecov/c/github/SoltauFintel/stechuhr.svg) ](https://codecov.io/github/SoltauFintel/stechuhr) [![Apache 2.0 Lizenz](https://img.shields.io/badge/license-Apache2-4cc61e.svg)](http://www.apache.org/licenses/LICENSE-2.0)
 
 # Stechuhr
 Stechuhr zur einfachen Erfassung von Arbeitsstunden des aktuellen Tages
@@ -41,7 +41,3 @@ Ant-Datei build.xml (Taget build) ausführen. Die ausführbare Anwendung liegt d
 und kann im Windows-Explorer durch Doppelklicken auf stechuhr-x.x.jar gestartet werden.
 
 Tooling: Java 8, GUI mit JavaFX, Build mit Gradle 2.10, Ant, Travis CI und codecov, IDE: Eclipse Mars.1, SCM+Bugtracker: github
-
-## Lizenz
-
-[Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0)
