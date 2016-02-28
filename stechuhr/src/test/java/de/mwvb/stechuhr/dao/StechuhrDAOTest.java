@@ -8,13 +8,11 @@ import java.util.List;
 
 import org.junit.Assert;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import de.mwvb.stechuhr.entity.StechuhrModel;
 import de.mwvb.stechuhr.entity.Stunden;
 
-@Ignore
 public class StechuhrDAOTest {
 
 	@BeforeClass
