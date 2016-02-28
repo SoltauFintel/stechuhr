@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/SoltauFintel/stechuhr.png?branch=master)](https://travis-ci.org/SoltauFintel/stechuhr)
-[ ![Test Code Coverage](http://img.shields.io/codecov/c/github/SoltauFintel/stechuhr.svg) ](https://codecov.io/github/SoltauFintel/stechuhr)
+[ ![Test Code Coverage](http://img.shields.io/codecov/c/github/SoltauFintel/stechuhr.svg) ](https://codecov.io/github/SoltauFintel/stechuhr) [![Apache 2.0 Lizenz](https://img.shields.io/badge/license-Apache2-4cc61e.svg)](https://github.com/SoltauFintel/stechuhr/blob/master/LICENSE)
 
 # Stechuhr
 Stechuhr zur einfachen Erfassung von Arbeitsstunden des aktuellen Tages
@@ -30,7 +30,7 @@ Nach der Änderung einer Zeile muss der Speichern Button betätigt werden. Auch 
 Das Fenster-schließen-Symbol des Hauptfensters beendet nicht die Stechuhr, sondern minimiert
 nur das Fenster. Gleiches bei Betätigung der Esc-Taste. So wird verhindert, dass man aus Versehen
 die Stechuhr beendet - denn sie soll ja den ganzen Tag laufen. **Das Programm wird über das Pulldownmenü
-Datei > Beenden beendet.**
+_Datei > Beenden_ beendet.**
 
 Das Programm Stechuhr legt viel Wert auf Datensicherheit. Alle Daten werden immer sofort auf die
 lokale Festplatte geschrieben.
