@@ -48,7 +48,7 @@
 			</GridPane>
 			<HBox spacing="12">
 				<Button text="Speichern" minWidth="100" fx:id="save" onAction="#onSave"/>
-				<Button text="Löschen!" minWidth="100" fx:id="delete" onAction="#onDelete"/>
+				<Button text="Löschen" minWidth="100" fx:id="delete" onAction="#onDelete"/>
 				<Pane HBox.hgrow="ALWAYS"/>
 				<Button onAction="#onClose" text="Schließen" minWidth="100" fx:id="close"/>
 			</HBox>
