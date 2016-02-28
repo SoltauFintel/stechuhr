@@ -71,7 +71,7 @@ public class Stunden {
 		this.notizPrivat = notizPrivat;
 	}
 	
-	public String getUhrzeitString() {
+	public String getUhrzeitString() { // benutzt von BearbeitenWindow.fxml
 		return uhrzeit.toString();
 	}
 

@@ -108,6 +108,7 @@ public class StechuhrModel {
 		return export;
 	}
 
+	// TODO Verschachtelung zu tief
 	private void optimieren(List<Exportstunden> export) {
 		boolean nochmal;
 		do {
@@ -132,7 +133,7 @@ public class StechuhrModel {
 		} while (nochmal);
 		for (int i = export.size() - 1; i >= 0; i--) {
 			if (export.get(i).getTicket().equals(Stunden.STOP)) {
-				export.remove(i);
+				export.remove(i); // TODO Für diese Codezeile einen Testcase schreiben!
 			}
 		}
 	}

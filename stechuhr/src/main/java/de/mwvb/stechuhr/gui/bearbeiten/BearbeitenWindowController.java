@@ -110,11 +110,7 @@ public class BearbeitenWindowController {
 			// Validierung
 			String ut = validateUhrzeit(i);
 			if (ut == null) return;
-			String nr = ticket.getText().trim();
-			if (nr.isEmpty()) {
-				Window.alert("Bitte Ticketnummer eingeben!");
-				return;
-			}
+			String nr = validateTicket(ticket.getText());
 			
 			// Eingaben übernehmen
 			s.setUhrzeit(LocalTime.parse(ut));
@@ -160,6 +156,7 @@ public class BearbeitenWindowController {
 	 */
 	public static String validateUhrzeit(String uhrzeit) {
 		uhrzeit = uhrzeit.replace(",", ":"); // Eingabevereinfachung
+		// TODO Idee: "SMM" und "SSMM" Eingabe auch erlauben
 		if ((uhrzeit.length() == "S:MM".length() && uhrzeit.charAt(1) == ':') || (uhrzeit.length() == "S".length() && uhrzeit.charAt(0) != ':')) {
 			uhrzeit = "0" + uhrzeit;
 		}
@@ -179,6 +176,23 @@ public class BearbeitenWindowController {
 			Window.alert("Bitte gebe eine Uhrzeit im Format SS:MM ein!");
 			return null;
 		}
+	}
+	
+	/**
+	 * Eingegebene Ticketnummer validieren
+	 * @param ticket eingegebene Ticketnummer
+	 * @return Ticket wenn ok, sonst null. Es wurde in dem Fall eine entsprechende Meldung ausgegeben.
+	 */
+	public static String validateTicket(String ticket) {
+		ticket = ticket.trim();
+		if (ticket.isEmpty()) {
+			Window.alert("Bitte Ticketnummer eingeben!");
+			return null;
+		} else if (ticket.contains(";")) {
+			Window.alert("Das Zeichen \";\" ist in der Ticketnummer nicht erlaubt!");
+			return null;
+		}
+		return ticket;
 	}
 	
 	@FXML
