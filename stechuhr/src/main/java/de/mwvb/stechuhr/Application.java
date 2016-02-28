@@ -13,10 +13,10 @@ import javafx.stage.Stage;
  * @author Marcus Warm
  * @since 21.02.2016
  */
-public class Application extends javafx.application.Application {
+public class Application extends javafx.application.Application { // TODO rename to StechuhrApplication (FindBugs)
 	public static final String APP_NAME = "Stechuhr";
 	public static final String APP_VERSION = "0.2";
-	public static StechuhrConfig config;
+	public static StechuhrConfig config; // TODO private machen + public Getter (FindBugs)
 	public static IStechuhrPlugin plugin = null;
 	
 	public static void main(String[] args) {

@@ -28,7 +28,10 @@ public class StechuhrDAO {
 	
 	public static void init() {
 		pfad = System.getProperty("user.home").replace("\\", "/") + "/stechuhr";
-		new File(pfad).mkdirs();
+		File file = new File(pfad);
+		if (!file.isDirectory() && !file.mkdirs()) {
+			throw new RuntimeException("Fehler bei init(). Verzeichnis konnte nicht erstellt werden: " + file.getAbsolutePath());
+		}
 	}
 
 	public StechuhrModel load(LocalDate tag) {
@@ -51,7 +54,9 @@ public class StechuhrDAO {
 	
 	public void save(StechuhrModel model) {
 		File file = getStechuhrModelFile(model.getTag());
-		file.getParentFile().mkdirs();
+		if (!file.getParentFile().isDirectory() && !file.getParentFile().mkdirs()) {
+			throw new RuntimeException("Fehler bei save(). Verzeichnis konnte nicht erstellt werden: " + file.getParentFile().getAbsolutePath());
+		}
 		
 		XMLDocument dok = new XMLDocument("<Stechuhr version=\"" + DATEI_VERSION + "\"/>");
 		XMLElement root = dok.getElement();
@@ -68,7 +73,9 @@ public class StechuhrDAO {
 	
 	public void delete(StechuhrModel model) {
 		File file = getStechuhrModelFile(model.getTag());
-		file.delete();
+		if (file.exists() && !file.delete()) {
+			throw new RuntimeException("Fehler bei delete(). Datei konnte nicht gelöscht werden: " + file.getAbsolutePath());
+		}
 	}
 	
 	public void save(String id, List<String> data) {
@@ -76,7 +83,7 @@ public class StechuhrDAO {
 			throw new IllegalArgumentException("Bitte id angeben!");
 		}
 		try {
-			FileWriter w = new FileWriter(getFile(id));
+			FileWriter w = new FileWriter(getFile(id)); // TODO FindBugs: Encoding
 			try {
 				for (String line : data) {
 					w.write(line + "\r\n");
@@ -99,7 +106,7 @@ public class StechuhrDAO {
 			if (!file.exists()) {
 				return ret;
 			}
-			BufferedReader r = new BufferedReader(new FileReader(file));
+			BufferedReader r = new BufferedReader(new FileReader(file)); // TODO FindBugs: Encoding
 			try {
 				String line;
 				while ((line = r.readLine()) != null) {
@@ -118,7 +125,7 @@ public class StechuhrDAO {
 		if (export.isEmpty()) return;
 		try {
 			File file = getExportFile(export.get(0).getTag());
-			FileWriter w = new FileWriter(file);
+			FileWriter w = new FileWriter(file); // TODO FindBugs: Encoding
 			try {
 				for (Exportstunden x : export) {
 					w.write(x.toFileString() + "\r\n");

@@ -1,5 +1,7 @@
 apply plugin: 'java'
 apply plugin: 'eclipse'
+//apply plugin: 'pmd'
+//apply plugin: 'findbugs'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -52,3 +54,11 @@ test {
 		classDumpFile = file("$buildDir/jacoco/classpathdumps")
 	}
 }
+
+tasks.withType(FindBugs) {
+    reports {
+        xml.enabled = false
+        html.enabled = true
+    }
+ }
+ 

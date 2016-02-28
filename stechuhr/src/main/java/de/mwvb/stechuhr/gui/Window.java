@@ -27,7 +27,9 @@ public abstract class Window<CTR> {
 	public static boolean testmodus = false;
 	
 	public final void show(final Stage stage, boolean modal) {
-		stage.getIcons().add(new Image(getClass().getResourceAsStream(getIcon())));
+		stage.getIcons().add(new Image(
+				getClass().getResourceAsStream(getIcon()) // TODO diesen Teil auch nach getIcon() verschieben (FindBugs)
+				));
 		Scene scene = new Scene(root());
 		stage.setScene(scene);
 		keyBindings(scene);

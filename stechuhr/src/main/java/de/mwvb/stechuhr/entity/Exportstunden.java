@@ -1,7 +1,5 @@
 package de.mwvb.stechuhr.entity;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.time.LocalDate;
@@ -84,13 +82,6 @@ public class Exportstunden {
 		double m = minuten / 60d + stunden;
 		DecimalFormatSymbols sy = new DecimalFormatSymbols(Locale.GERMAN);
 		return new DecimalFormat("0.00", sy).format(m);
-	}
-	
-	public static double round(double value, int places) {
-	    if (places < 0) throw new IllegalArgumentException();
-	    BigDecimal bd = new BigDecimal(value);
-	    bd = bd.setScale(places, RoundingMode.HALF_UP);
-	    return bd.doubleValue();
 	}
 	
 	public String getSSMM() {

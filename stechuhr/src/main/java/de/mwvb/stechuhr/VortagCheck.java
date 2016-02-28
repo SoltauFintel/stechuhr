@@ -63,7 +63,11 @@ public class VortagCheck {
 		StechuhrModel vmodel = getAccess().load(d);
 		List<Stunden> stundenliste = vmodel.getStundenliste();
 		int n = stundenliste.size();
-		return (n == 0 || Stunden.STOP.equals(stundenliste.get(n - 1).getTicket())) ? null : vmodel;
+		if (n == 0) {
+			return null;
+		}
+		String letztesTicket = stundenliste.get(n - 1).getTicket();
+		return Stunden.STOP.equals(letztesTicket) ? null : vmodel;
 	}
 
 	private int vortagWurdeNichtGestoppt(final StechuhrModel vmodel, final LocalDate vortagDate) {

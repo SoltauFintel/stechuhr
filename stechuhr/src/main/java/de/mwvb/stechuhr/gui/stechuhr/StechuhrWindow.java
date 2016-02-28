@@ -10,7 +10,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 public class StechuhrWindow extends Window<StechuhrWindowController> {
-	public static StechuhrModel model;
+	public static StechuhrModel model; // TODO private machen (FindBugs)
 	
 	@Override
 	protected String getIcon() {
