@@ -23,7 +23,9 @@ public class StechuhrWindow extends Window<StechuhrWindowController> {
 		stage.setY(250);
 		stage.setWidth(480);
 		stage.setHeight(276);
-		stage.setTitle(Application.APP_NAME + " " + Application.APP_VERSION);
+		String version = System.getProperty("java.version");
+		if (version == null) version = "";
+		stage.setTitle(Application.APP_NAME + " " + Application.APP_VERSION + " (Java " + version.replace("1.8.0_", "8u") + ")");
 		stage.setResizable(false);
 	}
 	
