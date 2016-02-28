@@ -52,12 +52,22 @@ public class BearbeitenWindowController {
 			Window.disableTabKey(notizPrivat);
 			save.setDefaultButton(true);
 			
+			grid.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+				KeyCode code = event.getCode();
+				if (KeyCode.DELETE.equals(code)) {
+					onDelete();
+				}
+			});
+			
 			grid.getSelectionModel().selectedItemProperty().addListener((a, b, sel) -> {
 				display((Stunden) sel);
 				save.setDisable(true);
 			});
+			save.setDisable(true);
 			ChangeListener<? super String> listener = (observable, oldValue, newValue) -> {
-				save.setDisable(false);
+				if (!grid.getSelectionModel().getSelectedIndices().isEmpty()) {
+					save.setDisable(false);
+				}
 			};
 			this.uhrzeit.textProperty().addListener(listener);
 			this.ticket.textProperty().addListener(listener);
