@@ -2,7 +2,10 @@
 [ ![Test Code Coverage](http://img.shields.io/codecov/c/github/SoltauFintel/stechuhr.svg) ](https://codecov.io/github/SoltauFintel/stechuhr) [![Apache 2.0 Lizenz](https://img.shields.io/badge/license-Apache2-4cc61e.svg)](http://www.apache.org/licenses/LICENSE-2.0)
 
 # Stechuhr
+
 Stechuhr zur einfachen Erfassung von Arbeitsstunden des aktuellen Tages
+
+:arrow_down: ![Download stechuhr-0.2.jar](https://github.com/SoltauFintel/stechuhr/releases/download/0.2/stechuhr-0.2.jar)
 
 ## Beschreibung
 
