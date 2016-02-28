@@ -96,6 +96,8 @@ public class BearbeitenWindowController {
 			if (index >= 0) {
 				grid.getSelectionModel().select(index);
 				Platform.runLater(() -> grid.scrollTo(index));
+			} else {
+				delete.setDisable(true);
 			}
 		} catch (Exception e) {
 			Window.errorAlert(e);
@@ -225,6 +227,20 @@ public class BearbeitenWindowController {
 			if (shallDelete(s.getTicket())) {
 				StechuhrWindow.model.getStundenliste().remove(s);
 				grid.getItems().remove(s);
+				if (grid.getItems().isEmpty()) {
+					uhrzeit.setText("");
+					ticket.setText("");
+					leistung.setText("");
+					notizPrivat.setText("");
+					save.setDisable(true);
+					delete.setDisable(true);
+				} else {
+					int neuerIndex = grid.getSelectionModel().getSelectedIndex() + 1;
+					if (neuerIndex >= grid.getItems().size()) {
+						neuerIndex = grid.getItems().size() - 1;
+					}
+					grid.getSelectionModel().select(neuerIndex);
+				}
 	
 				updateGrid_andSave();
 			}
