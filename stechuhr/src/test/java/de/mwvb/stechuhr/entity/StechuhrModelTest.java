@@ -24,4 +24,10 @@ public class StechuhrModelTest extends AbstractStundenTest {
 		Assert.assertEquals("2:03", s1.getDauer());
 		Assert.assertNotNull(s2.getDauer());
 	}
+	
+	@Test
+	public void testGetWTTagString() {
+		model = new StechuhrModel(LocalDate.of(2016, 2, 1));
+		Assert.assertEquals("Montag 01.02.2016", model.getWTTagString());
+	}
 }
