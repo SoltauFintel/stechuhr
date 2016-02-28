@@ -1,6 +1,7 @@
 package de.mwvb.stechuhr;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
@@ -8,15 +9,31 @@ import org.junit.Test;
 import de.mwvb.stechuhr.dao.StechuhrDAO;
 import javafx.stage.Stage;
 
-@Ignore
 public class StechuhrConfigTest {
 	@Rule
 	public JavaFXThreadingRule javafxRule = new JavaFXThreadingRule(); // wegen Stage Klasse erforderlich
+
+	@Before
+	public void init() {
+		StechuhrDAO.init();
+	}
 	
+	@Test
+	public void testKlapptNewStageAufCI() {
+		// Prepare
+		StechuhrDAO.init();
+		Stage stage = new Stage();
+		stage.setResizable(true);
+		stage.setX(10);
+		stage.setY(20);
+		stage.setHeight(100);
+		stage.setWidth(200);
+	}
+	
+	@Ignore
 	@Test
 	public void testWindowPos() {
 		// Prepare
-		StechuhrDAO.init();
 		Stage stage = new Stage();
 		stage.setResizable(true);
 		stage.setX(10);
@@ -36,10 +53,10 @@ public class StechuhrConfigTest {
 		Assert.assertEquals("h", 100d, loaded.getHeight(), 0.01d);
 	}
 	
+	@Ignore
 	@Test
 	public void testWindowPos_minimized() {
 		// Prepare
-		StechuhrDAO.init();
 		Stage stage = new Stage();
 		stage.setX(10);
 		stage.setY(20);
@@ -58,10 +75,10 @@ public class StechuhrConfigTest {
 		Assert.assertEquals("Muss alter X Wert sein, da WindowsPos von minimierten Fenstern nicht gespeichert werden kann!", 10d, loaded.getX(), 0.01d);
 	}
 
+	@Ignore
 	@Test
 	public void testWindowPos_notResizable() {
 		// Prepare
-		StechuhrDAO.init();
 		Stage stage = new Stage();
 		stage.setX(11);
 		stage.setY(20);

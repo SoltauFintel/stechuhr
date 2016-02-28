@@ -91,6 +91,43 @@ public class VortagCheckTest extends AbstractStundenTest {
 		Assert.assertEquals("Exportstunden-Dauer ist falsch!", "7:15", exportstunden.get(0).getSSMM());
 	}
 
+	/** Variante zu testStopWirdDurchgefuehrt() mit späterer Uhrzeit */
+	@Test
+	public void testStopWirdDurchgefuehrt_2() {
+		// Prepare
+		final LocalDate heute = LocalDate.of(2020, 11, 9); // Montag
+		access = new VortagCheckAccess();
+		model = new StechuhrModel(LocalDate.of(2020, 11, 6)); // Freitag
+		access.existingDays.add(model.getTag());
+		createStunden(LocalTime.of(18, 0), "A", "");
+		access.models.put(model.getTag(), model);
+		
+		StechuhrModel testmodel = new StechuhrModel(heute);
+		VortagCheck vc = new VortagCheck() {
+			@Override
+			StechuhrDAO getAccess() {
+				return access;
+			}
+			
+			@Override
+			LocalDate today() {
+				return heute;
+			}
+			
+			@Override
+			Optional<String> askForVortagEndeUhrzeit(LocalDate d, String vorschlag) {
+				return Optional.of("20:00");
+			}
+		};
+		
+		// Test
+		int r = vc.check(testmodel);
+		
+		// Verify
+		Assert.assertEquals(1, r);
+		Assert.assertEquals("Exportstunden-Dauer ist falsch!", "2:00", exportstunden.get(0).getSSMM());
+	}
+
 	/**
 	 * Ein Stop müsste durchgeführt werden, aber der Anwender bricht ab.
 	 */

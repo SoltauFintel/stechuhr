@@ -42,6 +42,10 @@ jacocoTestReport {
 }
 
 test {
+	testLogging { // bessere Fehleranzeige beim Travis CI Build
+		exceptionFormat = 'full'
+		events 'failed', 'standardOut', 'standardError'
+	}
 	jacoco {
 		append = false
 		destinationFile = file("$buildDir/jacoco/jacocoTest.exec")
