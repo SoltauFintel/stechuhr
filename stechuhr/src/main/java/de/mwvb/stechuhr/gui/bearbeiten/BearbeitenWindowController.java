@@ -217,7 +217,7 @@ public class BearbeitenWindowController {
 		Alert alert = new Alert(AlertType.CONFIRMATION);
 		alert.setTitle("Löschen");
 		alert.setHeaderText("");
-		alert.setContentText("Hiermit löschst Du den " + ticket + " Datensatz.");
+		alert.setContentText("Hiermit l\u00F6schst Du den " + ticket + " Datensatz.");
 		// TODO Buttons beschriften: Löschen - Nicht löschen
 		Optional<ButtonType> result = alert.showAndWait();
 		return result.get() == ButtonType.OK;
