@@ -1,7 +1,10 @@
 package de.mwvb.stechuhr.dao;
 
+import java.io.File;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Assert;
 import org.junit.BeforeClass;
@@ -48,5 +51,65 @@ public class StechuhrDAOTest {
 		
 		// cleanup
 		new StechuhrDAO().delete(model);
+	}
+	
+	@Test
+	public void testStechuhrDateiNichtGefunden() {
+		// Test
+		StechuhrModel model = new StechuhrDAO().load(LocalDate.of(1975, 2, 20));
+		
+		// Verify
+		Assert.assertNotNull(model);
+		Assert.assertEquals(0, model.getStundenliste().size());
+	}
+	
+	@Test
+	public void testGetStechuhrModelFile() {
+		// Test
+		File file = new StechuhrDAO().getStechuhrModelFile(LocalDate.of(1970, 12, 30));
+		
+		// Verify
+		String dn = file.getAbsolutePath().replace("\\", "/");
+		Assert.assertTrue("Dateiname falsch: " + dn, dn.endsWith("1970/12/1970-12-30.xml"));
+		Assert.assertFalse("Es wird eigentlich erwartet, dass die Datei nicht vorhanden ist: " + dn,
+				new StechuhrDAO().existsStechuhrModelFile(LocalDate.of(1970, 12, 30)));
+		
+	}
+	
+	@Test
+	public void testSaveAndLoad() {
+		// Prepare
+		StechuhrDAO access = new StechuhrDAO();
+		List<String> list = new ArrayList<>();
+		list.add("1=oans");
+		list.add(" 2 = zwoa\t ");
+		
+		// Test
+		access.save("TEST", list);
+		List<String> loaded = access.load("TEST");
+		
+		// Verify
+		Assert.assertEquals("1=oans", loaded.get(0));
+		Assert.assertEquals(" 2 = zwoa\t ", loaded.get(1));
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testSaveOhneDateiname() {
+		new StechuhrDAO().save("", new ArrayList<String>());
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void testSaveMitDateinameNull() {
+		new StechuhrDAO().save(null, new ArrayList<String>());
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void testSaveMitDataNull() {
+		new StechuhrDAO().save("TEST", null);
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void testLoadOhneDateiname() {
+		new StechuhrDAO().load("");
 	}
 }

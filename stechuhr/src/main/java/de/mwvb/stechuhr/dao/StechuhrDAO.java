@@ -72,6 +72,9 @@ public class StechuhrDAO {
 	}
 	
 	public void save(String id, List<String> data) {
+		if (id == null || id.trim().isEmpty() || data == null) {
+			throw new IllegalArgumentException("Bitte id angeben!");
+		}
 		try {
 			FileWriter w = new FileWriter(getFile(id));
 			try {
@@ -87,6 +90,9 @@ public class StechuhrDAO {
 	}
 	
 	public List<String> load(String id) {
+		if (id == null || id.trim().isEmpty()) {
+			throw new IllegalArgumentException("Bitte id angeben!");
+		}
 		List<String> ret = new ArrayList<>();
 		try {
 			File file = getFile(id);
