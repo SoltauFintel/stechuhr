@@ -10,6 +10,7 @@ import de.mwvb.stechuhr.gui.StageAdapter;
 import de.mwvb.stechuhr.gui.Window;
 import de.mwvb.stechuhr.gui.stechuhr.StechuhrWindow;
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -53,7 +54,15 @@ public class BearbeitenWindowController {
 			
 			grid.getSelectionModel().selectedItemProperty().addListener((a, b, sel) -> {
 				display((Stunden) sel);
+				save.setDisable(true);
 			});
+			ChangeListener<? super String> listener = (observable, oldValue, newValue) -> {
+				save.setDisable(false);
+			};
+			this.uhrzeit.textProperty().addListener(listener);
+			this.ticket.textProperty().addListener(listener);
+			this.leistung.textProperty().addListener(listener);
+			this.notizPrivat.textProperty().addListener(listener);
 			
 			Platform.runLater(() -> leistung.requestFocus()); // Annahme: Man möchte i.d.R. eine Leistung eingeben
 		} catch (Exception e) {
@@ -123,6 +132,7 @@ public class BearbeitenWindowController {
 			uhrzeit.setText(ut);
 			ticket.setText(nr);
 			leistung.setText(s.getLeistung());
+			save.setDisable(true);
 		} catch (Exception e) {
 			Window.errorAlert(e);
 		}
