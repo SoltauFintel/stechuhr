@@ -32,7 +32,7 @@ public abstract class Window<CTR> {
 		stage.setScene(scene);
 		keyBindings(scene);
 		initWindow(stage);
-		Application.config.loadWindowPosition(getName(), stage);
+		Application.config.loadWindowPosition(getName(), new StageAdapter(stage));
 		onCloseRequest(stage);
 		if (modal) {
 			stage.initModality(Modality.APPLICATION_MODAL);
@@ -77,7 +77,7 @@ public abstract class Window<CTR> {
 		stage.setOnCloseRequest(event -> {
 			int mode = onClose();
 			if (mode == 1) { // Fenster ganz normal schließen
-				Application.config.saveWindowPosition(getName(), stage);
+				Application.config.saveWindowPosition(getName(), new StageAdapter(stage));
 			} else {
 				event.consume(); // Fenster nicht schließen
 				if (mode == 2) { // Fenster ausblenden

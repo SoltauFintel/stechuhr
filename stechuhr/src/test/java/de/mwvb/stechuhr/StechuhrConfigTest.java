@@ -2,16 +2,13 @@ package de.mwvb.stechuhr;
 
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Rule;
 import org.junit.Test;
 
 import de.mwvb.stechuhr.dao.StechuhrDAO;
-import javafx.stage.Stage;
+import de.mwvb.stechuhr.gui.StageAdapter;
+import de.mwvb.stechuhr.gui.StageAdapterForTest;
 
 public class StechuhrConfigTest {
-	@Rule
-	public JavaFXThreadingRule javafxRule = new JavaFXThreadingRule(); // wegen Stage Klasse erforderlich
 
 	@Before
 	public void init() {
@@ -19,28 +16,15 @@ public class StechuhrConfigTest {
 	}
 	
 	@Test
-	public void testKlapptNewStageAufCI() {
-		// Prepare
-		StechuhrDAO.init();
-		Stage stage = new Stage();
-		stage.setResizable(true);
-		stage.setX(10);
-		stage.setY(20);
-		stage.setHeight(100);
-		stage.setWidth(200);
-	}
-	
-	@Ignore
-	@Test
 	public void testWindowPos() {
 		// Prepare
-		Stage stage = new Stage();
+		StageAdapter stage = new StageAdapterForTest();
 		stage.setResizable(true);
 		stage.setX(10);
 		stage.setY(20);
 		stage.setHeight(100);
 		stage.setWidth(200);
-		Stage loaded = new Stage();
+		StageAdapter loaded = new StageAdapterForTest();
 		
 		// Test
 		new StechuhrConfig().saveWindowPosition("TEST1", stage);
@@ -53,11 +37,10 @@ public class StechuhrConfigTest {
 		Assert.assertEquals("h", 100d, loaded.getHeight(), 0.01d);
 	}
 	
-	@Ignore
 	@Test
 	public void testWindowPos_minimized() {
 		// Prepare
-		Stage stage = new Stage();
+		StageAdapter stage = new StageAdapterForTest();
 		stage.setX(10);
 		stage.setY(20);
 		stage.setHeight(100);
@@ -70,22 +53,21 @@ public class StechuhrConfigTest {
 		new StechuhrConfig().saveWindowPosition("TEST1", stage);
 
 		// Verify
-		Stage loaded = new Stage();
+		StageAdapter loaded = new StageAdapterForTest();
 		new StechuhrConfig().loadWindowPosition("TEST1", loaded);
 		Assert.assertEquals("Muss alter X Wert sein, da WindowsPos von minimierten Fenstern nicht gespeichert werden kann!", 10d, loaded.getX(), 0.01d);
 	}
 
-	@Ignore
 	@Test
 	public void testWindowPos_notResizable() {
 		// Prepare
-		Stage stage = new Stage();
+		StageAdapter stage = new StageAdapterForTest();
 		stage.setX(11);
 		stage.setY(20);
 		stage.setHeight(100);
 		stage.setWidth(200);
 		stage.setResizable(false);
-		Stage loaded = new Stage();
+		StageAdapter loaded = new StageAdapterForTest();
 		loaded.setResizable(false);
 		
 		// Test

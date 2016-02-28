@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import de.mwvb.stechuhr.dao.StechuhrDAO;
-import javafx.stage.Stage;
+import de.mwvb.stechuhr.gui.StageAdapter;
 
 /**
  * Laden, Speichern und ggf. Vorhalten von:
@@ -48,7 +48,7 @@ public class StechuhrConfig {
 		new StechuhrDAO().save("Quick-Buttons", m);
 	}
 
-	public void saveWindowPosition(String name, Stage stage) {
+	public void saveWindowPosition(String name, StageAdapter stage) {
 		if (stage.isIconified()) { // x+y sind versaut
 			return;
 		}
@@ -61,7 +61,7 @@ public class StechuhrConfig {
 		new StechuhrDAO().save("WindowPosition-" + name, arr);
 	}
 
-	public void loadWindowPosition(String name, Stage stage) {
+	public void loadWindowPosition(String name, StageAdapter stage) {
 		List<String> data = new StechuhrDAO().load("WindowPosition-" + name);
 		if (data.size() > 0 && data.get(0).contains(";")) {
 			String w[] = data.get(0).split(";");

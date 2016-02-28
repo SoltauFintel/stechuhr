@@ -7,6 +7,7 @@ import java.util.Optional;
 import de.mwvb.stechuhr.Application;
 import de.mwvb.stechuhr.dao.StechuhrDAO;
 import de.mwvb.stechuhr.entity.Stunden;
+import de.mwvb.stechuhr.gui.StageAdapter;
 import de.mwvb.stechuhr.gui.Window;
 import de.mwvb.stechuhr.gui.bearbeiten.BearbeitenWindow;
 import javafx.collections.ObservableList;
@@ -213,7 +214,7 @@ public class StechuhrWindowController {
 	}
 	
 	private void quit() {
-		Application.config.saveWindowPosition(StechuhrWindow.class.getSimpleName(), getStage());
+		Application.config.saveWindowPosition(StechuhrWindow.class.getSimpleName(), new StageAdapter(getStage()));
 		getStage().close();
 		// Programm ist nun beendet.
 	}
