@@ -1,12 +1,14 @@
 package de.mwvb.stechuhr;
 
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 
 import de.mwvb.stechuhr.dao.StechuhrDAO;
 import javafx.stage.Stage;
 
+@Ignore
 public class StechuhrConfigTest {
 	@Rule
 	public JavaFXThreadingRule javafxRule = new JavaFXThreadingRule(); // wegen Stage Klasse erforderlich
