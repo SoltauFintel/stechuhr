@@ -31,7 +31,7 @@
 						<ComboBox editable="true" fx:id="ticket"></ComboBox>
 						<HBox spacing="12">
 							<Button minWidth="57" fx:id="play" onAction="#onPlay">
-								<tooltip><Tooltip text="Play (Tätigkeit beginnen) / F6"/></tooltip>
+								<tooltip><Tooltip text="Play (Tätigkeit beginnen) / F5"/></tooltip>
 								<graphic>
 									<ImageView style="-fx-background-color: transparent;">
 										<Image url="de/mwvb/stechuhr/gui/stechuhr/play.gif"/>
@@ -39,7 +39,7 @@
 								</graphic>
 							</Button>
 							<Button onAction="#onPause" minWidth="57">
-								<tooltip><Tooltip text="Pause / F7"/></tooltip>
+								<tooltip><Tooltip text="Pause / F6"/></tooltip>
 								<graphic>
 									<ImageView>
 										<Image url="de/mwvb/stechuhr/gui/stechuhr/pause.png"/>
