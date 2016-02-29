@@ -1,4 +1,4 @@
-package de.mwvb.stechuhr.entity;
+package de.mwvb.stechuhr.stundenrundung;
 
 public class Dauer {
 	public static final Dauer ZERO = new Dauer(0, 0);

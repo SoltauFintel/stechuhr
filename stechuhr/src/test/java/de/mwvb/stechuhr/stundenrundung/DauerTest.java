@@ -1,4 +1,4 @@
-package de.mwvb.stechuhr.entity;
+package de.mwvb.stechuhr.stundenrundung;
 
 import org.junit.Assert;
 import org.junit.Test;
