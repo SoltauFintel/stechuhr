@@ -5,6 +5,7 @@ import de.mwvb.stechuhr.VortagCheck;
 import de.mwvb.stechuhr.entity.StechuhrModel;
 import de.mwvb.stechuhr.gui.Window;
 import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
@@ -39,6 +40,11 @@ public class StechuhrWindow extends Window<StechuhrWindowController> {
 				controller.onPause();
 			} else if (KeyCode.F8.equals(code)) {
 				controller.onBearbeiten();
+			} else if (KeyCode.ENTER.equals(code)) { // Workaround für Combobox-ENTER
+				if (scene.focusOwnerProperty().get() instanceof ComboBox) {
+					controller.onPlay();
+					event.consume();
+				}
 			} else if (KeyCode.CONTROL.equals(code)) {
 				controller.hideQuickButtons();
 			}

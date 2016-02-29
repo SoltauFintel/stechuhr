@@ -132,6 +132,7 @@ public class StechuhrModel {
 			}
 		} while (nochmal);
 		for (int i = export.size() - 1; i >= 0; i--) {
+			// TODO 0:00 Stunden löschen (+Testcase)
 			if (export.get(i).getTicket().equals(Stunden.STOP)) {
 				export.remove(i); // TODO Für diese Codezeile einen Testcase schreiben!
 			}
