@@ -47,7 +47,7 @@
 				<TextArea fx:id="notizPrivat" prefHeight="70" GridPane.rowIndex="4" GridPane.columnIndex="2"/>
 			</GridPane>
 			<HBox spacing="12">
-				<Button text="Speichern" minWidth="100" fx:id="save" onAction="#onSave"/>
+				<Button text="_Speichern" minWidth="100" fx:id="save" onAction="#onSave"/>
 				<Button text="Löschen" minWidth="100" fx:id="delete" onAction="#onDelete"/>
 				<Pane HBox.hgrow="ALWAYS"/>
 				<Button onAction="#onClose" text="Schließen" minWidth="100" fx:id="close"/>
