@@ -6,7 +6,7 @@ package de.mwvb.stechuhr.stundenrundung;
 public final class GerundeteDauer extends Dauer {
 	private final Dauer ungerundet;
 
-	private GerundeteDauer(int minuten, Dauer ungerundet) {
+	public GerundeteDauer(int minuten, Dauer ungerundet) {
 		super(minuten);
 		this.ungerundet = ungerundet;
 	}

@@ -35,24 +35,33 @@ public class Stundenrundung {
 		GerundeteDauer sollSumme = GerundeteDauer.runde(getSumme(dauerListe), rundung);
 		List<GerundeteDauer> neueListe = rundeAlleStunden(rundung);
 		Dauer istSumme = getSumme(neueListe);
-		int groesster = -1; // = keine Dauer manipulieren
 		dauerListe.clear();
 		int diff = sollSumme.getMinuten() - istSumme.getMinuten();
-		if (diff != 0) {
-			// Summe passt nicht mehr. Jetzt muss eine Dauer manipuliert werden.
-			if (diff > 0) {
-				// Gibt es eine Dauer mit 0:00? Wenn ja: das erste Vorkommnis auf 0:15 ändern.
-				List<GerundeteDauer> temp = gibtEs0Stunden(neueListe, diff, rundung);
-				diff = sollSumme.getMinuten() - getSumme(temp).getMinuten();
-				if (diff == 0) {
-					dauerListe.addAll(temp);
-					return;
-				}
-				neueListe = temp;
+		List<Integer> ausschluss = new ArrayList<>();
+		int loop = 0;
+		while (diff != 0) {
+			if (++loop > neueListe.size() * 2) {
+				throw new RuntimeException("killerloop");
 			}
-			groesster = sucheGroesstenWert(neueListe);
+			int index = -1;
+			if (diff > 0) {
+				index = suche0Wert(neueListe, ausschluss);
+			}
+			if (index == -1) {
+				index = sucheGroesstenWert(neueListe, ausschluss);
+			}
+			if (index != -1) {
+				ausschluss.add(index);
+				if (diff < 0) {
+					neueListe = ersetze(neueListe, index, -rundung);
+					diff += rundung;
+				} else {
+					neueListe = ersetze(neueListe, index, rundung);
+					diff -= rundung;
+				}
+			}
 		}
-		bildeErgebnis(neueListe, diff < 0, groesster, rundung);
+		dauerListe.addAll(neueListe);
 	}
 
 	private List<GerundeteDauer> rundeAlleStunden(int rundung) {
@@ -64,43 +73,52 @@ public class Stundenrundung {
 	}
 
 	/**
+	 * Eine 0:00 Dauer suchen
+	 * @return Index, -1 wenn nicht gefunden
+	 */
+	private int suche0Wert(List<GerundeteDauer> neueListe, List<Integer> ausschluss) {
+		for (int i = 0; i < neueListe.size(); i++) {
+			if (ausschluss.contains(i)) {
+				continue;
+			}
+			if (neueListe.get(i).getMinuten() == 0) {
+				return i;
+			}
+		}
+		return -1;
+	}
+
+	/**
 	 * Den größten Wert suchen. Falls alle gleich groß sind: den letzten nehmen.
 	 * @return Index
 	 */
-	private int sucheGroesstenWert(List<GerundeteDauer> neueListe) {
-		int groesster = 0;
-		for (int i = 1/*!*/; i < neueListe.size(); i++) {
-			if (neueListe.get(i).getMinuten() >= neueListe.get(groesster).getMinuten()) {
+	private int sucheGroesstenWert(List<GerundeteDauer> neueListe, List<Integer> ausschluss) {
+		int groesster = -1;
+		for (int i = 0; i < neueListe.size(); i++) {
+			if (ausschluss.contains(i)) {
+				continue;
+			}
+			if (groesster == -1) {
+				groesster = i;
+			} else if (neueListe.get(i).getMinuten() >= neueListe.get(groesster).getMinuten()) {
 				groesster = i;
 			}
 		}
 		return groesster;
 	}
-
-	private void bildeErgebnis(List<GerundeteDauer> neueListe, boolean abrunden, int groesster, int rundung) {
-		for (int i = 0; i < neueListe.size(); i++) {
-			GerundeteDauer dauer = neueListe.get(i);
-			if (i == groesster) {
-				if (abrunden) {
-					dauer = dauer.rundeAb(rundung);
-				} else {
-					dauer = dauer.rundeAuf(rundung);
-				}
-			}
-			dauerListe.add(dauer);
-		}
-	}
 	
-	private List<GerundeteDauer> gibtEs0Stunden(List<GerundeteDauer> neueListe, int diff, int rundung) {
-		List<GerundeteDauer> temp = new ArrayList<>();
-		for (GerundeteDauer i : neueListe) {
-			if (diff > 0 && i.equals(Dauer.ZERO)) {
-				temp.add(i.rundeAuf(rundung));
-				diff -= rundung;
-			} else {
-				temp.add(i);
+	/**
+	 * Ändert die Dauer mit Index index um den Minutenwert additiv. Die neue Liste wird zurück gegeben.
+	 */
+	private List<GerundeteDauer> ersetze(List<GerundeteDauer> list, int index, int additiv) {
+		List<GerundeteDauer> ret = new ArrayList<>();
+		for (int i = 0; i < list.size(); i++) {
+			GerundeteDauer d = list.get(i);
+			if (i == index) {
+				d = new GerundeteDauer(d.getMinuten() + additiv, d.getUngerundet());
 			}
+			ret.add(d);
 		}
-		return temp;
+		return ret;
 	}
 }

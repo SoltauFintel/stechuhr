@@ -1,7 +1,6 @@
 package de.mwvb.stechuhr.stundenrundung;
 
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
 
 public class StundenrundungTest {
@@ -173,7 +172,6 @@ public class StundenrundungTest {
 		Assert.assertEquals(new Dauer("4:35"), ((GerundeteDauer) r.getDauerListe().get(3)).getUngerundet());
 	}
 
-	@Ignore // TODO Baustelle
 	@Test
 	public void restGroesser15_1() {
 		Stundenrundung r = new Stundenrundung("0:38", "1:53", "0:38", "0:53", "0:38", "0:38", "0:38");
@@ -181,7 +179,9 @@ public class StundenrundungTest {
 		
 		r.ausgleichung(15);
 
-		Assert.assertTrue("Summe weicht zu sehr ab: " + summe + " ./. " + r.getSumme().getMinuten() + "\n" + r.getDauerListe(),
+		Assert.assertTrue("Summe weicht zu sehr ab: " + summe + " ./. " + r.getSumme().getMinuten()
+				+ "\nDifferenz: " + (r.getSumme().getMinuten() - summe)
+				+ "\n" + r.getDauerListe(),
 				Math.abs(r.getSumme().getMinuten() - summe) < 15);
 		Assert.assertEquals("Anzahl falsch!", 7, r.getDauerListe().size());
 		Assert.assertEquals(new Dauer("0:45"), r.getDauerListe().get(0));
@@ -190,13 +190,14 @@ public class StundenrundungTest {
 		Assert.assertEquals(new Dauer("0:45"), r.getDauerListe().get(3));
 		Assert.assertEquals(new Dauer("0:45"), r.getDauerListe().get(4));
 		Assert.assertEquals(new Dauer("0:45"), r.getDauerListe().get(5));
-		Assert.assertEquals(new Dauer("0:45"), r.getDauerListe().get(6));
+		Assert.assertEquals(new Dauer("0:30"), r.getDauerListe().get(6));
 	}
 
 	@Test
 	public void restGroesser15_0() {
 		Stundenrundung r = new Stundenrundung("0:01", "3:06", "2:06", "0:01", "1:06",
 				"0:36", "0:36", "0:36", "0:36", "0:36", "0:36");
+		for (Dauer d : r.getDauerListe())System.out.println(d.getMinuten());
 		int summe = r.getSumme().getMinuten();
 		
 		r.ausgleichung(15);
@@ -214,7 +215,7 @@ public class StundenrundungTest {
 		Assert.assertTrue("Summe weicht zu sehr ab: " + summe + " ./. " + r.getSumme().getMinuten()
 				+ "\nDifferenz: " + (summe - r.getSumme().getMinuten()),
 				Math.abs(r.getSumme().getMinuten() - summe) < 15);
-		Assert.assertEquals(new Dauer("2:00"), r.getDauerListe().get(2));
+		Assert.assertEquals(new Dauer("2:15"), r.getDauerListe().get(2));
 		Assert.assertEquals(new Dauer("0:15"), r.getDauerListe().get(3));
 	}
 }
