@@ -197,7 +197,6 @@ public class StundenrundungTest {
 	public void restGroesser15_0() {
 		Stundenrundung r = new Stundenrundung("0:01", "3:06", "2:06", "0:01", "1:06",
 				"0:36", "0:36", "0:36", "0:36", "0:36", "0:36");
-		for (Dauer d : r.getDauerListe())System.out.println(d.getMinuten());
 		int summe = r.getSumme().getMinuten();
 		
 		r.ausgleichung(15);

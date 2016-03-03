@@ -36,7 +36,7 @@ public class ExportstundenTest extends AbstractStundenTest {
 		Assert.assertEquals("2) Stunde falsch!", 2, exportstunden.get(1).getStunden());
 		Assert.assertEquals("2) Stunde falsch!", 30, exportstunden.get(1).getMinuten());
 		Assert.assertEquals("2) Dezimalstunden falsch!", "2,50", exportstunden.get(1).getDezimaldauer());
-		Assert.assertEquals("2) toFileString() falsch!", "20.02.2016;2:30; 2,50 ;B;B-1", exportstunden.get(1).toFileString());
+		Assert.assertEquals("2) toFileString() falsch!", "20.02.2016 ; 2:30 ; 2,50 ; B ; B-1", exportstunden.get(1).toFileString());
 	}
 
 	@Test
@@ -57,7 +57,7 @@ public class ExportstundenTest extends AbstractStundenTest {
 		Assert.assertEquals("2) Stunde falsch!", 2, exportstunden.get(1).getStunden());
 		Assert.assertEquals("2) Stunde falsch!", 30, exportstunden.get(1).getMinuten());
 		Assert.assertEquals("2) Dezimalstunden falsch!", "2,50", exportstunden.get(1).getDezimaldauer());
-		Assert.assertEquals("2) toFileString() falsch!", "20.02.2016;2:30; 2,50 ;B;B-1", exportstunden.get(1).toFileString());
+		Assert.assertEquals("2) toFileString() falsch!", "20.02.2016 ; 2:30 ; 2,50 ; B ; B-1", exportstunden.get(1).toFileString());
 	}
 
 	private IStechuhrPlugin getPlugin() {
