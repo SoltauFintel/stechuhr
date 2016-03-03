@@ -44,7 +44,7 @@
 				<TextField fx:id="leistung" maxHeight="2" GridPane.rowIndex="3" GridPane.columnIndex="2"/>
 				
 				<Label text="Notiz privat:" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
-				<TextArea fx:id="notizPrivat" prefHeight="70" GridPane.rowIndex="4" GridPane.columnIndex="2"/>
+				<TextArea fx:id="notizPrivat" prefHeight="70" GridPane.rowIndex="4" GridPane.columnIndex="2" wrapText="true"/>
 			</GridPane>
 			<HBox spacing="12">
 				<Button text="_Speichern" minWidth="100" fx:id="save" onAction="#onSave"/>
