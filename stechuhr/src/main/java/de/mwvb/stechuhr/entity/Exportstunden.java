@@ -89,6 +89,6 @@ public class Exportstunden {
 	}
 	
 	public String toFileString() {
-		return getTagString() + ";" + getSSMM() + "; " + getDezimaldauer() + " ;" + getTicket() + ";" + getLeistung();
+		return getTagString() + " ; " + getSSMM() + " ; " + getDezimaldauer() + " ; " + getTicket() + " ; " + getLeistung();
 	}
 }
