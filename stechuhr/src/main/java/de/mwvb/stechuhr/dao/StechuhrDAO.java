@@ -21,7 +21,7 @@ import de.mwvb.stechuhr.entity.Stunden;
  * 
  * @author Marcus Warm
  */
-public class StechuhrDAO {
+public class StechuhrDAO { // TODO DAO zerlegen: Stechuhr-File, Exporteur, Config-Files
 	/** Dateiversion für den Fall, dass sich das Dateiformat zukünftig mal ändern könnte. */
 	private static final int DATEI_VERSION = 0;
 	private static String pfad;

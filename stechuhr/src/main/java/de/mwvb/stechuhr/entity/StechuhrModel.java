@@ -16,7 +16,7 @@ import de.mwvb.stechuhr.stundenrundung.Stundenrundung;
  * 
  * @author Marcus Warm
  */
-public class StechuhrModel {
+public class StechuhrModel { // TODO Fachlogik herauslösen!
 	private final LocalDate tag;
 	private final List<Stunden> stundenliste = new ArrayList<Stunden>();
 	
