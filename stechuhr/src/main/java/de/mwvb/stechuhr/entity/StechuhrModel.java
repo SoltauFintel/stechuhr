@@ -6,8 +6,8 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import de.mwvb.stechuhr.Application;
-import de.mwvb.stechuhr.dao.StechuhrDAO;
+import de.mwvb.stechuhr.export.ExportManager;
+import de.mwvb.stechuhr.export.Exportstunden;
 import de.mwvb.stechuhr.stundenrundung.Dauer;
 import de.mwvb.stechuhr.stundenrundung.Stundenrundung;
 
@@ -78,11 +78,7 @@ public class StechuhrModel { // TODO Fachlogik herauslösen!
 		List<Exportstunden> export = createExportstunden();
 		optimieren(export);
 		runde(export);
-		if (Application.plugin == null) {
-			new StechuhrDAO().saveExport(export);
-		} else {
-			Application.plugin.export(export);
-		}
+		ExportManager.getInstance().export(export);
 	}
 
 	private List<Exportstunden> createExportstunden() {

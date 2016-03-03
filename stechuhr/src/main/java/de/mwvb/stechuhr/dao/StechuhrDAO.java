@@ -12,7 +12,6 @@ import java.util.List;
 
 import de.mwvb.base.xml.XMLDocument;
 import de.mwvb.base.xml.XMLElement;
-import de.mwvb.stechuhr.entity.Exportstunden;
 import de.mwvb.stechuhr.entity.StechuhrModel;
 import de.mwvb.stechuhr.entity.Stunden;
 
@@ -121,24 +120,6 @@ public class StechuhrDAO { // TODO DAO zerlegen: Stechuhr-File, Exporteur, Confi
 		}
 	}
 	
-	public void saveExport(List<Exportstunden> export) {
-		if (export.isEmpty()) return;
-		try {
-			File file = getExportFile(export.get(0).getTag());
-			FileWriter w = new FileWriter(file); // TODO FindBugs: Encoding
-			try {
-				for (Exportstunden x : export) {
-					w.write(x.toFileString() + "\r\n");
-				}
-			} finally {
-				w.close();
-			}
-			System.out.println(file.getAbsolutePath());
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		}
-	}
-	
 	public File getStechuhrModelFile(LocalDate tag) {
 		return new File(pfad.toString() + "/" + tag.getYear() + "/" + tag.getMonthValue() + "/" + tag.toString() + ".xml");
 	}
@@ -147,18 +128,11 @@ public class StechuhrDAO { // TODO DAO zerlegen: Stechuhr-File, Exporteur, Confi
 		return getStechuhrModelFile(tag).exists();
 	}
 	
-	private File getExportFile(LocalDate tag) {
-		String vorne = pfad.toString() + "/" + tag.getYear() + "/" + tag.getMonthValue() + "/" + tag.toString() + "_Export-";
-		String hinten = ".txt";
-		int zaehler = 0;
-		File f;
-		do {
-			f = new File(vorne + ++zaehler + hinten);
-		} while (f.exists());
-		return f;
-	}
-
 	private File getFile(String id) {
 		return new File(pfad.toString() + "/" + id + ".txt");
+	}
+	
+	public static String getPfad() {
+		return pfad;
 	}
 }

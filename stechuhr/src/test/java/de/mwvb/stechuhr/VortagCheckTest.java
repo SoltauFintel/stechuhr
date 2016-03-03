@@ -11,9 +11,11 @@ import org.junit.Before;
 import org.junit.Test;
 
 import de.mwvb.stechuhr.dao.StechuhrDAO;
-import de.mwvb.stechuhr.entity.Exportstunden;
 import de.mwvb.stechuhr.entity.StechuhrModel;
 import de.mwvb.stechuhr.entity.Stunden;
+import de.mwvb.stechuhr.export.Export;
+import de.mwvb.stechuhr.export.ExportManager;
+import de.mwvb.stechuhr.export.Exportstunden;
 import de.mwvb.stechuhr.gui.Window;
 
 /**
@@ -30,19 +32,20 @@ public class VortagCheckTest extends AbstractStundenTest {
 	public void init() {
 		exportstunden = null;
 		nachFeierabendGefragt = 0;
-		Application.plugin = new IStechuhrPlugin() {
+		ExportManager.getInstance().clear();
+		ExportManager.getInstance().register(new Export() {
 			@Override
 			public void export(List<Exportstunden> pExportstunden) {
 				exportstunden = pExportstunden;
 			}
-		};
+		});
 		Window.testmodus = true; // keine Alerts anzeigen
 	}
 	
 	@After
 	public void cleanup() {
 		exportstunden = null;
-		Application.plugin = null;
+		ExportManager.getInstance().clear();
 		Window.testmodus = false;
 	}
 	
@@ -134,12 +137,13 @@ public class VortagCheckTest extends AbstractStundenTest {
 	@Test
 	public void testAbbruchDurchAnwender() {
 		// Prepare
-		Application.plugin = new IStechuhrPlugin() {
+		ExportManager.getInstance().clear();
+		ExportManager.getInstance().register(new Export() {
 			@Override
 			public void export(List<Exportstunden> pExportstunden) {
 				exportstunden = pExportstunden;
 			}
-		};
+		});
 		final LocalDate heute = LocalDate.of(2020, 11, 9);
 		prepare();
 		
@@ -218,12 +222,13 @@ public class VortagCheckTest extends AbstractStundenTest {
 	@Test
 	public void testUhrzeitVorLetzterUhrzeit() {
 		// Prepare
-		Application.plugin = new IStechuhrPlugin() {
+		ExportManager.getInstance().clear();
+		ExportManager.getInstance().register(new Export() {
 			@Override
 			public void export(List<Exportstunden> pExportstunden) {
 				exportstunden = pExportstunden;
 			}
-		};
+		});
 		final LocalDate heute = LocalDate.of(2020, 11, 9);
 		prepare();
 		

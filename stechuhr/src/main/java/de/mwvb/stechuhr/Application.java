@@ -2,6 +2,8 @@ package de.mwvb.stechuhr;
 
 import de.mwvb.stechuhr.dao.StechuhrDAO;
 import de.mwvb.stechuhr.entity.StechuhrModel;
+import de.mwvb.stechuhr.export.CSVExport;
+import de.mwvb.stechuhr.export.ExportManager;
 import de.mwvb.stechuhr.gui.stechuhr.StechuhrWindow;
 import javafx.stage.Stage;
 
@@ -17,7 +19,6 @@ public class Application extends javafx.application.Application { // TODO rename
 	public static final String APP_NAME = "Stechuhr";
 	public static final String APP_VERSION = "0.2";
 	public static StechuhrConfig config; // TODO private machen + public Getter (FindBugs)
-	public static IStechuhrPlugin plugin = null;
 	
 	public static void main(String[] args) {
 		StechuhrDAO.init();
@@ -28,6 +29,11 @@ public class Application extends javafx.application.Application { // TODO rename
 
 	@Override
 	public void start(Stage stage) {
+		initExporteure();
 		new StechuhrWindow().show(stage, false);
+	}
+	
+	protected void initExporteure() {
+		ExportManager.getInstance().register(new CSVExport());
 	}
 }

@@ -1,4 +1,4 @@
-package de.mwvb.stechuhr.entity;
+package de.mwvb.stechuhr.export;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -9,15 +9,15 @@ import org.junit.Before;
 import org.junit.Test;
 
 import de.mwvb.stechuhr.AbstractStundenTest;
-import de.mwvb.stechuhr.Application;
-import de.mwvb.stechuhr.IStechuhrPlugin;
+import de.mwvb.stechuhr.entity.StechuhrModel;
 
 public class ExportstundenTest extends AbstractStundenTest {
 	private List<Exportstunden> exportstunden;
 	
 	@Before
 	public void init() {
-		Application.plugin = getPlugin();
+		ExportManager.getInstance().clear();
+		ExportManager.getInstance().register(getPlugin());
 		model = new StechuhrModel(LocalDate.of(2016, 2, 20));
 	}
 	
@@ -60,8 +60,8 @@ public class ExportstundenTest extends AbstractStundenTest {
 		Assert.assertEquals("2) toFileString() falsch!", "20.02.2016 ; 2:30 ; 2,50 ; B ; B-1", exportstunden.get(1).toFileString());
 	}
 
-	private IStechuhrPlugin getPlugin() {
-		return new IStechuhrPlugin() {
+	private Export getPlugin() {
+		return new Export() {
 			@Override
 			public void export(List<Exportstunden> pExportstunden) {
 				exportstunden = pExportstunden;

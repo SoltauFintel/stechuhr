@@ -1,10 +1,12 @@
-package de.mwvb.stechuhr.entity;
+package de.mwvb.stechuhr.export;
 
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
+
+import de.mwvb.stechuhr.entity.StechuhrModel;
 
 /**
  * Fertiger Stundendatensatz für Export
