@@ -8,6 +8,8 @@ import java.util.List;
 
 import de.mwvb.stechuhr.Application;
 import de.mwvb.stechuhr.dao.StechuhrDAO;
+import de.mwvb.stechuhr.stundenrundung.Dauer;
+import de.mwvb.stechuhr.stundenrundung.Stundenrundung;
 
 /**
  * Tagesdatum und alle Stechuhr-Einträge
@@ -75,6 +77,7 @@ public class StechuhrModel {
 	public void stop() {
 		List<Exportstunden> export = createExportstunden();
 		optimieren(export);
+		runde(export);
 		if (Application.plugin == null) {
 			new StechuhrDAO().saveExport(export);
 		} else {
@@ -138,7 +141,24 @@ public class StechuhrModel {
 			}
 		}
 	}
-	
+
+	private void runde(List<Exportstunden> export) {
+		Stundenrundung r = new Stundenrundung();
+		for (Exportstunden stunden : export) {
+			r.add(new Dauer(stunden.getSSMM()));
+		}
+		
+		r.ausgleichung(15);
+		
+		final List<Dauer> gerundet = r.getDauerListe();
+		for (int i = 0; i < export.size(); i++) {
+			Exportstunden stunden = export.get(i);
+			Dauer dauer = gerundet.get(i);
+			stunden.setStunden(dauer.getStundenTeil());
+			stunden.setMinuten(dauer.getMinutenTeil());
+		}
+	}
+
 	/**
 	 * Zentrale Stelle, die das Tagesdatum liefert.
 	 */

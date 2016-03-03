@@ -9,10 +9,17 @@ import java.util.List;
 public class Stundenrundung {
 	private final List<Dauer> dauerListe = new ArrayList<>();
 	
+	public Stundenrundung() {
+	}
+	
 	public Stundenrundung(String ... dauer) {
 		for (String i : dauer) {
 			dauerListe.add(new Dauer(i));
 		}
+	}
+	
+	public void add(Dauer dauer) {
+		dauerListe.add(dauer);
 	}
 
 	public List<Dauer> getDauerListe() {

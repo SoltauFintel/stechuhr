@@ -1,7 +1,6 @@
 package de.mwvb.stechuhr.stundenrundung;
 
 public class Dauer {
-	// TODO Schutz vor negativen Werten einbauen
 	public static final Dauer ZERO = new Dauer(0, 0);
 	private final int stundenTeil;
 	private final int minutenTeil;
