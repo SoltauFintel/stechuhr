@@ -5,6 +5,9 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
+import de.mwvb.stechuhr.stundenrundung.Dauer;
+import de.mwvb.stechuhr.stundenrundung.GerundeteDauer;
+
 /**
  * Stechuhr-Eintrag
  */
@@ -89,5 +92,9 @@ public class Stunden {
 	 */
 	public static String formatWTDate(LocalDate date) {
 		return date.format(DateTimeFormatter.ofPattern("EEEE dd.MM.yyyy", Locale.GERMAN));
+	}
+	
+	public String getDauerGerundet() { // für Bearbeiten-Fenster
+		return GerundeteDauer.runde(new Dauer(getDauer()), 15).toString();
 	}
 }

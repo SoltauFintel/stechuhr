@@ -23,8 +23,11 @@
 				<TableColumn text="Leistung" prefWidth="490">
 					<cellValueFactory><PropertyValueFactory property="leistung"/></cellValueFactory>
 				</TableColumn>
-				<TableColumn text="Dauer" prefWidth="60">
+				<TableColumn text="Dauer" prefWidth="70">
 					<cellValueFactory><PropertyValueFactory property="dauer"/></cellValueFactory>
+				</TableColumn>
+				<TableColumn text="gerundet" prefWidth="70">
+					<cellValueFactory><PropertyValueFactory property="dauerGerundet"/></cellValueFactory>
 				</TableColumn>
 			</columns>
 		</TableView>
