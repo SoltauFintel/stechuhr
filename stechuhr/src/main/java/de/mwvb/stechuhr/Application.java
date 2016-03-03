@@ -4,6 +4,7 @@ import de.mwvb.stechuhr.dao.StechuhrDAO;
 import de.mwvb.stechuhr.entity.StechuhrModel;
 import de.mwvb.stechuhr.export.CSVExport;
 import de.mwvb.stechuhr.export.ExportManager;
+import de.mwvb.stechuhr.export.HTMLExport;
 import de.mwvb.stechuhr.gui.stechuhr.StechuhrWindow;
 import javafx.stage.Stage;
 
@@ -35,5 +36,6 @@ public class Application extends javafx.application.Application { // TODO rename
 	
 	protected void initExporteure() {
 		ExportManager.getInstance().register(new CSVExport());
+		ExportManager.getInstance().register(new HTMLExport());
 	}
 }

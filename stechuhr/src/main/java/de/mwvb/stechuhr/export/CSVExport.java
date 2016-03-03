@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 
+import de.mwvb.stechuhr.base.StechuhrUtils;
 import de.mwvb.stechuhr.dao.StechuhrDAO;
 
 public class CSVExport implements Export {
@@ -30,12 +31,6 @@ public class CSVExport implements Export {
 	
 	private File getExportFile(LocalDate tag) {
 		String vorne = StechuhrDAO.getPfad().toString() + "/" + tag.getYear() + "/" + tag.getMonthValue() + "/" + tag.toString() + "_Export-";
-		String hinten = ".txt";
-		int zaehler = 0;
-		File f;
-		do {
-			f = new File(vorne + ++zaehler + hinten);
-		} while (f.exists());
-		return f;
+		return StechuhrUtils.getNextFilename(vorne, ".txt");
 	}
 }

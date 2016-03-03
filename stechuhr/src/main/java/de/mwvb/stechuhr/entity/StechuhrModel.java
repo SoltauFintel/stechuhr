@@ -70,6 +70,7 @@ public class StechuhrModel { // TODO Fachlogik herauslösen!
 		stop();
 	}
 	
+	// TODO Aus den stop() Methoden eine eigene Fachlogik Klasse machen! ExportstundenTest muss dann entsprechend umbenannt werden.
 	// TODO Stechuhr-Datei nach STOP umbenennen? Wenn Anwender erneut Stechuhr starten würde, würde er mit nackter Datei anfangen.
 	public void stop() {
 		List<Exportstunden> export = createExportstunden();
