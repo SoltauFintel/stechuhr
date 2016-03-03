@@ -3,10 +3,9 @@ package de.mwvb.stechuhr.export;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
-import de.mwvb.stechuhr.entity.StechuhrModel;
+import de.mwvb.stechuhr.base.StechuhrUtils;
 
 /**
  * Fertiger Stundendatensatz für Export
@@ -23,13 +22,9 @@ public class Exportstunden {
 	}
 
 	public String getTagString() {
-		return formatDate(tag);
+		return StechuhrUtils.formatDate(tag);
 	}
 	
-	public static String formatDate(LocalDate datum) {
-		return datum.format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
-	}
-
 	public void setTag(LocalDate tag) {
 		this.tag = tag;
 	}
@@ -68,7 +63,7 @@ public class Exportstunden {
 	
 	@Override
 	public String toString() {
-		return getStunden() + ":" + StechuhrModel.zweistellig(getMinuten()) + " = " + getDezimaldauer() + "\t" + getTicket() + "\t" + getLeistung();
+		return getStunden() + ":" + StechuhrUtils.zweistellig(getMinuten()) + " = " + getDezimaldauer() + "\t" + getTicket() + "\t" + getLeistung();
 	}
 
 	public void inc(Exportstunden b) {
@@ -87,7 +82,7 @@ public class Exportstunden {
 	}
 	
 	public String getSSMM() {
-		return stunden + ":" + StechuhrModel.zweistellig(minuten);
+		return stunden + ":" + StechuhrUtils.zweistellig(minuten);
 	}
 	
 	public String toFileString() {

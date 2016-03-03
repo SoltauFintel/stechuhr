@@ -5,6 +5,7 @@ import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
 
+import de.mwvb.stechuhr.base.StechuhrUtils;
 import de.mwvb.stechuhr.dao.StechuhrDAO;
 import de.mwvb.stechuhr.entity.StechuhrModel;
 import de.mwvb.stechuhr.entity.Stunden;
@@ -108,7 +109,7 @@ public class VortagCheck {
 	Optional<String> askForVortagEndeUhrzeit(LocalDate d, String vorschlag) {
 		TextInputDialog dialog = new TextInputDialog(vorschlag);
 		dialog.setTitle("Vortag");
-		dialog.setHeaderText("Am " + Stunden.formatWTDate(d) + " wurde nicht auf STOP gedrückt."
+		dialog.setHeaderText("Am " + StechuhrUtils.formatWTDate(d) + " wurde nicht auf STOP gedrückt."
 				+ "\nDies kann jetzt nachgeholt werden."
 				+ "\nWie spät wurde an dem Tag Feierabend gemacht?");
 		dialog.setContentText("Feierabend Uhrzeit:");

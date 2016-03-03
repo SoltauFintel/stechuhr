@@ -6,6 +6,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.mwvb.stechuhr.base.StechuhrUtils;
 import de.mwvb.stechuhr.export.ExportManager;
 import de.mwvb.stechuhr.export.Exportstunden;
 import de.mwvb.stechuhr.stundenrundung.Dauer;
@@ -29,11 +30,11 @@ public class StechuhrModel { // TODO Fachlogik herauslösen!
 	}
 
 	public String getTagString() {
-		return Exportstunden.formatDate(tag);
+		return StechuhrUtils.formatDate(tag);
 	}
 
 	public String getWTTagString() {
-		return Stunden.formatWTDate(tag);
+		return StechuhrUtils.formatWTDate(tag);
 	}
 
 	public List<Stunden> getStundenliste() {
@@ -56,16 +57,12 @@ public class StechuhrModel { // TODO Fachlogik herauslösen!
 					s++;
 					m -= 60;
 				}
-				dauer = s + ":" + zweistellig(m);
+				dauer = s + ":" + StechuhrUtils.zweistellig(m);
 			}
 			a.setDauer(dauer);
 		}
 	}
 	
-	public static String zweistellig(long i) {
-		return i < 10 ? "0" + i : "" + i;
-	}
-
 	public void stop(LocalTime stopUhrzeit) {
 		Stunden s = new Stunden(stopUhrzeit);
 		s.setTicket(Stunden.STOP);

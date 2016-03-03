@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import de.mwvb.stechuhr.Application;
+import de.mwvb.stechuhr.base.StechuhrUtils;
 import de.mwvb.stechuhr.dao.StechuhrDAO;
 import de.mwvb.stechuhr.entity.Stunden;
 import de.mwvb.stechuhr.gui.StageAdapter;
@@ -234,7 +235,7 @@ public class StechuhrWindowController {
 	}
 
 	private void updateInfo(String pText) {
-		String text = Stunden.formatWTDate(StechuhrWindow.model.getTag());
+		String text = StechuhrUtils.formatWTDate(StechuhrWindow.model.getTag());
 		if (!pText.isEmpty()) {
 			text += "  |  " + pText;
 		}
