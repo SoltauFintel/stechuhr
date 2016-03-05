@@ -57,7 +57,7 @@
 						</HBox>
 						<Pane VBox.vgrow="ALWAYS"/>
 						<Button text="Bearbeiten..." minWidth="116" onAction="#onBearbeiten">
-							<tooltip><Tooltip text="F8"/></tooltip>
+							<tooltip><Tooltip text="F2"/></tooltip>
 							<graphic>
 								<ImageView style="-fx-background-color: transparent;">
 									<Image url="de/mwvb/stechuhr/gui/stechuhr/bleistift.gif"/>
