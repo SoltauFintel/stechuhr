@@ -1,6 +1,8 @@
 package de.mwvb.stechuhr.base;
 
 import java.io.File;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
@@ -50,5 +52,14 @@ public class StechuhrUtils {
 		} while (f.exists());
 		f.getParentFile().mkdirs();
 		return f;
+	}
+	
+	/**
+	 * @return Stunden als String mit 2 Nachkommastellen, "1,25" sind 75 Minuten
+	 */
+	public static String getDezimalstunden(int stunden, int minuten) {
+		double m = minuten / 60d + stunden;
+		DecimalFormatSymbols sy = new DecimalFormatSymbols(Locale.GERMAN);
+		return new DecimalFormat("0.00", sy).format(m);
 	}
 }

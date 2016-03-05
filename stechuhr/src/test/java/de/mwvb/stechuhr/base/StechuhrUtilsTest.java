@@ -41,4 +41,9 @@ public class StechuhrUtilsTest {
 	public void testFormatWTDate() {
 		Assert.assertEquals("Donnerstag 03.03.2016", StechuhrUtils.formatWTDate(LocalDate.of(2016, 3, 3)));
 	}
+	
+	@Test
+	public void testGetDezimalstunden() {
+		Assert.assertEquals("1,25", StechuhrUtils.getDezimalstunden(1, 15));
+	}
 }

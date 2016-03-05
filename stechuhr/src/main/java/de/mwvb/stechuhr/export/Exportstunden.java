@@ -1,9 +1,6 @@
 package de.mwvb.stechuhr.export;
 
-import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
 import java.time.LocalDate;
-import java.util.Locale;
 
 import de.mwvb.stechuhr.base.StechuhrUtils;
 
@@ -76,9 +73,7 @@ public class Exportstunden {
 	}
 
 	public String getDezimaldauer() {
-		double m = minuten / 60d + stunden;
-		DecimalFormatSymbols sy = new DecimalFormatSymbols(Locale.GERMAN);
-		return new DecimalFormat("0.00", sy).format(m);
+		return StechuhrUtils.getDezimalstunden(stunden, minuten);
 	}
 	
 	public String getSSMM() {

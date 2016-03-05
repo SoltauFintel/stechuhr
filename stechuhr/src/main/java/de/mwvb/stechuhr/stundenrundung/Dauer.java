@@ -1,5 +1,7 @@
 package de.mwvb.stechuhr.stundenrundung;
 
+import de.mwvb.stechuhr.base.StechuhrUtils;
+
 public class Dauer {
 	public static final Dauer ZERO = new Dauer(0, 0);
 	private final int stundenTeil;
@@ -48,6 +50,10 @@ public class Dauer {
 	@Override
 	public String toString() {
 		return minutenTeil < 10 ? stundenTeil + ":0" + minutenTeil : stundenTeil + ":" + minutenTeil;
+	}
+	
+	public String toDezimalString() {
+		return StechuhrUtils.getDezimalstunden(stundenTeil, minutenTeil);
 	}
 	
 	@Override

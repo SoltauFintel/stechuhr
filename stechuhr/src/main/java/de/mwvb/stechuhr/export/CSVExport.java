@@ -1,36 +1,29 @@
 package de.mwvb.stechuhr.export;
 
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.time.LocalDate;
 import java.util.List;
 
-import de.mwvb.stechuhr.base.StechuhrUtils;
-import de.mwvb.stechuhr.dao.StechuhrDAO;
-
-public class CSVExport implements Export {
+public class CSVExport extends AbstractExport {
+	private List<Exportstunden> exportstunden;
 	
-	public void export(List<Exportstunden> export) {
-		if (export.isEmpty()) return;
-		try {
-			File file = getExportFile(export.get(0).getTag());
-			FileWriter w = new FileWriter(file); // TODO FindBugs: Encoding
-			try {
-				for (Exportstunden x : export) {
-					w.write(x.toFileString() + "\r\n");
-				}
-			} finally {
-				w.close();
-			}
-			System.out.println(file.getAbsolutePath());
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		}
+	public void export(List<Exportstunden> exportstunden) {
+		if (exportstunden.isEmpty()) return;
+		this.exportstunden = exportstunden;
+		super.export(exportstunden);
 	}
 	
-	private File getExportFile(LocalDate tag) {
-		String vorne = StechuhrDAO.getPfad().toString() + "/" + tag.getYear() + "/" + tag.getMonthValue() + "/" + tag.toString() + "_Export-";
-		return StechuhrUtils.getNextFilename(vorne, ".txt");
+	@Override
+	protected void write(FileWriter w) throws IOException {
+		for (Exportstunden x : exportstunden) {
+			w.write(x.toFileString());
+			w.write("\r\n");
+		}
+		exportstunden = null;
+	}
+
+	@Override
+	protected String getExtension() {
+		return ".txt";
 	}
 }
