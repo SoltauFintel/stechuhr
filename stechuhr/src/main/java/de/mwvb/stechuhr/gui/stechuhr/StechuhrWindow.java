@@ -1,9 +1,9 @@
 package de.mwvb.stechuhr.gui.stechuhr;
 
 import de.mwvb.stechuhr.Application;
-import de.mwvb.stechuhr.VortagCheck;
 import de.mwvb.stechuhr.entity.StechuhrModel;
 import de.mwvb.stechuhr.gui.Window;
+import de.mwvb.stechuhr.service.VortagCheck;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.input.KeyCode;

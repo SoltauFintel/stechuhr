@@ -1,4 +1,4 @@
-package de.mwvb.stechuhr;
+package de.mwvb.stechuhr.service;
 
 import org.junit.Assert;
 import org.junit.Before;

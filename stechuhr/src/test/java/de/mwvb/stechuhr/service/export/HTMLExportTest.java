@@ -1,4 +1,4 @@
-package de.mwvb.stechuhr.export;
+package de.mwvb.stechuhr.service.export;
 
 import java.io.File;
 import java.time.LocalDate;
@@ -9,6 +9,8 @@ import org.junit.Test;
 
 import de.mwvb.stechuhr.AbstractStundenTest;
 import de.mwvb.stechuhr.entity.Stunden;
+import de.mwvb.stechuhr.service.export.Exportstunden;
+import de.mwvb.stechuhr.service.export.HTMLExport;
 
 /**
  * Hilfsklasse, die HTMLExport aufruft, um immer die gleiche HTML-Datei zu erzeugen
