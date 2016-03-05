@@ -1,7 +1,9 @@
-package de.mwvb.stechuhr.stundenrundung;
+package de.mwvb.stechuhr.service.stundenrundung;
 
 import org.junit.Assert;
 import org.junit.Test;
+
+import de.mwvb.stechuhr.service.stundenrundung.Dauer;
 
 public class DauerTest {
 

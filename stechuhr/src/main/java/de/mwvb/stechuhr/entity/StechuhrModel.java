@@ -9,8 +9,8 @@ import java.util.List;
 import de.mwvb.stechuhr.base.StechuhrUtils;
 import de.mwvb.stechuhr.export.ExportManager;
 import de.mwvb.stechuhr.export.Exportstunden;
-import de.mwvb.stechuhr.stundenrundung.Dauer;
-import de.mwvb.stechuhr.stundenrundung.Stundenrundung;
+import de.mwvb.stechuhr.service.stundenrundung.Dauer;
+import de.mwvb.stechuhr.service.stundenrundung.Stundenrundung;
 
 /**
  * Tagesdatum und alle Stechuhr-Einträge

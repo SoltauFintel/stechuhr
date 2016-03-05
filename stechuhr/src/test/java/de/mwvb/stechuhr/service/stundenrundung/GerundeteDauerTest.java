@@ -1,7 +1,10 @@
-package de.mwvb.stechuhr.stundenrundung;
+package de.mwvb.stechuhr.service.stundenrundung;
 
 import org.junit.Assert;
 import org.junit.Test;
+
+import de.mwvb.stechuhr.service.stundenrundung.Dauer;
+import de.mwvb.stechuhr.service.stundenrundung.GerundeteDauer;
 
 /**
  * Durchführung von Rundungen testen
