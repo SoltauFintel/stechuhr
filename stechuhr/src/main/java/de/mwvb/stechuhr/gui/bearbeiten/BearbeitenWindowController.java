@@ -52,36 +52,41 @@ public class BearbeitenWindowController {
 		try {
 			Window.disableTabKey(notizPrivat);
 			save.setDefaultButton(true);
-			
-			grid.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
-				KeyCode code = event.getCode();
-				if (KeyCode.DELETE.equals(code)) {
-					onDelete();
-				}
-			});
-			
-			grid.getSelectionModel().selectedItemProperty().addListener((a, b, sel) -> {
-				display((Stunden) sel);
-				save.setDisable(true);
-			});
-			save.setDisable(true);
-			ChangeListener<? super String> listener = (observable, oldValue, newValue) -> {
-				if (!grid.getSelectionModel().getSelectedIndices().isEmpty()) {
-					save.setDisable(false);
-				}
-			};
-			this.uhrzeit.textProperty().addListener(listener);
-			this.ticket.textProperty().addListener(listener);
-			this.leistung.getEditor().textProperty().addListener(listener); // Texteingabe
-			this.leistung.valueProperty().addListener(listener); // Auswahl in Liste
-			this.notizPrivat.textProperty().addListener(listener);
-			
+			addDeleteKeyListener();
+			addSaveButtonListeners();
 			Platform.runLater(() -> leistung.requestFocus()); // Annahme: Man möchte i.d.R. eine Leistung eingeben
 		} catch (Exception e) {
 			Window.errorAlert(e);
 		}
 	}
 
+	private void addDeleteKeyListener() {
+		grid.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+			KeyCode code = event.getCode();
+			if (KeyCode.DELETE.equals(code)) {
+				onDelete();
+			}
+		});
+	}
+
+	private void addSaveButtonListeners() {
+		grid.getSelectionModel().selectedItemProperty().addListener((a, b, sel) -> {
+			display((Stunden) sel);
+			save.setDisable(true);
+		});
+		save.setDisable(true);
+		ChangeListener<? super String> listener = (observable, oldValue, newValue) -> {
+			if (!grid.getSelectionModel().getSelectedIndices().isEmpty()) {
+				save.setDisable(false);
+			}
+		};
+		this.uhrzeit.textProperty().addListener(listener);
+		this.ticket.textProperty().addListener(listener);
+		this.leistung.getEditor().textProperty().addListener(listener); // Texteingabe
+		this.leistung.valueProperty().addListener(listener); // Auswahl in Liste
+		this.notizPrivat.textProperty().addListener(listener);
+	}
+	
 	public void model2View() {
 		try {
 			getStage().addEventFilter(KeyEvent.KEY_PRESSED, event -> {
