@@ -18,7 +18,7 @@ import javafx.stage.Stage;
  */
 public class Application extends javafx.application.Application { // TODO rename to StechuhrApplication (FindBugs)
 	public static final String APP_NAME = "Stechuhr";
-	public static final String APP_VERSION = "0.2";
+	public static final String APP_VERSION = "0.3";
 	public static StechuhrConfig config; // TODO private machen + public Getter (FindBugs)
 	
 	public static void main(String[] args) {
