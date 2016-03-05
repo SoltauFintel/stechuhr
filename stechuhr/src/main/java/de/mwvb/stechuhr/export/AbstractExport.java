@@ -21,7 +21,7 @@ public abstract class AbstractExport implements Export {
 			} finally {
 				w.close();
 			}
-			System.out.println(file.getAbsolutePath());
+			//System.out.println(file.getAbsolutePath());
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
