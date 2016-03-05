@@ -37,6 +37,7 @@
 			<GridPane hgap="8" vgap="8">
 				<padding><Insets bottom="12"/></padding>
 				
+				<!-- TODO indizes muessen mit 0 anfangen -->
 				<Label text="Uhrzeit:" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
 				<TextField fx:id="uhrzeit" maxHeight="2" GridPane.rowIndex="1" GridPane.columnIndex="2" maxWidth="60"/>
 	
@@ -44,7 +45,8 @@
 				<TextField fx:id="ticket" maxHeight="2" GridPane.rowIndex="2" GridPane.columnIndex="2" maxWidth="150"/>
 	
 				<Label text="Leistung:" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
-				<TextField fx:id="leistung" maxHeight="2" GridPane.rowIndex="3" GridPane.columnIndex="2"/>
+				<!-- TODO schwierig: Combobox so breit wie Textarea, am besten wachsend mit Fensterbreite -->
+				<ComboBox fx:id="leistung" GridPane.rowIndex="3" GridPane.columnIndex="2" editable="true"></ComboBox>
 				
 				<Label text="Notiz privat:" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
 				<TextArea fx:id="notizPrivat" prefHeight="70" GridPane.rowIndex="4" GridPane.columnIndex="2" wrapText="true"/>

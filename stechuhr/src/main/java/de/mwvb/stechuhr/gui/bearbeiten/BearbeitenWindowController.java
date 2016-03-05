@@ -16,6 +16,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -32,7 +33,7 @@ public class BearbeitenWindowController {
 	@FXML
 	private TextField uhrzeit;
 	@FXML
-	private TextField leistung;
+	private ComboBox<String> leistung;
 	@FXML
 	private TextField ticket;
 	@FXML
@@ -71,7 +72,8 @@ public class BearbeitenWindowController {
 			};
 			this.uhrzeit.textProperty().addListener(listener);
 			this.ticket.textProperty().addListener(listener);
-			this.leistung.textProperty().addListener(listener);
+			this.leistung.getEditor().textProperty().addListener(listener); // Texteingabe
+			this.leistung.valueProperty().addListener(listener); // Auswahl in Liste
 			this.notizPrivat.textProperty().addListener(listener);
 			
 			Platform.runLater(() -> leistung.requestFocus()); // Annahme: Man möchte i.d.R. eine Leistung eingeben
@@ -113,7 +115,7 @@ public class BearbeitenWindowController {
 				uhrzeit.setText("");
 			}
 			ticket.setText(s.getTicket());
-			leistung.setText(s.getLeistung());
+			leistung.getEditor().setText(s.getLeistung());
 			notizPrivat.setText(s.getNotizPrivat());
 		} catch (Exception e) {
 			Window.errorAlert(e);
@@ -136,14 +138,14 @@ public class BearbeitenWindowController {
 			// Eingaben übernehmen
 			s.setUhrzeit(LocalTime.parse(ut));
 			s.setTicket(nr);
-			s.setLeistung(leistung.getText().trim());
+			s.setLeistung(leistung.getEditor().getText().trim());
 			s.setNotizPrivat(notizPrivat.getText());
 
 			updateGrid_andSave();
 			
 			uhrzeit.setText(ut);
 			ticket.setText(nr);
-			leistung.setText(s.getLeistung());
+			leistung.getEditor().setText(s.getLeistung());
 			save.setDisable(true);
 		} catch (Exception e) {
 			Window.errorAlert(e);
@@ -230,7 +232,7 @@ public class BearbeitenWindowController {
 				if (grid.getItems().isEmpty()) {
 					uhrzeit.setText("");
 					ticket.setText("");
-					leistung.setText("");
+					leistung.getEditor().setText("");
 					notizPrivat.setText("");
 					save.setDisable(true);
 					delete.setDisable(true);
