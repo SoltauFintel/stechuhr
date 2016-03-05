@@ -132,6 +132,10 @@ public class StechuhrDAO { // TODO DAO zerlegen: Stechuhr-File, Exporteur, Confi
 		return new File(pfad.toString() + "/" + id + ".txt");
 	}
 	
+	public void delete(String id) {
+		getFile(id).delete();
+	}
+	
 	public static String getPfad() {
 		return pfad;
 	}
