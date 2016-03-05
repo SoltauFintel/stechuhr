@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/SoltauFintel/stechuhr.png?branch=master)](https://travis-ci.org/SoltauFintel/stechuhr)
-[ [![Apache 2.0 Lizenz](https://img.shields.io/badge/license-Apache2-4cc61e.svg)](http://www.apache.org/licenses/LICENSE-2.0)
+[![Apache 2.0 Lizenz](https://img.shields.io/badge/license-Apache2-4cc61e.svg)](http://www.apache.org/licenses/LICENSE-2.0)
 
 # Stechuhr
 
@@ -45,4 +45,4 @@ und kann im Windows-Explorer durch Doppelklicken auf stechuhr-x.x.jar gestartet 
 
 Tooling: Java 8 >=u40, GUI mit JavaFX, Build mit Gradle 2.10, Ant, Travis CI und codecov, IDE: Eclipse Mars.2, SCM+Bugtracker: github
 
-![Test Code Coverage](http://img.shields.io/codecov/c/github/SoltauFintel/stechuhr.svg) ](https://codecov.io/github/SoltauFintel/stechuhr)
+[![Test Code Coverage](http://img.shields.io/codecov/c/github/SoltauFintel/stechuhr.svg) ](https://codecov.io/github/SoltauFintel/stechuhr)
