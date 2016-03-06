@@ -145,6 +145,9 @@ public class BearbeitenWindowController {
 				return; // Nicht speichern, wenn Validierung nicht ok.
 			}
 			String nr = validateTicket(ticket.getText());
+			if (nr == null) {
+				return; // Nicht speichern, wenn Validierung nicht ok.
+			}
 			
 			// Eingaben übernehmen
 			stunden.setUhrzeit(LocalTime.parse(eingegebeneUhrzeit));
