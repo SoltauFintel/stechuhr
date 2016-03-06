@@ -131,51 +131,62 @@ public class BearbeitenWindowController {
 	public void onSave() {
 		try {
 			int i = grid.getSelectionModel().getSelectedIndex();
-			if (i < 0) return;
-			Stunden s = grid.getItems().get(i);
-			if (s == null) return;
+			if (i < 0) {
+				return; // Nicht speichern, wenn kein Stechuhreintrag gewählt ist.
+			}
+			Stunden stunden = grid.getItems().get(i);
+			if (stunden == null) {
+				return; // Nicht speichern, wenn seltsamerweise der Stechuhreintrag fehlt.
+			}
 
 			// Validierung
-			String ut = validateUhrzeit(i);
-			if (ut == null) return;
+			String eingegebeneUhrzeit = validateUhrzeit(i);
+			if (eingegebeneUhrzeit == null) {
+				return; // Nicht speichern, wenn Validierung nicht ok.
+			}
 			String nr = validateTicket(ticket.getText());
 			
 			// Eingaben übernehmen
-			s.setUhrzeit(LocalTime.parse(ut));
-			s.setTicket(nr);
-			s.setLeistung(leistung.getEditor().getText().trim());
-			s.setNotizPrivat(notizPrivat.getText());
+			stunden.setUhrzeit(LocalTime.parse(eingegebeneUhrzeit));
+			stunden.setTicket(nr);
+			stunden.setLeistung(leistung.getEditor().getText().trim());
+			stunden.setNotizPrivat(notizPrivat.getText());
 
 			updateGrid_andSave();
 			
-			uhrzeit.setText(ut);
+			// Evtl. umformatierte Eingaben anzeigen
+			uhrzeit.setText(eingegebeneUhrzeit);
 			ticket.setText(nr);
-			leistung.getEditor().setText(s.getLeistung());
+			leistung.getEditor().setText(stunden.getLeistung());
 			save.setDisable(true);
 		} catch (Exception e) {
 			Window.errorAlert(e);
 		}
 	}
 
+	/**
+	 * @param i Index des aktuell gewählten Stechuhreintrags
+	 * @return null wenn Validierung nicht ok
+	 */
 	private String validateUhrzeit(int i) {
 		// Uhrzeit valide?
-		String ut = uhrzeit.getText().trim();
-		ut = validateUhrzeit(ut);
-		if (ut == null) {
-			return null;
+		String eingegebeneUhrzeit = uhrzeit.getText().trim();
+		eingegebeneUhrzeit = validateUhrzeit(eingegebeneUhrzeit); // Format der Uhrzeit validieren.
+		if (eingegebeneUhrzeit == null) {
+			return null; // Validierung nicht ok.
 		}
 		
-		// Nicht vor Vorgängeruhrzeit?
+		// weitere Validierung: Nicht vor Vorgängeruhrzeit?
 		LocalTime davor = LocalTime.MIDNIGHT;
 		if (i > 0) {
 			davor = grid.getItems().get(i - 1).getUhrzeit();
 		}
-		if (LocalTime.parse(ut).isBefore(davor)) {
+		if (LocalTime.parse(eingegebeneUhrzeit).isBefore(davor)) {
 			Window.alert("Bitte gebe eine Uhrzeit nach " + davor.toString() + " ein!"
 					+ "\nAlternativ kann auch der Vorgängerdatensatz geändert werden.");
 			return null;
 		}
-		return ut;
+		return eingegebeneUhrzeit;
 	}
 	
 	/**
