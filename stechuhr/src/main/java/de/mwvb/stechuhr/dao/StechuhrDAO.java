@@ -12,6 +12,7 @@ import java.util.List;
 
 import de.mwvb.base.xml.XMLDocument;
 import de.mwvb.base.xml.XMLElement;
+import de.mwvb.stechuhr.base.XMLDocumentUTF8;
 import de.mwvb.stechuhr.entity.StechuhrModel;
 import de.mwvb.stechuhr.entity.Stunden;
 
@@ -37,7 +38,7 @@ public class StechuhrDAO { // TODO DAO zerlegen: Stechuhr-File, Exporteur, Confi
 		StechuhrModel model = new StechuhrModel(tag);
 		File file = getStechuhrModelFile(tag);
 		if (file.exists()) {
-			XMLDocument dok = XMLDocument.load(file.getAbsolutePath());
+			XMLDocument dok = XMLDocumentUTF8.load(file.getAbsolutePath());
 			for (XMLElement e : dok.getChildren()) {
 				Stunden s = new Stunden();
 				s.setTag(tag);
@@ -57,7 +58,7 @@ public class StechuhrDAO { // TODO DAO zerlegen: Stechuhr-File, Exporteur, Confi
 			throw new RuntimeException("Fehler bei save(). Verzeichnis konnte nicht erstellt werden: " + file.getParentFile().getAbsolutePath());
 		}
 		
-		XMLDocument dok = new XMLDocument("<Stechuhr version=\"" + DATEI_VERSION + "\"/>");
+		XMLDocument dok = new XMLDocumentUTF8("<Stechuhr version=\"" + DATEI_VERSION + "\"/>");
 		XMLElement root = dok.getElement();
 		root.setValue("tag", model.getTagString());
 		for (Stunden s : model.getStundenliste()) {
