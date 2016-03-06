@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?language javascript?>
-<?import java.net.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.scene.control.cell.*?>
 <?import javafx.scene.image.*?>
 
 <BorderPane xmlns:fx="http://javafx.com/fxml">
@@ -23,10 +19,10 @@
 	</top>
 	<center>
 		<BorderPane>
-			<padding><Insets top="0" right="0" bottom="0" left="16"/></padding>
+			<padding><Insets left="16"/></padding>
 			<center>
 				<HBox spacing="32">
-					<VBox spacing="12" >
+					<VBox spacing="12">
 						<padding><Insets top="12" bottom="12"/></padding>
 						<ComboBox editable="true" fx:id="ticket"></ComboBox>
 						<HBox spacing="12">
@@ -87,7 +83,7 @@
 	</center>
 	<bottom>
 		<VBox>
-			<padding><Insets top="0" right="16" bottom="16" left="16"/></padding>
+			<padding><Insets right="16" bottom="16" left="16"/></padding>
 			<Label fx:id="info"/>
 		</VBox>
 	</bottom>

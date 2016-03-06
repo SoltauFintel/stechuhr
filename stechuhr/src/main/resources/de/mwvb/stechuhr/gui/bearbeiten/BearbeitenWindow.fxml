@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?language javascript?>
-<?import java.net.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 <?import javafx.scene.control.cell.*?>
-<?import javafx.scene.layout.HBox?>
 
 <BorderPane xmlns:fx="http://javafx.com/fxml">
 	<padding><Insets top="8" right="8" bottom="8" left="8"/></padding>
@@ -38,10 +34,10 @@
 				<padding><Insets top="12" bottom="12"/></padding>
 				
 				<Label text="Uhrzeit:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-				<TextField fx:id="uhrzeit" maxHeight="2" GridPane.rowIndex="0" GridPane.columnIndex="1" maxWidth="60"/>
+				<TextField fx:id="uhrzeit" GridPane.rowIndex="0" GridPane.columnIndex="1" maxWidth="60"/>
 	
 				<Label text="Ticket:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
-				<TextField fx:id="ticket" maxHeight="2" GridPane.rowIndex="1" GridPane.columnIndex="1" maxWidth="150"/>
+				<TextField fx:id="ticket" GridPane.rowIndex="1" GridPane.columnIndex="1" maxWidth="150"/>
 	
 				<Label text="Leistung:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
 				<ComboBox fx:id="leistung" GridPane.rowIndex="2" GridPane.columnIndex="1" maxWidth="Infinity" editable="true"></ComboBox>
