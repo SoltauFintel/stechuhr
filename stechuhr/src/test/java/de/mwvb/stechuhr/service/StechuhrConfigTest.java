@@ -1,7 +1,9 @@
 package de.mwvb.stechuhr.service;
 
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import de.mwvb.stechuhr.dao.StechuhrDAO;
@@ -10,11 +12,17 @@ import de.mwvb.stechuhr.gui.StageAdapterForTest;
 
 public class StechuhrConfigTest {
 
-	@Before
-	public void init() {
+	@BeforeClass
+	public static void init() {
 		StechuhrDAO.init();
 	}
-	
+
+	@Before
+	@After
+	public void cleanup() {
+		new StechuhrDAO().delete("WindowPosition-TEST1");
+	}
+
 	@Test
 	public void testWindowPos() {
 		// Prepare
