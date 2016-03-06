@@ -3,8 +3,8 @@ package de.mwvb.stechuhr.entity;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-import de.mwvb.stechuhr.stundenrundung.Dauer;
-import de.mwvb.stechuhr.stundenrundung.GerundeteDauer;
+import de.mwvb.stechuhr.service.stundenrundung.Dauer;
+import de.mwvb.stechuhr.service.stundenrundung.GerundeteDauer;
 
 /**
  * Stechuhr-Eintrag

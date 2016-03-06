@@ -1,4 +1,4 @@
-package de.mwvb.stechuhr.export;
+package de.mwvb.stechuhr.service.export;
 
 import java.util.List;
 

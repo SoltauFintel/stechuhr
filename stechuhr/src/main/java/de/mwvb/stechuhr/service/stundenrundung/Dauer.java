@@ -1,4 +1,4 @@
-package de.mwvb.stechuhr.stundenrundung;
+package de.mwvb.stechuhr.service.stundenrundung;
 
 import de.mwvb.stechuhr.base.StechuhrUtils;
 

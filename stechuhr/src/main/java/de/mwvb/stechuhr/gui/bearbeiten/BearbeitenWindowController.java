@@ -16,6 +16,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -32,7 +33,7 @@ public class BearbeitenWindowController {
 	@FXML
 	private TextField uhrzeit;
 	@FXML
-	private TextField leistung;
+	private ComboBox<String> leistung;
 	@FXML
 	private TextField ticket;
 	@FXML
@@ -50,36 +51,50 @@ public class BearbeitenWindowController {
 	protected void initialize() {
 		try {
 			Window.disableTabKey(notizPrivat);
+			fillLeistungCombobox();
 			save.setDefaultButton(true);
-			
-			grid.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
-				KeyCode code = event.getCode();
-				if (KeyCode.DELETE.equals(code)) {
-					onDelete();
-				}
-			});
-			
-			grid.getSelectionModel().selectedItemProperty().addListener((a, b, sel) -> {
-				display((Stunden) sel);
-				save.setDisable(true);
-			});
-			save.setDisable(true);
-			ChangeListener<? super String> listener = (observable, oldValue, newValue) -> {
-				if (!grid.getSelectionModel().getSelectedIndices().isEmpty()) {
-					save.setDisable(false);
-				}
-			};
-			this.uhrzeit.textProperty().addListener(listener);
-			this.ticket.textProperty().addListener(listener);
-			this.leistung.textProperty().addListener(listener);
-			this.notizPrivat.textProperty().addListener(listener);
-			
+			addSaveButtonListeners();
+			addDeleteKeyListener();
 			Platform.runLater(() -> leistung.requestFocus()); // Annahme: Man möchte i.d.R. eine Leistung eingeben
 		} catch (Exception e) {
 			Window.errorAlert(e);
 		}
 	}
 
+	private void fillLeistungCombobox() {
+		leistung.getItems().clear();
+		for (String text : StechuhrWindow.model.getLeistungen()) {
+			leistung.getItems().add(text);
+		}
+	}
+
+	private void addSaveButtonListeners() {
+		grid.getSelectionModel().selectedItemProperty().addListener((a, b, sel) -> {
+			display((Stunden) sel);
+			save.setDisable(true);
+		});
+		save.setDisable(true);
+		ChangeListener<? super String> listener = (observable, oldValue, newValue) -> {
+			if (!grid.getSelectionModel().getSelectedIndices().isEmpty()) {
+				save.setDisable(false);
+			}
+		};
+		this.uhrzeit.textProperty().addListener(listener);
+		this.ticket.textProperty().addListener(listener);
+		this.leistung.getEditor().textProperty().addListener(listener); // Texteingabe
+		this.leistung.valueProperty().addListener(listener); // Auswahl in Liste
+		this.notizPrivat.textProperty().addListener(listener);
+	}
+
+	private void addDeleteKeyListener() {
+		grid.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+			KeyCode code = event.getCode();
+			if (KeyCode.DELETE.equals(code)) {
+				onDelete();
+			}
+		});
+	}
+	
 	public void model2View() {
 		try {
 			getStage().addEventFilter(KeyEvent.KEY_PRESSED, event -> {
@@ -113,7 +128,7 @@ public class BearbeitenWindowController {
 				uhrzeit.setText("");
 			}
 			ticket.setText(s.getTicket());
-			leistung.setText(s.getLeistung());
+			leistung.getEditor().setText(s.getLeistung());
 			notizPrivat.setText(s.getNotizPrivat());
 		} catch (Exception e) {
 			Window.errorAlert(e);
@@ -124,51 +139,59 @@ public class BearbeitenWindowController {
 	public void onSave() {
 		try {
 			int i = grid.getSelectionModel().getSelectedIndex();
-			if (i < 0) return;
-			Stunden s = grid.getItems().get(i);
-			if (s == null) return;
+			if (i < 0) {
+				return; // Nicht speichern, wenn kein Stechuhreintrag gewählt ist.
+			}
+			Stunden stunden = grid.getItems().get(i);
+			if (stunden == null) {
+				return; // Nicht speichern, wenn seltsamerweise der Stechuhreintrag fehlt.
+			}
 
 			// Validierung
-			String ut = validateUhrzeit(i);
-			if (ut == null) return;
+			String eingegebeneUhrzeit = validateUhrzeit(i);
+			if (eingegebeneUhrzeit == null) {
+				return; // Nicht speichern, wenn Validierung nicht ok.
+			}
 			String nr = validateTicket(ticket.getText());
+			if (nr == null) {
+				return; // Nicht speichern, wenn Validierung nicht ok.
+			}
 			
-			// Eingaben übernehmen
-			s.setUhrzeit(LocalTime.parse(ut));
-			s.setTicket(nr);
-			s.setLeistung(leistung.getText().trim());
-			s.setNotizPrivat(notizPrivat.getText());
-
-			updateGrid_andSave();
+			save(stunden, eingegebeneUhrzeit, nr);
 			
-			uhrzeit.setText(ut);
+			// Evtl. umformatierte Eingaben anzeigen
+			uhrzeit.setText(eingegebeneUhrzeit);
 			ticket.setText(nr);
-			leistung.setText(s.getLeistung());
+			leistung.getEditor().setText(stunden.getLeistung());
 			save.setDisable(true);
 		} catch (Exception e) {
 			Window.errorAlert(e);
 		}
 	}
 
+	/**
+	 * @param i Index des aktuell gewählten Stechuhreintrags
+	 * @return null wenn Validierung nicht ok
+	 */
 	private String validateUhrzeit(int i) {
 		// Uhrzeit valide?
-		String ut = uhrzeit.getText().trim();
-		ut = validateUhrzeit(ut);
-		if (ut == null) {
-			return null;
+		String eingegebeneUhrzeit = uhrzeit.getText().trim();
+		eingegebeneUhrzeit = validateUhrzeit(eingegebeneUhrzeit); // Format der Uhrzeit validieren.
+		if (eingegebeneUhrzeit == null) {
+			return null; // Validierung nicht ok.
 		}
 		
-		// Nicht vor Vorgängeruhrzeit?
+		// weitere Validierung: Nicht vor Vorgängeruhrzeit?
 		LocalTime davor = LocalTime.MIDNIGHT;
 		if (i > 0) {
 			davor = grid.getItems().get(i - 1).getUhrzeit();
 		}
-		if (LocalTime.parse(ut).isBefore(davor)) {
+		if (LocalTime.parse(eingegebeneUhrzeit).isBefore(davor)) {
 			Window.alert("Bitte gebe eine Uhrzeit nach " + davor.toString() + " ein!"
 					+ "\nAlternativ kann auch der Vorgängerdatensatz geändert werden.");
 			return null;
 		}
-		return ut;
+		return eingegebeneUhrzeit;
 	}
 	
 	/**
@@ -216,6 +239,20 @@ public class BearbeitenWindowController {
 		}
 		return ticket;
 	}
+
+	/** Eingaben übernehmen, inkl. Persistierung */
+	private void save(final Stunden stunden, final String eingegebeneUhrzeit, final String nr) {
+		stunden.setUhrzeit(LocalTime.parse(eingegebeneUhrzeit));
+		stunden.setTicket(nr);
+		String eingegebeneLeistung = leistung.getEditor().getText().trim();
+		stunden.setLeistung(eingegebeneLeistung);
+		stunden.setNotizPrivat(notizPrivat.getText());
+
+		updateGrid_andSave();
+		
+		StechuhrWindow.model.getLeistungen().add(nr, eingegebeneLeistung);
+		fillLeistungCombobox();
+	}
 	
 	@FXML
 	public void onDelete() {
@@ -230,7 +267,7 @@ public class BearbeitenWindowController {
 				if (grid.getItems().isEmpty()) {
 					uhrzeit.setText("");
 					ticket.setText("");
-					leistung.setText("");
+					leistung.getEditor().setText("");
 					notizPrivat.setText("");
 					save.setDisable(true);
 					delete.setDisable(true);

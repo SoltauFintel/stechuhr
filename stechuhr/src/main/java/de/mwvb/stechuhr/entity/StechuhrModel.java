@@ -7,10 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import de.mwvb.stechuhr.base.StechuhrUtils;
-import de.mwvb.stechuhr.export.ExportManager;
-import de.mwvb.stechuhr.export.Exportstunden;
-import de.mwvb.stechuhr.stundenrundung.Dauer;
-import de.mwvb.stechuhr.stundenrundung.Stundenrundung;
+import de.mwvb.stechuhr.service.Leistungen;
+import de.mwvb.stechuhr.service.export.ExportManager;
+import de.mwvb.stechuhr.service.export.Exportstunden;
+import de.mwvb.stechuhr.service.stundenrundung.Dauer;
+import de.mwvb.stechuhr.service.stundenrundung.Stundenrundung;
 
 /**
  * Tagesdatum und alle Stechuhr-Einträge
@@ -20,9 +21,11 @@ import de.mwvb.stechuhr.stundenrundung.Stundenrundung;
 public class StechuhrModel { // TODO Fachlogik herauslösen!
 	private final LocalDate tag;
 	private final List<Stunden> stundenliste = new ArrayList<Stunden>();
+	private final Leistungen leistungen;
 	
 	public StechuhrModel(LocalDate tag) {
 		this.tag = tag;
+		leistungen = Leistungen.open("Leistungen.xml");
 	}
 
 	public LocalDate getTag() {
@@ -165,5 +168,9 @@ public class StechuhrModel { // TODO Fachlogik herauslösen!
 	 */
 	public static LocalTime now() {
 		return LocalTime.now().withSecond(0).withNano(0);
+	}
+	
+	public Leistungen getLeistungen() {
+		return leistungen;
 	}
 }

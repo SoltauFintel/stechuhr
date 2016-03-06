@@ -1,4 +1,4 @@
-package de.mwvb.stechuhr;
+package de.mwvb.stechuhr.service;
 
 import java.util.ArrayList;
 import java.util.List;

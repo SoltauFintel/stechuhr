@@ -1,4 +1,4 @@
-package de.mwvb.stechuhr.stundenrundung;
+package de.mwvb.stechuhr.service.stundenrundung;
 
 /**
  * GerundeteDauer ist eine Dauer, die ihren alten ungerundeten Wert noch kennt

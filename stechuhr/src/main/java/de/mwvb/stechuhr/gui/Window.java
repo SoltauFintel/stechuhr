@@ -89,6 +89,9 @@ public abstract class Window<CTR> {
 		});
 	}
 
+	/**
+	 * @return 0: Fenster nicht schließen, 1: Fenster ganz normal schließen, 2: Fenster ausblenden
+	 */
 	protected int onClose() {
 		return 1; // Schließen ok
 	}

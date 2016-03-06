@@ -1,4 +1,4 @@
-package de.mwvb.stechuhr.export;
+package de.mwvb.stechuhr.service.export;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -10,6 +10,9 @@ import org.junit.Test;
 
 import de.mwvb.stechuhr.AbstractStundenTest;
 import de.mwvb.stechuhr.entity.StechuhrModel;
+import de.mwvb.stechuhr.service.export.Export;
+import de.mwvb.stechuhr.service.export.ExportManager;
+import de.mwvb.stechuhr.service.export.Exportstunden;
 
 public class ExportstundenTest extends AbstractStundenTest {
 	private List<Exportstunden> exportstunden;

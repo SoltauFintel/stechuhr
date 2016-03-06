@@ -1,4 +1,4 @@
-package de.mwvb.stechuhr.export;
+package de.mwvb.stechuhr.service.export;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -6,8 +6,8 @@ import java.util.List;
 
 import de.mwvb.stechuhr.base.StechuhrUtils;
 import de.mwvb.stechuhr.entity.Stunden;
-import de.mwvb.stechuhr.stundenrundung.Dauer;
-import de.mwvb.stechuhr.stundenrundung.Stundenrundung;
+import de.mwvb.stechuhr.service.stundenrundung.Dauer;
+import de.mwvb.stechuhr.service.stundenrundung.Stundenrundung;
 
 /**
  * HTML-Bericht erzeugen, der die Exportstunden enthält

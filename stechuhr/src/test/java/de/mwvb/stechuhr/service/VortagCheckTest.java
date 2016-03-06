@@ -1,4 +1,4 @@
-package de.mwvb.stechuhr;
+package de.mwvb.stechuhr.service;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -10,13 +10,14 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import de.mwvb.stechuhr.AbstractStundenTest;
 import de.mwvb.stechuhr.dao.StechuhrDAO;
 import de.mwvb.stechuhr.entity.StechuhrModel;
 import de.mwvb.stechuhr.entity.Stunden;
-import de.mwvb.stechuhr.export.Export;
-import de.mwvb.stechuhr.export.ExportManager;
-import de.mwvb.stechuhr.export.Exportstunden;
 import de.mwvb.stechuhr.gui.Window;
+import de.mwvb.stechuhr.service.export.Export;
+import de.mwvb.stechuhr.service.export.ExportManager;
+import de.mwvb.stechuhr.service.export.Exportstunden;
 
 /**
  * Test der Klasse VortagCheck

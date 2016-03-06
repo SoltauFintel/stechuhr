@@ -91,6 +91,7 @@ public class StechuhrDAOTest {
 		// Verify
 		Assert.assertEquals("1=oans", loaded.get(0));
 		Assert.assertEquals(" 2 = zwoa\t ", loaded.get(1));
+		access.delete("TEST");
 	}
 	
 	@Test(expected = IllegalArgumentException.class)

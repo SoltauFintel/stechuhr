@@ -20,7 +20,7 @@
 				<TableColumn text="Ticket" prefWidth="120">
 					<cellValueFactory><PropertyValueFactory property="ticket"/></cellValueFactory>
 				</TableColumn>
-				<TableColumn text="Leistung" prefWidth="490">
+				<TableColumn text="Leistung" prefWidth="420">
 					<cellValueFactory><PropertyValueFactory property="leistung"/></cellValueFactory>
 				</TableColumn>
 				<TableColumn text="Dauer" prefWidth="70">
@@ -35,19 +35,19 @@
 	<bottom>
 		<VBox>
 			<GridPane hgap="8" vgap="8">
-				<padding><Insets bottom="12"/></padding>
+				<padding><Insets top="12" bottom="12"/></padding>
 				
-				<Label text="Uhrzeit:" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
-				<TextField fx:id="uhrzeit" maxHeight="2" GridPane.rowIndex="1" GridPane.columnIndex="2" maxWidth="60"/>
+				<Label text="Uhrzeit:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+				<TextField fx:id="uhrzeit" maxHeight="2" GridPane.rowIndex="0" GridPane.columnIndex="1" maxWidth="60"/>
 	
-				<Label text="Ticket:" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
-				<TextField fx:id="ticket" maxHeight="2" GridPane.rowIndex="2" GridPane.columnIndex="2" maxWidth="150"/>
+				<Label text="Ticket:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+				<TextField fx:id="ticket" maxHeight="2" GridPane.rowIndex="1" GridPane.columnIndex="1" maxWidth="150"/>
 	
-				<Label text="Leistung:" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
-				<TextField fx:id="leistung" maxHeight="2" GridPane.rowIndex="3" GridPane.columnIndex="2"/>
+				<Label text="Leistung:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+				<ComboBox fx:id="leistung" GridPane.rowIndex="2" GridPane.columnIndex="1" maxWidth="Infinity" editable="true"></ComboBox>
 				
-				<Label text="Notiz privat:" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
-				<TextArea fx:id="notizPrivat" prefHeight="70" GridPane.rowIndex="4" GridPane.columnIndex="2" wrapText="true"/>
+				<Label text="Notiz privat:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+				<TextArea fx:id="notizPrivat" prefHeight="70" GridPane.rowIndex="3" GridPane.columnIndex="1" GridPane.hgrow="always" wrapText="true"/>
 			</GridPane>
 			<HBox spacing="12">
 				<Button text="_Speichern" minWidth="100" fx:id="save" onAction="#onSave"/>

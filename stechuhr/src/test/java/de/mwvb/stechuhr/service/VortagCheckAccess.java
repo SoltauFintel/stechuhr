@@ -1,4 +1,4 @@
-package de.mwvb.stechuhr;
+package de.mwvb.stechuhr.service;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
