@@ -11,7 +11,7 @@ import de.mwvb.stechuhr.entity.Stunden;
 import de.mwvb.stechuhr.gui.StageAdapter;
 import de.mwvb.stechuhr.gui.Window;
 import de.mwvb.stechuhr.gui.bearbeiten.BearbeitenWindow;
-import de.mwvb.stechuhr.gui.bearbeiten.BearbeitenWindowController;
+import de.mwvb.stechuhr.service.StechuhrValidator;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -145,7 +145,7 @@ public class StechuhrWindowController {
 	@FXML
 	public void onPlay() {
 		try {
-			String nr = BearbeitenWindowController.validateTicket(ticket.getEditor().getText());
+			String nr = StechuhrValidator.validateTicket(ticket.getEditor().getText());
 			if (nr != null) {
 				updateOldTickets(nr);
 				newEntry(nr);

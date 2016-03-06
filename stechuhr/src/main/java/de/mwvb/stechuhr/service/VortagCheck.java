@@ -10,7 +10,6 @@ import de.mwvb.stechuhr.dao.StechuhrDAO;
 import de.mwvb.stechuhr.entity.StechuhrModel;
 import de.mwvb.stechuhr.entity.Stunden;
 import de.mwvb.stechuhr.gui.Window;
-import de.mwvb.stechuhr.gui.bearbeiten.BearbeitenWindowController;
 import javafx.scene.control.TextInputDialog;
 
 /**
@@ -95,7 +94,7 @@ public class VortagCheck {
 		if (!eingabe.isPresent()) {
 			return null; // Abbruch
 		}
-		String uhrzeit = BearbeitenWindowController.validateUhrzeit(eingabe.get());
+		String uhrzeit = StechuhrValidator.validateUhrzeit(eingabe.get());
 		if (uhrzeit == null) { // Validierung gescheitert -> Dialog nochmal anzeigen
 			return ermittleFeierabendUhrzeit(vortagDate, eingabe.get(), nichtVor); // rekursiv
 		}
