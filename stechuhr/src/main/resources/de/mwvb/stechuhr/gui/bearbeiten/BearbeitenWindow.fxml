@@ -20,7 +20,7 @@
 				<TableColumn text="Ticket" prefWidth="120">
 					<cellValueFactory><PropertyValueFactory property="ticket"/></cellValueFactory>
 				</TableColumn>
-				<TableColumn text="Leistung" prefWidth="490">
+				<TableColumn text="Leistung" prefWidth="420">
 					<cellValueFactory><PropertyValueFactory property="leistung"/></cellValueFactory>
 				</TableColumn>
 				<TableColumn text="Dauer" prefWidth="70">
