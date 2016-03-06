@@ -5,15 +5,19 @@ import java.io.IOException;
 import com.sun.javafx.scene.control.skin.TextAreaSkin;
 
 import de.mwvb.stechuhr.Application;
+import de.mwvb.stechuhr.base.StechuhrUtils;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Priority;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -130,13 +134,27 @@ public abstract class Window<CTR> {
 		Alert alert = new Alert(AlertType.ERROR);
 		alert.setTitle("Entschuldigung, das hätte nicht passieren dürfen.");
 		alert.setHeaderText("Die Stechuhr hat ein Problem festgestellt.");
-		String line = "";
-		try {
-			line = ex.getStackTrace()[0].getClassName() + "." + ex.getStackTrace()[0].getMethodName()
-					+ " (" + ex.getStackTrace()[0].getFileName() + ":" + ex.getStackTrace()[0].getLineNumber() + ")";
-		} catch (Exception ignore) {
+		if (ex.getMessage() == null || ex.getMessage().isEmpty()) {
+			alert.setContentText("Es ist ein " + ex.getClass().getSimpleName() + " Fehler aufgetreten.");
+		} else {
+			alert.setContentText(ex.getMessage());
 		}
-		alert.setContentText(ex.getClass().getSimpleName() + ": " + ex.getMessage() + "\n" + line);
+		
+		// ausklappbarer Bereich mit Stacktrace
+		Label label = new Label("Details:");
+		TextArea textArea = new TextArea(StechuhrUtils.getExceptionText(ex));
+		textArea.setEditable(false);
+		textArea.setWrapText(true);
+		textArea.setMaxWidth(Double.MAX_VALUE);
+		textArea.setMaxHeight(Double.MAX_VALUE);
+		GridPane.setVgrow(textArea, Priority.ALWAYS);
+		GridPane.setHgrow(textArea, Priority.ALWAYS);
+		GridPane expContent = new GridPane();
+		expContent.setMaxWidth(Double.MAX_VALUE);
+		expContent.add(label, 0, 0);
+		expContent.add(textArea, 0, 1);
+		alert.getDialogPane().setExpandableContent(expContent);
+		
 		alert.showAndWait();
 	}
 }

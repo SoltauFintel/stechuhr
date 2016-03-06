@@ -1,6 +1,8 @@
 package de.mwvb.stechuhr.base;
 
 import java.io.File;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.time.LocalDate;
@@ -61,5 +63,16 @@ public class StechuhrUtils {
 		double m = minuten / 60d + stunden;
 		DecimalFormatSymbols sy = new DecimalFormatSymbols(Locale.GERMAN);
 		return new DecimalFormat("0.00", sy).format(m);
+	}
+	
+	/**
+	 * @param ex Fehlermeldung als Objekt
+	 * @return Stacktrace als String
+	 */
+	public static String getExceptionText(Throwable ex) {
+		StringWriter buffer = new StringWriter();
+		PrintWriter printer = new PrintWriter(buffer);
+		ex.printStackTrace(printer);
+		return buffer.toString();
 	}
 }

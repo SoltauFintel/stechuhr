@@ -46,4 +46,10 @@ public class StechuhrUtilsTest {
 	public void testGetDezimalstunden() {
 		Assert.assertEquals("1,25", StechuhrUtils.getDezimalstunden(1, 15));
 	}
+	
+	@Test
+	public void testGetExceptionText() {
+		String text = StechuhrUtils.getExceptionText(new NullPointerException());
+		Assert.assertTrue(text.startsWith("java.lang.NullPointerException\r\n\tat de.mwvb.stechuhr."));
+	}
 }
