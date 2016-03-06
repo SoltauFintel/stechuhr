@@ -122,10 +122,15 @@ public abstract class Window<CTR> {
 	
 	public static void errorAlert(Exception ex) {
 		Alert alert = new Alert(AlertType.ERROR);
-		alert.setTitle("Fehler");
-		alert.setHeaderText("");
-		alert.setContentText(ex.getClass().getSimpleName() + ": " + ex.getMessage());
-		// TODO Es wäre nicht schlecht, ein Teil des Stacktraces anzuzeigen.
+		alert.setTitle("Entschuldigung, das hätte nicht passieren dürfen.");
+		alert.setHeaderText("Die Stechuhr hat ein Problem festgestellt.");
+		String line = "";
+		try {
+			line = ex.getStackTrace()[0].getClassName() + "." + ex.getStackTrace()[0].getMethodName()
+					+ " (" + ex.getStackTrace()[0].getFileName() + ":" + ex.getStackTrace()[0].getLineNumber() + ")";
+		} catch (Exception ignore) {
+		}
+		alert.setContentText(ex.getClass().getSimpleName() + ": " + ex.getMessage() + "\n" + line);
 		alert.showAndWait();
 	}
 }
