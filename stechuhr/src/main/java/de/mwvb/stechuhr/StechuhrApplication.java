@@ -21,7 +21,7 @@ import javafx.stage.Stage;
 public class StechuhrApplication extends Application {
 	public static final String APP_NAME = "Stechuhr";
 	public static final String APP_VERSION = "0.3";
-	public static StechuhrConfig config; // TODO private machen + public Getter (FindBugs)
+	private static StechuhrConfig config;
 	
 	public static void main(String[] args) {
 		StechuhrDAO.init();
@@ -39,5 +39,9 @@ public class StechuhrApplication extends Application {
 	protected void initExporteure() {
 		ExportManager.getInstance().register(new CSVExport());
 		ExportManager.getInstance().register(new HTMLExport());
+	}
+	
+	public static StechuhrConfig getConfig() {
+		return config;
 	}
 }

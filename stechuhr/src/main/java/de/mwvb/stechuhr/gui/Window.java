@@ -41,7 +41,7 @@ public abstract class Window<CTR> {
 		}
 		keyBindings(scene);
 		initWindow(stage);
-		StechuhrApplication.config.loadWindowPosition(getName(), new StageAdapter(stage));
+		StechuhrApplication.getConfig().loadWindowPosition(getName(), new StageAdapter(stage));
 		onCloseRequest(stage);
 		if (modal) {
 			stage.initModality(Modality.APPLICATION_MODAL);
@@ -86,7 +86,7 @@ public abstract class Window<CTR> {
 		stage.setOnCloseRequest(event -> {
 			int mode = onClose();
 			if (mode == 1) { // Fenster ganz normal schließen
-				StechuhrApplication.config.saveWindowPosition(getName(), new StageAdapter(stage));
+				StechuhrApplication.getConfig().saveWindowPosition(getName(), new StageAdapter(stage));
 			} else {
 				event.consume(); // Fenster nicht schließen
 				if (mode == 2) { // Fenster ausblenden

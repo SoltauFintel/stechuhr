@@ -252,7 +252,7 @@ public class BearbeitenWindowController {
 	@FXML
 	public void onClose() {
 		try {
-			StechuhrApplication.config.saveWindowPosition(BearbeitenWindow.class.getSimpleName(), new StageAdapter(getStage()));
+			StechuhrApplication.getConfig().saveWindowPosition(BearbeitenWindow.class.getSimpleName(), new StageAdapter(getStage()));
 			getStage().close();
 		} catch (Exception e) {
 			Window.errorAlert(e);
