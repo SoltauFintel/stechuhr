@@ -4,6 +4,7 @@ import java.time.LocalTime;
 import java.util.Optional;
 
 import de.mwvb.stechuhr.Application;
+import de.mwvb.stechuhr.base.StechuhrUtils;
 import de.mwvb.stechuhr.dao.StechuhrDAO;
 import de.mwvb.stechuhr.entity.Stunden;
 import de.mwvb.stechuhr.gui.StageAdapter;
@@ -195,14 +196,21 @@ public class BearbeitenWindowController {
 		return eingegebeneUhrzeit;
 	}
 	
+	// TODO Validierungen in andere Klasse verschieben. Testcases für Validierungen.
 	/**
 	 * Eingegebene Uhrzeit validieren.
 	 * @param uhrzeit eingegebene Uhrzeit
 	 * @return formatierte Uhrzeit, oder null wenn die Uhrzeit nicht ok ist. Es wurde in dem Fall eine entsprechende Meldung ausgegeben.
 	 */
 	public static String validateUhrzeit(String uhrzeit) {
-		uhrzeit = uhrzeit.replace(",", ":"); // Eingabevereinfachung
-		// TODO Idee: "SMM" und "SSMM" Eingabe auch erlauben
+		uhrzeit = uhrzeit.replace(",", ":").trim(); // Eingabevereinfachung
+		if (StechuhrUtils.nurZiffern(uhrzeit)) { // Eingabe "SMM" und "SSMM" ist auch erlaubt.
+			if (uhrzeit.length() == "SMM".length()) {
+				uhrzeit = uhrzeit.substring(0, 1) + ":" + uhrzeit.substring(1);
+			} else if (uhrzeit.length() == "SSMM".length()) {
+				uhrzeit = uhrzeit.substring(0, 2) + ":" + uhrzeit.substring(2);
+			}
+		}
 		if ((uhrzeit.length() == "S:MM".length() && uhrzeit.charAt(1) == ':') || (uhrzeit.length() == "S".length() && uhrzeit.charAt(0) != ':')) {
 			uhrzeit = "0" + uhrzeit;
 		}

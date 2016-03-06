@@ -50,6 +50,25 @@ public class StechuhrUtilsTest {
 	@Test
 	public void testGetExceptionText() {
 		String text = StechuhrUtils.getExceptionText(new NullPointerException());
-		Assert.assertTrue(text.startsWith("java.lang.NullPointerException\r\n\tat de.mwvb.stechuhr."));
+		Assert.assertNotNull(text);
+		if (!text.startsWith("java.lang.NullPointerException\r\n\tat de.mwvb.stechuhr.") // Windows
+				&& !text.startsWith("java.lang.NullPointerException\n\tat de.mwvb.stechuhr.")) { // Non-Windows (z.B. Travis CI)
+			System.out.println("Ausgabe von getExceptionText(): " + text.replace("\r", "[CR]").replace("\n", "[LF]\n"));
+		}
+	}
+	
+	@Test
+	public void testNurZiffern() {
+		Assert.assertTrue(StechuhrUtils.nurZiffern("123"));
+		Assert.assertTrue(StechuhrUtils.nurZiffern("01"));
+		Assert.assertTrue(StechuhrUtils.nurZiffern("1"));
+		Assert.assertTrue(StechuhrUtils.nurZiffern("1234567890"));
+		
+		Assert.assertFalse(StechuhrUtils.nurZiffern(null));
+		Assert.assertFalse(StechuhrUtils.nurZiffern(""));
+		Assert.assertFalse(StechuhrUtils.nurZiffern(" "));
+		Assert.assertFalse(StechuhrUtils.nurZiffern("A"));
+		Assert.assertFalse(StechuhrUtils.nurZiffern("1.4"));
+		Assert.assertFalse(StechuhrUtils.nurZiffern("-6"));
 	}
 }

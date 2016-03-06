@@ -75,4 +75,21 @@ public class StechuhrUtils {
 		ex.printStackTrace(printer);
 		return buffer.toString();
 	}
+
+	/**
+	 * @param zahl
+	 * @return true wenn zahl aus mindestens einer Ziffer besteht und ausschließlich nur Ziffern enthält
+	 */
+	public static boolean nurZiffern(String zahl) {
+		if (zahl == null) {
+			return false;
+		}
+		for (int i = 0; i < zahl.length(); i++) {
+			char c = zahl.charAt(i);
+			if (c < '0' || c > '9') {
+				return false;
+			}
+		}
+		return zahl.length() > 0;
+	}
 }
