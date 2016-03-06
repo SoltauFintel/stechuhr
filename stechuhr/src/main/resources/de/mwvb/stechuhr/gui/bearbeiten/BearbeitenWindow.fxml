@@ -46,7 +46,7 @@
 				<Label text="Leistung:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
 				<ComboBox fx:id="leistung" GridPane.rowIndex="2" GridPane.columnIndex="1" maxWidth="Infinity" editable="true"></ComboBox>
 				
-				<Label text="Notiz privat:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+				<Label text="Notiz privat:" GridPane.rowIndex="3" GridPane.columnIndex="0" GridPane.valignment="BASELINE"/>
 				<TextArea fx:id="notizPrivat" prefHeight="70" GridPane.rowIndex="3" GridPane.columnIndex="1" GridPane.hgrow="always" wrapText="true"/>
 			</GridPane>
 			<HBox spacing="12">
