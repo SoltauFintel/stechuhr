@@ -1,7 +1,7 @@
 package de.mwvb.stechuhr.service.export;
 
-import java.io.FileWriter;
 import java.io.IOException;
+import java.io.Writer;
 import java.util.List;
 
 public class CSVExport extends AbstractExport {
@@ -14,7 +14,7 @@ public class CSVExport extends AbstractExport {
 	}
 	
 	@Override
-	protected void write(FileWriter w) throws IOException {
+	protected void write(Writer w) throws IOException {
 		for (Exportstunden x : exportstunden) {
 			w.write(x.toFileString());
 			w.write("\r\n");

@@ -1,7 +1,7 @@
 package de.mwvb.stechuhr.service.export;
 
-import java.io.FileWriter;
 import java.io.IOException;
+import java.io.Writer;
 import java.util.List;
 
 import de.mwvb.stechuhr.base.StechuhrUtils;
@@ -45,19 +45,26 @@ public class HTMLExport extends AbstractExport {
 		// Wenn der Benutzer in eine <tr> klickt, soll die grau hinterlegt werden. Beim 2. Klick wieder weiß.
 		// Im Idealfall soll die Markierung verschwinden, wenn der Benutzer eine weitere Zeile anklickt. TODO Das noch besser lösen.
 		String farbe = "yellow";
-		sb.append("\n</table><p><a class='w' href='https://github.com/SoltauFintel/stechuhr'>Stechuhr</a></p>"
-				+ "<script>function changeColor(o){o.style.backgroundColor=(o.style.backgroundColor=='" + farbe
+		sb.append("\n</table>\n<p><a class='w' href='https://github.com/SoltauFintel/stechuhr'>Stechuhr</a></p>"
+				+ "\n<script>function changeColor(o){o.style.backgroundColor=(o.style.backgroundColor=='" + farbe
 				+ "')?('transparent'):('" + farbe + "');}"
 				+ "</script></body></html>");
 		super.export(exportstunden);
 	}
 	
 	private String htmlEncode(String text) {
-		return text == null ? "" : text.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;");
+		return text == null ? "" : text.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+				.replace("ä", "&auml;")
+				.replace("ö", "&ouml;")
+				.replace("ü", "&uuml;")
+				.replace("Ä", "&Auml;")
+				.replace("Ö", "&Ouml;")
+				.replace("Ü", "&Uuml;")
+				.replace("ß", "&szlig;");
 	}
 	
 	@Override
-	protected void write(FileWriter w) throws IOException {
+	protected void write(Writer w) throws IOException {
 		w.write(sb.toString());
 		sb = null;
 	}

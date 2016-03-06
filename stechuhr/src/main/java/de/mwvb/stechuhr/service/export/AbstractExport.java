@@ -1,8 +1,11 @@
 package de.mwvb.stechuhr.service.export;
 
 import java.io.File;
-import java.io.FileWriter;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
+import java.nio.charset.Charset;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -15,7 +18,7 @@ public abstract class AbstractExport implements Export {
 	public void export(List<Exportstunden> exportstunden) {
 		try {
 			File file = getExportFile(exportstunden.get(0).getTag());
-			FileWriter w = new FileWriter(file); // TODO FindBugs: Encoding
+			OutputStreamWriter w = new OutputStreamWriter(new FileOutputStream(file), Charset.forName("UTF-8"));
 			try {
 				write(w);
 			} finally {
@@ -27,7 +30,7 @@ public abstract class AbstractExport implements Export {
 		}
 	}
 	
-	protected abstract void write(FileWriter w) throws IOException;
+	protected abstract void write(Writer w) throws IOException;
 	
 	protected File getExportFile(LocalDate tag) {
 		String vorne = StechuhrDAO.getMonatsordner(tag) + tag.toString() + "_" + getPostfix() + "-";
