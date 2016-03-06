@@ -200,6 +200,8 @@ public class LeistungenTest {
 		String leistung = "große Bésprächung";
 		Leistungen leistungen = Leistungen.open("TEST");
 		leistungen.add("Spaß", leistung);
+		Assert.assertEquals(leistung, leistungen.getFirst());
+		Assert.assertEquals(leistung, leistungen.getLeistungForTicket("Spaß"));
 		
 		Leistungen geladen = Leistungen.open("TEST");
 		Assert.assertEquals(leistung, geladen.getFirst());

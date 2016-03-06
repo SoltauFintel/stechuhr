@@ -50,6 +50,7 @@ jacocoTestReport {
 }
 
 test {
+    systemProperty "file.encoding", "UTF-8"
     testLogging { // bessere Fehleranzeige beim Travis CI Build
         exceptionFormat = 'full'
         events 'failed', 'standardOut', 'standardError'
