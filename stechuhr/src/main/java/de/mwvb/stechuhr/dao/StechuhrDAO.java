@@ -12,6 +12,7 @@ import java.util.List;
 
 import de.mwvb.base.xml.XMLDocument;
 import de.mwvb.base.xml.XMLElement;
+import de.mwvb.stechuhr.base.StechuhrUtils;
 import de.mwvb.stechuhr.base.XMLDocumentUTF8;
 import de.mwvb.stechuhr.entity.StechuhrModel;
 import de.mwvb.stechuhr.entity.Stunden;
@@ -122,7 +123,7 @@ public class StechuhrDAO { // TODO DAO zerlegen: Stechuhr-File, Exporteur, Confi
 	}
 	
 	public File getStechuhrModelFile(LocalDate tag) {
-		return new File(pfad.toString() + "/" + tag.getYear() + "/" + tag.getMonthValue() + "/" + tag.toString() + ".xml");
+		return new File(pfad.toString() + "/" + tag.getYear() + "/" + StechuhrUtils.zweistellig(tag.getMonthValue()) + "/" + tag.toString() + ".xml");
 	}
 	
 	public boolean existsStechuhrModelFile(LocalDate tag) {
