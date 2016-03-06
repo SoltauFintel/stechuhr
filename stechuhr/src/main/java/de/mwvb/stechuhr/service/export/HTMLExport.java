@@ -5,8 +5,8 @@ import java.io.Writer;
 import java.util.List;
 
 import de.mwvb.stechuhr.base.StechuhrUtils;
+import de.mwvb.stechuhr.entity.Dauer;
 import de.mwvb.stechuhr.entity.Stunden;
-import de.mwvb.stechuhr.service.stundenrundung.Dauer;
 import de.mwvb.stechuhr.service.stundenrundung.Stundenrundung;
 
 /**

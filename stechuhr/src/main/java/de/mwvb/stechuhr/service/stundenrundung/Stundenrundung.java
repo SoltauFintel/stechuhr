@@ -3,6 +3,9 @@ package de.mwvb.stechuhr.service.stundenrundung;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.mwvb.stechuhr.entity.Dauer;
+import de.mwvb.stechuhr.entity.GerundeteDauer;
+
 /**
  * @author Marcus Warm
  */

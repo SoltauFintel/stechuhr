@@ -3,9 +3,8 @@ package de.mwvb.stechuhr.service.stundenrundung;
 import org.junit.Assert;
 import org.junit.Test;
 
-import de.mwvb.stechuhr.service.stundenrundung.Dauer;
-import de.mwvb.stechuhr.service.stundenrundung.GerundeteDauer;
-import de.mwvb.stechuhr.service.stundenrundung.Stundenrundung;
+import de.mwvb.stechuhr.entity.Dauer;
+import de.mwvb.stechuhr.entity.GerundeteDauer;
 
 public class StundenrundungTest {
 

@@ -10,7 +10,6 @@ import de.mwvb.stechuhr.base.StechuhrUtils;
 import de.mwvb.stechuhr.service.Leistungen;
 import de.mwvb.stechuhr.service.export.ExportManager;
 import de.mwvb.stechuhr.service.export.Exportstunden;
-import de.mwvb.stechuhr.service.stundenrundung.Dauer;
 import de.mwvb.stechuhr.service.stundenrundung.Stundenrundung;
 
 /**
