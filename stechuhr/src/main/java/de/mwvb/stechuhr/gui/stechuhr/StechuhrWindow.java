@@ -11,7 +11,15 @@ import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 public class StechuhrWindow extends Window<StechuhrWindowController> {
-	public static StechuhrModel model; // TODO private machen (FindBugs)
+	private static StechuhrModel model;
+	
+	public static void setModel(StechuhrModel pModel) {
+		model = pModel;
+	}
+
+	public static StechuhrModel getModel() {
+		return model;
+	}
 	
 	@Override
 	protected String getIcon() {
@@ -62,7 +70,7 @@ public class StechuhrWindow extends Window<StechuhrWindowController> {
 
 	@Override
 	protected void displayed() {
-		new VortagCheck().check(StechuhrWindow.model);
+		new VortagCheck().check(StechuhrWindow.getModel());
 	}
 	
 	@Override

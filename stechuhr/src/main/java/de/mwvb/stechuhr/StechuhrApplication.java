@@ -26,7 +26,7 @@ public class StechuhrApplication extends Application {
 	public static void main(String[] args) {
 		StechuhrDAO.init();
 		config = new StechuhrConfig();
-		StechuhrWindow.model = new StechuhrDAO().load(StechuhrModel.today());
+		StechuhrWindow.setModel(new StechuhrDAO().load(StechuhrModel.today()));
 		launch(StechuhrApplication.class, new String[] {});
 	}
 

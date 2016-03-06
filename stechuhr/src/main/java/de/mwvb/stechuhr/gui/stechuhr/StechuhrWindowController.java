@@ -134,7 +134,7 @@ public class StechuhrWindowController {
 	}
 
 	private void showCurrentTicket() {
-		List<Stunden> list = StechuhrWindow.model.getStundenliste();
+		List<Stunden> list = StechuhrWindow.getModel().getStundenliste();
 		if (!list.isEmpty()) {
 			Stunden s = list.get(list.size() - 1);
 			ticket.getEditor().setText(s.getTicket());
@@ -169,7 +169,7 @@ public class StechuhrWindowController {
 		try {
 			updateInfo("");
 			newEntry(Stunden.STOP);
-			StechuhrWindow.model.stop();
+			StechuhrWindow.getModel().stop();
 			quit();
 		} catch (Exception e) {
 			Window.errorAlert(e);
@@ -204,10 +204,10 @@ public class StechuhrWindowController {
 	
 	private void newEntry(String nr) {
 		Stunden stunden = new Stunden(nr);
-		stunden.setLeistung(StechuhrWindow.model.getLeistungen().getLeistungForTicket(nr));
-		StechuhrWindow.model.getStundenliste().add(stunden);
+		stunden.setLeistung(StechuhrWindow.getModel().getLeistungen().getLeistungForTicket(nr));
+		StechuhrWindow.getModel().getStundenliste().add(stunden);
 		updateInfo();
-		new StechuhrDAO().save(StechuhrWindow.model);
+		new StechuhrDAO().save(StechuhrWindow.getModel());
 		ticket.getEditor().setText(nr);
 	}
 	
@@ -228,7 +228,7 @@ public class StechuhrWindowController {
 	
 	private void updateInfo() {
 		String text = "";
-		List<Stunden> list = StechuhrWindow.model.getStundenliste();
+		List<Stunden> list = StechuhrWindow.getModel().getStundenliste();
 		if (!list.isEmpty()) {
 			Stunden s = list.get(list.size() - 1);
 			text = "aktiv: " + s.getTicket();
@@ -237,7 +237,7 @@ public class StechuhrWindowController {
 	}
 
 	private void updateInfo(String pText) {
-		String text = StechuhrUtils.formatWTDate(StechuhrWindow.model.getTag());
+		String text = StechuhrUtils.formatWTDate(StechuhrWindow.getModel().getTag());
 		if (!pText.isEmpty()) {
 			text += "  |  " + pText;
 		}

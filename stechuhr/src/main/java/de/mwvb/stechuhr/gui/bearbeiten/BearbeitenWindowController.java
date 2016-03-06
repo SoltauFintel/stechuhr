@@ -66,7 +66,7 @@ public class BearbeitenWindowController {
 
 	private void fillLeistungCombobox() {
 		leistung.getItems().clear();
-		for (String text : StechuhrWindow.model.getLeistungen()) {
+		for (String text : StechuhrWindow.getModel().getLeistungen()) {
 			leistung.getItems().add(text);
 		}
 	}
@@ -108,8 +108,8 @@ public class BearbeitenWindowController {
 				}
 			});
 
-			StechuhrWindow.model.calculateDauer();
-			grid.getItems().addAll(StechuhrWindow.model.getStundenliste());
+			StechuhrWindow.getModel().calculateDauer();
+			grid.getItems().addAll(StechuhrWindow.getModel().getStundenliste());
 			final int index = grid.getItems().size() - 1;
 			if (index >= 0) {
 				grid.getSelectionModel().select(index);
@@ -183,7 +183,7 @@ public class BearbeitenWindowController {
 
 		updateGrid_andSave();
 		
-		StechuhrWindow.model.getLeistungen().add(nr, eingegebeneLeistung);
+		StechuhrWindow.getModel().getLeistungen().add(nr, eingegebeneLeistung);
 		fillLeistungCombobox();
 	}
 	
@@ -220,7 +220,7 @@ public class BearbeitenWindowController {
 	}
 
 	private void delete(Stunden s) {
-		StechuhrWindow.model.getStundenliste().remove(s);
+		StechuhrWindow.getModel().getStundenliste().remove(s);
 		grid.getItems().remove(s);
 		if (grid.getItems().isEmpty()) {
 			uhrzeit.setText("");
@@ -241,12 +241,12 @@ public class BearbeitenWindowController {
 	}
 	
 	private void updateGrid_andSave() {
-		StechuhrWindow.model.calculateDauer();
+		StechuhrWindow.getModel().calculateDauer();
 		
 		grid.getColumns().get(0).setVisible(false);  // Workaround f�r Refresh der Zeile
 		grid.getColumns().get(0).setVisible(true);
 		
-		new StechuhrDAO().save(StechuhrWindow.model);
+		new StechuhrDAO().save(StechuhrWindow.getModel());
 	}
 	
 	@FXML
