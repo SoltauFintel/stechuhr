@@ -1,13 +1,15 @@
 package de.mwvb.stechuhr.gui.bearbeiten;
 
+import java.io.InputStream;
+
 import de.mwvb.stechuhr.gui.Window;
 import javafx.stage.Stage;
 
 public class BearbeitenWindow extends Window<BearbeitenWindowController> {
 
 	@Override
-	protected String getIcon() {
-		return "BearbeitenWindow.gif";
+	protected final InputStream getIcon() {
+		return getClass().getResourceAsStream(getClass().getSimpleName() + ".gif");
 	}
 	
 	@Override

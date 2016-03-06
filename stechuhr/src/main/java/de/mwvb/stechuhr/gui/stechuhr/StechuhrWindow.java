@@ -1,5 +1,7 @@
 package de.mwvb.stechuhr.gui.stechuhr;
 
+import java.io.InputStream;
+
 import de.mwvb.stechuhr.StechuhrApplication;
 import de.mwvb.stechuhr.entity.StechuhrModel;
 import de.mwvb.stechuhr.gui.Window;
@@ -22,10 +24,10 @@ public class StechuhrWindow extends Window<StechuhrWindowController> {
 	}
 	
 	@Override
-	protected String getIcon() {
-		return "StechuhrWindow.gif";
+	protected final InputStream getIcon() {
+		return getClass().getResourceAsStream(getClass().getSimpleName() + ".gif");
 	}
-	
+
 	@Override
 	protected void initWindow(Stage stage) {
 		stage.setX(600);

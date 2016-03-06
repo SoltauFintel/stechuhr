@@ -1,6 +1,7 @@
 package de.mwvb.stechuhr.gui;
 
 import java.io.IOException;
+import java.io.InputStream;
 
 import com.sun.javafx.scene.control.skin.TextAreaSkin;
 
@@ -31,9 +32,7 @@ public abstract class Window<CTR> {
 	public static boolean testmodus = false;
 	
 	public final void show(final Stage stage, boolean modal, final javafx.stage.Window owner) {
-		stage.getIcons().add(new Image(
-				getClass().getResourceAsStream(getIcon()) // TODO diesen Teil auch nach getIcon() verschieben (FindBugs)
-				));
+		stage.getIcons().add(new Image(getIcon()));
 		Scene scene = new Scene(root());
 		stage.setScene(scene);
 		if (owner != null) {
@@ -52,6 +51,9 @@ public abstract class Window<CTR> {
 		}
 	}
 	
+	/** Liefert Stream des Fenstericons */
+	protected abstract InputStream getIcon();
+
 	protected void keyBindings(Scene scene) {
 		// Template-Methode
 	}
@@ -103,11 +105,6 @@ public abstract class Window<CTR> {
 		return 1; // Schließen ok
 	}
 	
-	/** Liefert Dateiname des Fenstericons, ohne Pfad */
-	protected String getIcon() {
-		return getClass().getSimpleName() + ".png";
-	}
-
 	protected Parent root() {
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(getClass().getSimpleName() + ".fxml"));
