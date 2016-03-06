@@ -10,9 +10,6 @@ import org.junit.Test;
 
 import de.mwvb.stechuhr.AbstractStundenTest;
 import de.mwvb.stechuhr.entity.StechuhrModel;
-import de.mwvb.stechuhr.service.export.Export;
-import de.mwvb.stechuhr.service.export.ExportManager;
-import de.mwvb.stechuhr.service.export.Exportstunden;
 
 public class ExportstundenTest extends AbstractStundenTest {
 	private List<Exportstunden> exportstunden;
@@ -39,7 +36,7 @@ public class ExportstundenTest extends AbstractStundenTest {
 		Assert.assertEquals("2) Stunde falsch!", 2, exportstunden.get(1).getStunden());
 		Assert.assertEquals("2) Stunde falsch!", 30, exportstunden.get(1).getMinuten());
 		Assert.assertEquals("2) Dezimalstunden falsch!", "2,50", exportstunden.get(1).getDezimaldauer());
-		Assert.assertEquals("2) toFileString() falsch!", "20.02.2016 ; 2:30 ; 2,50 ; B ; B-1", exportstunden.get(1).toFileString());
+		Assert.assertEquals("2) toFileString() falsch!", "20.02.2016 ; 2:30 ; 2,50 ; B ; B-1", CSVExport.toFileString(exportstunden.get(1)));
 	}
 
 	@Test
@@ -60,7 +57,7 @@ public class ExportstundenTest extends AbstractStundenTest {
 		Assert.assertEquals("2) Stunde falsch!", 2, exportstunden.get(1).getStunden());
 		Assert.assertEquals("2) Stunde falsch!", 30, exportstunden.get(1).getMinuten());
 		Assert.assertEquals("2) Dezimalstunden falsch!", "2,50", exportstunden.get(1).getDezimaldauer());
-		Assert.assertEquals("2) toFileString() falsch!", "20.02.2016 ; 2:30 ; 2,50 ; B ; B-1", exportstunden.get(1).toFileString());
+		Assert.assertEquals("2) toFileString() falsch!", "20.02.2016 ; 2:30 ; 2,50 ; B ; B-1", CSVExport.toFileString(exportstunden.get(1)));
 	}
 
 	private Export getPlugin() {

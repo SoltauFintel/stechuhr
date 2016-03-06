@@ -16,12 +16,16 @@ public class CSVExport extends AbstractExport {
 	@Override
 	protected void write(Writer w) throws IOException {
 		for (Exportstunden x : exportstunden) {
-			w.write(x.toFileString());
+			w.write(toFileString(x));
 			w.write("\r\n");
 		}
 		exportstunden = null;
 	}
 
+	public static String toFileString(Exportstunden x) {
+		return x.getTagString() + " ; " + x.getSSMM() + " ; " + x.getDezimaldauer() + " ; " + x.getTicket() + " ; " + x.getLeistung();
+	}
+	
 	@Override
 	protected String getExtension() {
 		return ".txt";

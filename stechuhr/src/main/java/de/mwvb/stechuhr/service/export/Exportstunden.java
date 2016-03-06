@@ -79,8 +79,4 @@ public class Exportstunden {
 	public String getSSMM() {
 		return stunden + ":" + StechuhrUtils.zweistellig(minuten);
 	}
-	
-	public String toFileString() { // TODO -> CSVExport
-		return getTagString() + " ; " + getSSMM() + " ; " + getDezimaldauer() + " ; " + getTicket() + " ; " + getLeistung();
-	}
 }
