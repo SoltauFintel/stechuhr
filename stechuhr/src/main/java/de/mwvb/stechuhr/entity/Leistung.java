@@ -48,13 +48,7 @@ public class Leistung {
 	 * @return true wenn x in getTickets() enthalten ist.
 	 */
 	public boolean contains(String x) {
-		// TODO Geht das einfacher zu implementieren?
-		for (String i : tickets) {
-			if (i.equalsIgnoreCase(x)) {
-				return true;
-			}
-		}
-		return false;
+		return tickets.stream().anyMatch(it -> it.equalsIgnoreCase(x));
 	}
 
 	/**

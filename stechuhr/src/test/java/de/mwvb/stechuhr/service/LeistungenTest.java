@@ -196,6 +196,18 @@ public class LeistungenTest {
 	}
 
 	@Test
+	public void testGetLeistungForTicket_case() {
+		// Prepare
+		Leistungen leistungen = Leistungen.open("TEST");
+		
+		// Test
+		leistungen.add("T3", "A");
+		
+		// Verify
+		Assert.assertEquals("A", leistungen.getLeistungForTicket("t3"));
+	}
+
+	@Test
 	public void testUmlaute() {
 		String leistung = "große Bésprächung";
 		Leistungen leistungen = Leistungen.open("TEST");
@@ -219,7 +231,7 @@ public class LeistungenTest {
 		Assert.assertEquals("", geladen.getFirst());
 		Assert.assertEquals("", geladen.getLeistungForTicket("Ti"));
 	}
-
+	
 	@BeforeClass
 	public static void init() {
 		StechuhrDAO.init();
