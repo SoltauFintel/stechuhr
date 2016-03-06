@@ -30,10 +30,7 @@ public abstract class AbstractExport implements Export {
 	protected abstract void write(FileWriter w) throws IOException;
 	
 	protected File getExportFile(LocalDate tag) {
-		String vorne = StechuhrDAO.getPfad().toString() + "/"
-				+ tag.getYear() + "/"
-				+ StechuhrUtils.zweistellig(tag.getMonthValue()) + "/"
-				+ tag.toString() + "_" + getPostfix() + "-";
+		String vorne = StechuhrDAO.getMonatsordner(tag) + tag.toString() + "_" + getPostfix() + "-";
 		return StechuhrUtils.getNextFilename(vorne, getExtension());
 	}
 

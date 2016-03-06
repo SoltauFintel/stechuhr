@@ -123,7 +123,16 @@ public class StechuhrDAO { // TODO DAO zerlegen: Stechuhr-File, Exporteur, Confi
 	}
 	
 	public File getStechuhrModelFile(LocalDate tag) {
-		return new File(pfad.toString() + "/" + tag.getYear() + "/" + StechuhrUtils.zweistellig(tag.getMonthValue()) + "/" + tag.toString() + ".xml");
+		return new File(getMonatsordner(tag) + tag.toString() + ".xml");
+	}
+	
+	/**
+	 * @return Pfad endet mit "/"
+	 */
+	public static String getMonatsordner(LocalDate datum) {
+		return getPfad().toString() + "/"
+				+ datum.getYear() + "/"
+				+ StechuhrUtils.zweistellig(datum.getMonthValue()) + "/";
 	}
 	
 	public boolean existsStechuhrModelFile(LocalDate tag) {
