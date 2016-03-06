@@ -66,9 +66,8 @@ public class LeistungenTest {
 	}
 
 	@Test
-	public void testKeineLeerEintraegeAufnehmenOderSpeichern() {
+	public void testKeineNullEintraegeAufnehmenOderSpeichern() {
 		Leistungen leistungen = Leistungen.open("TEST");
-		leistungen.add("T", "");
 		leistungen.add("T", null);
 		leistungen.add("T", "A");
 		Assert.assertEquals(1, leistungen.size());
@@ -205,6 +204,18 @@ public class LeistungenTest {
 		Leistungen geladen = Leistungen.open("TEST");
 		Assert.assertEquals(leistung, geladen.getFirst());
 		Assert.assertEquals(leistung, geladen.getLeistungForTicket("Spaß"));
+	}
+
+	@Test
+	public void testLeereLeistungEingeben() {
+		Leistungen leistungen = Leistungen.open("TEST");
+		leistungen.add("Ti", " ");
+		Assert.assertEquals("", leistungen.getFirst());
+		Assert.assertEquals("", leistungen.getLeistungForTicket("Ti"));
+
+		Leistungen geladen = Leistungen.open("TEST");
+		Assert.assertEquals("", geladen.getFirst());
+		Assert.assertEquals("", geladen.getLeistungForTicket("Ti"));
 	}
 
 	@BeforeClass

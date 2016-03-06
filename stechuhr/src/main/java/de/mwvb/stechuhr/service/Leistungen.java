@@ -77,9 +77,10 @@ public class Leistungen implements Iterable<String> {
 			// Leistung spielt für diese beiden Sondertickets keine Rolle und wird daher nicht gespeichert.
 			return;
 		}
-		if (leistung == null || leistung.trim().isEmpty()) {
+		if (leistung == null) {
 			return;
 		}
+		leistung = leistung.trim();
 
 		findeGleichenEintrag(ticket, leistung);
 		
