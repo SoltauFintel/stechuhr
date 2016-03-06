@@ -52,21 +52,12 @@ public class BearbeitenWindowController {
 		try {
 			Window.disableTabKey(notizPrivat);
 			save.setDefaultButton(true);
-			addDeleteKeyListener();
 			addSaveButtonListeners();
+			addDeleteKeyListener();
 			Platform.runLater(() -> leistung.requestFocus()); // Annahme: Man möchte i.d.R. eine Leistung eingeben
 		} catch (Exception e) {
 			Window.errorAlert(e);
 		}
-	}
-
-	private void addDeleteKeyListener() {
-		grid.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
-			KeyCode code = event.getCode();
-			if (KeyCode.DELETE.equals(code)) {
-				onDelete();
-			}
-		});
 	}
 
 	private void addSaveButtonListeners() {
@@ -85,6 +76,15 @@ public class BearbeitenWindowController {
 		this.leistung.getEditor().textProperty().addListener(listener); // Texteingabe
 		this.leistung.valueProperty().addListener(listener); // Auswahl in Liste
 		this.notizPrivat.textProperty().addListener(listener);
+	}
+
+	private void addDeleteKeyListener() {
+		grid.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+			KeyCode code = event.getCode();
+			if (KeyCode.DELETE.equals(code)) {
+				onDelete();
+			}
+		});
 	}
 	
 	public void model2View() {
