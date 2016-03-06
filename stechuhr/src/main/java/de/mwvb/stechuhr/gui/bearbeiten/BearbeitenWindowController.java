@@ -241,6 +241,8 @@ public class BearbeitenWindowController {
 		stunden.setNotizPrivat(notizPrivat.getText());
 
 		updateGrid_andSave();
+		
+		StechuhrWindow.model.getLeistungen().add(nr, eingegebeneLeistung);
 	}
 	
 	@FXML
