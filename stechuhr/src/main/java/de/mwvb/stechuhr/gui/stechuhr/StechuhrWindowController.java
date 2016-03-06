@@ -99,9 +99,16 @@ public class StechuhrWindowController {
 		if (!result.isPresent()) return;
 		
 		String nr = result.get().trim();
-		int i = Integer.parseInt(btn.getId().substring("quick".length())) - 1;
+		int index = Integer.parseInt(btn.getId().substring("quick".length())) - 1;
 		btn.setText(nr);
-		StechuhrApplication.getConfig().getQuickButtonLabels()[i] = nr;
+		StechuhrApplication.getConfig().getQuickButtonLabels()[index] = nr;
+		// Wenn es bereits einen anderen Button mit dieser Beschriftung gegeben hat, soll dieser ausgeblendet werden.
+		for (int i = 0; i < StechuhrApplication.getConfig().getQuickButtonLabels().length; i++) {
+			if (index != i && StechuhrApplication.getConfig().getQuickButtonLabels()[i].equals(nr)) {
+				StechuhrApplication.getConfig().getQuickButtonLabels()[i] = "";
+				quickButtons.get(i).setText("");
+			}
+		}
 		StechuhrApplication.getConfig().saveQuickButtonLabels();
 		quickButtons.forEach(itx -> {
 			itx.setVisible(!itx.getText().isEmpty());
