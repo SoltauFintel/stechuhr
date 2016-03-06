@@ -149,13 +149,7 @@ public class BearbeitenWindowController {
 				return; // Nicht speichern, wenn Validierung nicht ok.
 			}
 			
-			// Eingaben übernehmen
-			stunden.setUhrzeit(LocalTime.parse(eingegebeneUhrzeit));
-			stunden.setTicket(nr);
-			stunden.setLeistung(leistung.getEditor().getText().trim());
-			stunden.setNotizPrivat(notizPrivat.getText());
-
-			updateGrid_andSave();
+			save(stunden, eingegebeneUhrzeit, nr);
 			
 			// Evtl. umformatierte Eingaben anzeigen
 			uhrzeit.setText(eingegebeneUhrzeit);
@@ -236,6 +230,17 @@ public class BearbeitenWindowController {
 			return null;
 		}
 		return ticket;
+	}
+
+	/** Eingaben übernehmen, inkl. Persistierung */
+	private void save(final Stunden stunden, final String eingegebeneUhrzeit, final String nr) {
+		stunden.setUhrzeit(LocalTime.parse(eingegebeneUhrzeit));
+		stunden.setTicket(nr);
+		String eingegebeneLeistung = leistung.getEditor().getText().trim();
+		stunden.setLeistung(eingegebeneLeistung);
+		stunden.setNotizPrivat(notizPrivat.getText());
+
+		updateGrid_andSave();
 	}
 	
 	@FXML
