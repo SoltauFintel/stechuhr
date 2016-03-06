@@ -203,7 +203,9 @@ public class StechuhrWindowController {
 	}
 	
 	private void newEntry(String nr) {
-		StechuhrWindow.model.getStundenliste().add(new Stunden(nr));
+		Stunden stunden = new Stunden(nr);
+		stunden.setLeistung(StechuhrWindow.model.getLeistungen().getLeistungForTicket(nr));
+		StechuhrWindow.model.getStundenliste().add(stunden);
 		updateInfo();
 		new StechuhrDAO().save(StechuhrWindow.model);
 		ticket.getEditor().setText(nr);
