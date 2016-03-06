@@ -32,7 +32,7 @@ public class Application extends javafx.application.Application { // TODO rename
 	@Override
 	public void start(Stage stage) {
 		initExporteure();
-		new StechuhrWindow().show(stage, false);
+		new StechuhrWindow().show(stage, false, null);
 	}
 	
 	protected void initExporteure() {

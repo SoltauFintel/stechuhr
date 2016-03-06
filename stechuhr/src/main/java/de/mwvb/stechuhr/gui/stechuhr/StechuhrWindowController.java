@@ -179,7 +179,7 @@ public class StechuhrWindowController {
 	@FXML
 	public void onBearbeiten() {
 		try {
-			new BearbeitenWindow().show(new Stage(), true);
+			new BearbeitenWindow().show(new Stage(), true, getStage());
 			showCurrentTicket();
 		} catch (Exception e) {
 			Window.errorAlert(e);

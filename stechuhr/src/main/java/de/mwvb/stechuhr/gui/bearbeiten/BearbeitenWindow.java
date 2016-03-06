@@ -4,7 +4,6 @@ import de.mwvb.stechuhr.gui.Window;
 import javafx.stage.Stage;
 
 public class BearbeitenWindow extends Window<BearbeitenWindowController> {
-	// TODO kein Taskbar Eintrag!
 
 	@Override
 	protected String getIcon() {
@@ -15,6 +14,8 @@ public class BearbeitenWindow extends Window<BearbeitenWindowController> {
 	protected void initWindow(Stage stage) {
 		stage.setWidth(800);
 		stage.setHeight(530);
+		stage.setMinWidth(600);
+		stage.setMinHeight(350);
 		stage.setTitle("Stunden bearbeiten");
 		
 		controller.model2View();

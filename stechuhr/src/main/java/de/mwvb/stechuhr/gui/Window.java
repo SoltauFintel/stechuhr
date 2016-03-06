@@ -26,12 +26,15 @@ public abstract class Window<CTR> {
 	protected CTR controller;
 	public static boolean testmodus = false;
 	
-	public final void show(final Stage stage, boolean modal) {
+	public final void show(final Stage stage, boolean modal, final javafx.stage.Window owner) {
 		stage.getIcons().add(new Image(
 				getClass().getResourceAsStream(getIcon()) // TODO diesen Teil auch nach getIcon() verschieben (FindBugs)
 				));
 		Scene scene = new Scene(root());
 		stage.setScene(scene);
+		if (owner != null) {
+			stage.initOwner(owner);
+		}
 		keyBindings(scene);
 		initWindow(stage);
 		Application.config.loadWindowPosition(getName(), new StageAdapter(stage));
