@@ -15,6 +15,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableView;
@@ -290,10 +291,20 @@ public class BearbeitenWindowController {
 		Alert alert = new Alert(AlertType.CONFIRMATION);
 		alert.setTitle("Löschen");
 		alert.setHeaderText("");
-		alert.setContentText("Hiermit l\u00F6schst Du den " + ticket + " Datensatz.");
-		// TODO Buttons beschriften: Löschen - Nicht löschen
+		alert.setContentText("Hiermit l\u00F6schst Du unwiderruflich den " + ticket + " Datensatz.");
+		
+		ButtonType loeschenBtn = new ButtonType("Löschen", ButtonData.OK_DONE);
+		ButtonType nichtLoeschenBtn = new ButtonType("Nicht löschen", ButtonData.CANCEL_CLOSE);
+		alert.getButtonTypes().clear();
+		alert.getButtonTypes().addAll(loeschenBtn, nichtLoeschenBtn);
+		
+		// Fenster über BearbeitenWindow zentrieren
+		Stage stage = getStage();
+		alert.setX(stage.getX() + (stage.getWidth() - 434) / 2d); // Alert-Fenstergröße noch unbekannt, daher mit 434 x 141 fest einprogrammiert.
+		alert.setY(stage.getY() + (stage.getHeight() - 141) / 2d);
+		
 		Optional<ButtonType> result = alert.showAndWait();
-		return result.get() == ButtonType.OK;
+		return result.get() == loeschenBtn;
 	}
 	
 	private void updateGrid_andSave() {
