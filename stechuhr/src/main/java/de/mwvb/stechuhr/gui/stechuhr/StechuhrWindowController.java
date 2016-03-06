@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import de.mwvb.stechuhr.Application;
+import de.mwvb.stechuhr.StechuhrApplication;
 import de.mwvb.stechuhr.base.StechuhrUtils;
 import de.mwvb.stechuhr.dao.StechuhrDAO;
 import de.mwvb.stechuhr.entity.Stunden;
@@ -80,7 +80,7 @@ public class StechuhrWindowController {
 		quickButtons.add(quick9);
 		quickButtons.add(quick10);
 		for (int i = 0; i < 10; i++) {
-			quickButtons.get(i).setText(Application.config.getQuickButtonLabels()[i]);
+			quickButtons.get(i).setText(StechuhrApplication.config.getQuickButtonLabels()[i]);
 		}
 		quickButtons.forEach(it -> it.setOnMouseClicked(event -> {
 			Button btn = (Button) event.getSource();
@@ -101,8 +101,8 @@ public class StechuhrWindowController {
 		String nr = result.get().trim();
 		int i = Integer.parseInt(btn.getId().substring("quick".length())) - 1;
 		btn.setText(nr);
-		Application.config.getQuickButtonLabels()[i] = nr;
-		Application.config.saveQuickButtonLabels();
+		StechuhrApplication.config.getQuickButtonLabels()[i] = nr;
+		StechuhrApplication.config.saveQuickButtonLabels();
 		quickButtons.forEach(itx -> {
 			itx.setVisible(!itx.getText().isEmpty());
 		});
@@ -121,7 +121,7 @@ public class StechuhrWindowController {
 	}
 
 	private void initTicketCB() {
-		ticket.getItems().addAll(Application.config.getOldTickets());
+		ticket.getItems().addAll(StechuhrApplication.config.getOldTickets());
 		ticket.getEditor().addEventFilter(KeyEvent.KEY_PRESSED, event -> {
 			KeyCode code = event.getCode();
 			if (KeyCode.ENTER.equals(code)) { // TODO Klappt ab Java 8u60 nicht mehr!
@@ -195,11 +195,11 @@ public class StechuhrWindowController {
 		}
 		items.add(0, nr);
 		ticket.getSelectionModel().select(0);
-		Application.config.getOldTickets().clear();
+		StechuhrApplication.config.getOldTickets().clear();
 		for (String t : items) {
-			Application.config.getOldTickets().add(t);
+			StechuhrApplication.config.getOldTickets().add(t);
 		}
-		Application.config.saveOldTickets();
+		StechuhrApplication.config.saveOldTickets();
 	}
 	
 	private void newEntry(String nr) {
@@ -217,7 +217,7 @@ public class StechuhrWindowController {
 	}
 	
 	private void quit() {
-		Application.config.saveWindowPosition(StechuhrWindow.class.getSimpleName(), new StageAdapter(getStage()));
+		StechuhrApplication.config.saveWindowPosition(StechuhrWindow.class.getSimpleName(), new StageAdapter(getStage()));
 		getStage().close();
 		// Programm ist nun beendet.
 	}

@@ -1,5 +1,5 @@
 eclipse.preferences.version=1
-encoding//src/main/java/de/mwvb/stechuhr/Application.java=UTF-8
+encoding//src/main/java/de/mwvb/stechuhr/StechuhrApplication.java=UTF-8
 encoding//src/main/java/de/mwvb/stechuhr/dao/StechuhrDAO.java=UTF-8
 encoding//src/main/java/de/mwvb/stechuhr/entity/StechuhrModel.java=UTF-8
 encoding//src/main/java/de/mwvb/stechuhr/gui/Window.java=UTF-8

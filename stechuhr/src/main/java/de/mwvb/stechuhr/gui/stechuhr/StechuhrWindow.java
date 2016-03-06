@@ -1,6 +1,6 @@
 package de.mwvb.stechuhr.gui.stechuhr;
 
-import de.mwvb.stechuhr.Application;
+import de.mwvb.stechuhr.StechuhrApplication;
 import de.mwvb.stechuhr.entity.StechuhrModel;
 import de.mwvb.stechuhr.gui.Window;
 import de.mwvb.stechuhr.service.VortagCheck;
@@ -26,7 +26,7 @@ public class StechuhrWindow extends Window<StechuhrWindowController> {
 		stage.setHeight(276);
 		String version = System.getProperty("java.version");
 		if (version == null) version = "";
-		stage.setTitle(Application.APP_NAME + " " + Application.APP_VERSION + " (Java " + version.replace("1.8.0_", "8u") + ")");
+		stage.setTitle(StechuhrApplication.APP_NAME + " " + StechuhrApplication.APP_VERSION + " (Java " + version.replace("1.8.0_", "8u") + ")");
 		stage.setResizable(false);
 	}
 	

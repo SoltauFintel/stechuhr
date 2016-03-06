@@ -7,6 +7,7 @@ import de.mwvb.stechuhr.service.StechuhrConfig;
 import de.mwvb.stechuhr.service.export.CSVExport;
 import de.mwvb.stechuhr.service.export.ExportManager;
 import de.mwvb.stechuhr.service.export.HTMLExport;
+import javafx.application.Application;
 import javafx.stage.Stage;
 
 /**
@@ -17,7 +18,7 @@ import javafx.stage.Stage;
  * @author Marcus Warm
  * @since 21.02.2016
  */
-public class Application extends javafx.application.Application { // TODO rename to StechuhrApplication (FindBugs)
+public class StechuhrApplication extends Application {
 	public static final String APP_NAME = "Stechuhr";
 	public static final String APP_VERSION = "0.3";
 	public static StechuhrConfig config; // TODO private machen + public Getter (FindBugs)
@@ -26,7 +27,7 @@ public class Application extends javafx.application.Application { // TODO rename
 		StechuhrDAO.init();
 		config = new StechuhrConfig();
 		StechuhrWindow.model = new StechuhrDAO().load(StechuhrModel.today());
-		launch(Application.class, new String[] {});
+		launch(StechuhrApplication.class, new String[] {});
 	}
 
 	@Override

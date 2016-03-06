@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import com.sun.javafx.scene.control.skin.TextAreaSkin;
 
-import de.mwvb.stechuhr.Application;
+import de.mwvb.stechuhr.StechuhrApplication;
 import de.mwvb.stechuhr.base.StechuhrUtils;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -41,7 +41,7 @@ public abstract class Window<CTR> {
 		}
 		keyBindings(scene);
 		initWindow(stage);
-		Application.config.loadWindowPosition(getName(), new StageAdapter(stage));
+		StechuhrApplication.config.loadWindowPosition(getName(), new StageAdapter(stage));
 		onCloseRequest(stage);
 		if (modal) {
 			stage.initModality(Modality.APPLICATION_MODAL);
@@ -86,7 +86,7 @@ public abstract class Window<CTR> {
 		stage.setOnCloseRequest(event -> {
 			int mode = onClose();
 			if (mode == 1) { // Fenster ganz normal schließen
-				Application.config.saveWindowPosition(getName(), new StageAdapter(stage));
+				StechuhrApplication.config.saveWindowPosition(getName(), new StageAdapter(stage));
 			} else {
 				event.consume(); // Fenster nicht schließen
 				if (mode == 2) { // Fenster ausblenden

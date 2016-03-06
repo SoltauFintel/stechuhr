@@ -3,7 +3,7 @@ package de.mwvb.stechuhr.gui.bearbeiten;
 import java.time.LocalTime;
 import java.util.Optional;
 
-import de.mwvb.stechuhr.Application;
+import de.mwvb.stechuhr.StechuhrApplication;
 import de.mwvb.stechuhr.base.StechuhrUtils;
 import de.mwvb.stechuhr.dao.StechuhrDAO;
 import de.mwvb.stechuhr.entity.Stunden;
@@ -327,7 +327,7 @@ public class BearbeitenWindowController {
 	@FXML
 	public void onClose() {
 		try {
-			Application.config.saveWindowPosition(BearbeitenWindow.class.getSimpleName(), new StageAdapter(getStage()));
+			StechuhrApplication.config.saveWindowPosition(BearbeitenWindow.class.getSimpleName(), new StageAdapter(getStage()));
 			getStage().close();
 		} catch (Exception e) {
 			Window.errorAlert(e);
