@@ -51,12 +51,20 @@ public class BearbeitenWindowController {
 	protected void initialize() {
 		try {
 			Window.disableTabKey(notizPrivat);
+			fillLeistungCombobox();
 			save.setDefaultButton(true);
 			addSaveButtonListeners();
 			addDeleteKeyListener();
 			Platform.runLater(() -> leistung.requestFocus()); // Annahme: Man möchte i.d.R. eine Leistung eingeben
 		} catch (Exception e) {
 			Window.errorAlert(e);
+		}
+	}
+
+	private void fillLeistungCombobox() {
+		leistung.getItems().clear();
+		for (String text : StechuhrWindow.model.getLeistungen()) {
+			leistung.getItems().add(text);
 		}
 	}
 
@@ -243,6 +251,7 @@ public class BearbeitenWindowController {
 		updateGrid_andSave();
 		
 		StechuhrWindow.model.getLeistungen().add(nr, eingegebeneLeistung);
+		fillLeistungCombobox();
 	}
 	
 	@FXML
