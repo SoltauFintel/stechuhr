@@ -201,12 +201,12 @@ public class BearbeitenWindowController {
 	
 	private boolean shallDelete(String ticket) {
 		Alert alert = new Alert(AlertType.CONFIRMATION);
-		alert.setTitle("Löschen");
+		alert.setTitle("L\u00F6schen");
 		alert.setHeaderText("");
 		alert.setContentText("Hiermit l\u00F6schst Du unwiderruflich den " + ticket + " Datensatz.");
 		
-		ButtonType loeschenBtn = new ButtonType("Löschen", ButtonData.OK_DONE);
-		ButtonType nichtLoeschenBtn = new ButtonType("Nicht löschen", ButtonData.CANCEL_CLOSE);
+		ButtonType loeschenBtn = new ButtonType("L\u00F6schen", ButtonData.OK_DONE);
+		ButtonType nichtLoeschenBtn = new ButtonType("Nicht l\u00F6schen", ButtonData.CANCEL_CLOSE);
 		alert.getButtonTypes().clear();
 		alert.getButtonTypes().addAll(loeschenBtn, nichtLoeschenBtn);
 		

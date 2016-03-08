@@ -20,7 +20,7 @@ import javafx.stage.Stage;
  */
 public class StechuhrApplication extends Application {
 	public static final String APP_NAME = "Stechuhr";
-	public static final String APP_VERSION = "0.4";
+	public static final String APP_VERSION = "0.4"; 
 	private static StechuhrConfig config;
 	
 	public static void main(String[] args) {
