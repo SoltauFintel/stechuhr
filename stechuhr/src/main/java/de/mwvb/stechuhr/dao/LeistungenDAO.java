@@ -4,7 +4,6 @@ import java.io.File;
 
 import de.mwvb.base.xml.XMLDocument;
 import de.mwvb.base.xml.XMLElement;
-import de.mwvb.stechuhr.base.XMLDocumentUTF8;
 import de.mwvb.stechuhr.entity.Leistung;
 
 public class LeistungenDAO {
@@ -22,7 +21,7 @@ public class LeistungenDAO {
 		if (!new File(dateiname).exists()) {
 			return null;
 		}
-		XMLDocument dok = XMLDocumentUTF8.load(dateiname);
+		XMLDocument dok = XMLDocument.load(dateiname);
 		if (!VERSION.equals(dok.getElement().getValue("version"))) {
 			return null;
 		}
@@ -45,7 +44,7 @@ public class LeistungenDAO {
 	}
 	
 	public void save(final Leistung first) {
-		XMLDocument dok = new XMLDocumentUTF8("<Leistungen version=\"" + VERSION + "\"/>");
+		XMLDocument dok = new XMLDocument("<Leistungen version=\"" + VERSION + "\"/>");
 		XMLElement root = dok.getElement();
 		Leistung p = first;
 		while (p != null) {

@@ -79,7 +79,7 @@ public class StechuhrConfig {
 	}
 
 	private void fensterSichtbarAufMonitor(StageAdapter stage, Bounds allScreenBounds) {
-		// Dies ist gerade wichtig beim Wechsel von 2-Monitor (BÃ¼ro) auf 1-Monitor (HomeOffice/RemoteDesktop).
+		// Dies ist gerade wichtig beim Wechsel von 2-Monitor (Büro) auf 1-Monitor (HomeOffice/RemoteDesktop).
 		double x = stage.getX();
 		double y = stage.getY();
 		double w = stage.getWidth();

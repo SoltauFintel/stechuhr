@@ -24,7 +24,7 @@ public class LeistungenTest {
 	public void testLeistungEingeben() {
 		String leistung = "was getan";
 		Leistungen leistungen = Leistungen.open("TEST");
-		leistungen.add("T", leistung); // add() muss Leistung oben einfÃ¼gen
+		leistungen.add("T", leistung); // add() muss Leistung oben einfügen
 		Assert.assertEquals(leistung, leistungen.getFirst());
 		Assert.assertEquals(1, leistungen.size());
 	}
@@ -76,7 +76,7 @@ public class LeistungenTest {
 		Assert.assertEquals(1, geladen.size());
 	}
 
-	// Ticket (auÃŸer PAUSE/STOP) wird gewÃ¤hlt. Vom jÃ¼ngsten Stundeneintrag muss anhand des Tickets nun die Leistung genommen werden.
+	// Ticket (außer PAUSE/STOP) wird gewählt. Vom jüngsten Stundeneintrag muss anhand des Tickets nun die Leistung genommen werden.
 	@Test
 	public void testTicketEingabe() {
 		Leistungen leistungen = Leistungen.open("TEST");
@@ -84,7 +84,7 @@ public class LeistungenTest {
 		leistungen.add("Orga", "Mails lesen");
 		leistungen.add(Stunden.PAUSE, "Pause");
 		leistungen.add(Stunden.STOP, "Feierabend");
-		leistungen.add("Orga", "Emails lesen"); // Ã¼berschreibt vorigen Eintrag
+		leistungen.add("Orga", "Emails lesen"); // überschreibt vorigen Eintrag
 		leistungen.add("CI", "Jenkins-Build gefixt");
 		String leistung = leistungen.getLeistungForTicket("Orga");
 		Assert.assertEquals("Emails lesen", leistung);
@@ -209,15 +209,15 @@ public class LeistungenTest {
 
 	@Test
 	public void testUmlaute() {
-		String leistung = "groÃŸe BÃ©sprÃ¤chung";
+		String leistung = "große Bésprächung";
 		Leistungen leistungen = Leistungen.open("TEST");
-		leistungen.add("SpaÃŸ", leistung);
+		leistungen.add("Spaß", leistung);
 		Assert.assertEquals(leistung, leistungen.getFirst());
-		Assert.assertEquals(leistung, leistungen.getLeistungForTicket("SpaÃŸ"));
+		Assert.assertEquals(leistung, leistungen.getLeistungForTicket("Spaß"));
 		
 		Leistungen geladen = Leistungen.open("TEST");
 		Assert.assertEquals(leistung, geladen.getFirst());
-		Assert.assertEquals(leistung, geladen.getLeistungForTicket("SpaÃŸ"));
+		Assert.assertEquals(leistung, geladen.getLeistungForTicket("Spaß"));
 	}
 
 	@Test

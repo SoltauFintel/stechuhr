@@ -51,9 +51,9 @@ public class VortagCheckTest extends AbstractStundenTest {
 	}
 	
 	/**
-	 * Hier wird simuliert, dass kein STOP am Vortag durchgefÃ¼hrt wurde.
-	 * Diese Situation tritt ein, wenn der Anwender vergessen hatte am Vortag auf STOP zu drÃ¼cken und nun die Stechuhr startet.
-	 * Erwartung: Feierabend-Uhrzeit wird abgefragt und STOP wird durchgefÃ¼hrt.
+	 * Hier wird simuliert, dass kein STOP am Vortag durchgeführt wurde.
+	 * Diese Situation tritt ein, wenn der Anwender vergessen hatte am Vortag auf STOP zu drücken und nun die Stechuhr startet.
+	 * Erwartung: Feierabend-Uhrzeit wird abgefragt und STOP wird durchgeführt.
 	 */
 	@Test
 	public void testStopWirdDurchgefuehrt() {
@@ -89,13 +89,13 @@ public class VortagCheckTest extends AbstractStundenTest {
 		Assert.assertEquals("STOP-Satz fehlt!", 2, model.getStundenliste().size());
 		Assert.assertEquals("2. Satz muss STOP Ticket sein!", Stunden.STOP, model.getStundenliste().get(1).getTicket());
 		Assert.assertTrue("StechuhrModel wurde nicht gespeichert!", access.saved);
-		Assert.assertEquals("Feierabend-Uhrzeit hÃ¤tte abgefragt werden mÃ¼ssen!", 1, nachFeierabendGefragt);
+		Assert.assertEquals("Feierabend-Uhrzeit hätte abgefragt werden müssen!", 1, nachFeierabendGefragt);
 		Assert.assertNotNull("Stunden wurden nicht exportiert!", exportstunden);
 		Assert.assertEquals("Anzahl Exportstunden falsch!", 1, exportstunden.size());
 		Assert.assertEquals("Exportstunden-Dauer ist falsch!", "7:15", exportstunden.get(0).getSSMM());
 	}
 
-	/** Variante zu testStopWirdDurchgefuehrt() mit spÃ¤terer Uhrzeit */
+	/** Variante zu testStopWirdDurchgefuehrt() mit späterer Uhrzeit */
 	@Test
 	public void testStopWirdDurchgefuehrt_2() {
 		// Prepare
@@ -133,7 +133,7 @@ public class VortagCheckTest extends AbstractStundenTest {
 	}
 
 	/**
-	 * Ein Stop mÃ¼sste durchgefÃ¼hrt werden, aber der Anwender bricht ab.
+	 * Ein Stop müsste durchgeführt werden, aber der Anwender bricht ab.
 	 */
 	@Test
 	public void testAbbruchDurchAnwender() {
@@ -172,10 +172,10 @@ public class VortagCheckTest extends AbstractStundenTest {
 		
 		// Verify
 		Assert.assertEquals(-1, r);
-		Assert.assertEquals("STOP-Satz darf nicht hinzugefÃ¼gt werden!", 1, model.getStundenliste().size());
+		Assert.assertEquals("STOP-Satz darf nicht hinzugefügt werden!", 1, model.getStundenliste().size());
 		Assert.assertFalse("StechuhrModel darf nicht gespeichert werden!", access.saved);
-		Assert.assertEquals("Feierabend-Uhrzeit hÃ¤tte abgefragt werden mÃ¼ssen!", 1, nachFeierabendGefragt);
-		Assert.assertNull("Stunden dÃ¼rfen nicht exportiert werden!", exportstunden);
+		Assert.assertEquals("Feierabend-Uhrzeit hätte abgefragt werden müssen!", 1, nachFeierabendGefragt);
+		Assert.assertNull("Stunden dürfen nicht exportiert werden!", exportstunden);
 	}
 
 	/**
@@ -250,7 +250,7 @@ public class VortagCheckTest extends AbstractStundenTest {
 				if (++nachFeierabendGefragt == 1) {
 					return Optional.of("07:00");
 				}
-				return Optional.of("9"); // verkÃ¼rzte Eingabe muss akzeptiert werden
+				return Optional.of("9"); // verkürzte Eingabe muss akzeptiert werden
 			}
 		};
 		
@@ -291,7 +291,7 @@ public class VortagCheckTest extends AbstractStundenTest {
 	/**
 	 * Der Vortag-Check findet keine Vortagsdaten.
 	 * Diese Situation tritt ein, wenn der Anwender das 1. Mal die Stechuhr benutzt - oder die lokalen Stechuhrdaten
-	 * gelÃ¶scht hat.
+	 * gelöscht hat.
 	 */
 	@Test
 	public void testEsGibtKeinenVortag() {
@@ -320,10 +320,10 @@ public class VortagCheckTest extends AbstractStundenTest {
 	}
 
 	/**
-	 * Der Vortag-Check findet keine Vortagsdaten, weil diese zu lange zurÃ¼ck liegen.
+	 * Der Vortag-Check findet keine Vortagsdaten, weil diese zu lange zurück liegen.
 	 * Diese Situation tritt ein, wenn der Anwender die Stechuhr lange Zeit nicht mehr benutzt hatte.
 	 * 
-	 * Achtung: Es kann sein, dass nicht gewÃ¼nscht ist, dass man Daten vom vorigen Monat noch verÃ¤ndert.
+	 * Achtung: Es kann sein, dass nicht gewünscht ist, dass man Daten vom vorigen Monat noch verändert.
 	 * Dieser Fehler sollte dann aber beim Export durch das Fremdsystem auftreten.
 	 */
 	@Test
@@ -396,7 +396,7 @@ public class VortagCheckTest extends AbstractStundenTest {
 
 	/**
 	 * Wenn ein leerer Vortag gefunden wird, braucht dieser nicht gestoppt zu werden.
-	 * Die PrÃ¼fung ist dann zu Ende.
+	 * Die Prüfung ist dann zu Ende.
 	 */
 	@Test
 	public void testVortagHatKeineStunden() {

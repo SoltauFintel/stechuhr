@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="windows-1252"?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
@@ -47,9 +47,9 @@
 			</GridPane>
 			<HBox spacing="12">
 				<Button text="_Speichern" minWidth="100" fx:id="save" onAction="#onSave"/>
-				<Button text="LÃ¶schen" minWidth="100" fx:id="delete" onAction="#onDelete"/>
+				<Button text="Löschen" minWidth="100" fx:id="delete" onAction="#onDelete"/>
 				<Pane HBox.hgrow="ALWAYS"/>
-				<Button onAction="#onClose" text="SchlieÃŸen" minWidth="100" fx:id="close"/>
+				<Button onAction="#onClose" text="Schließen" minWidth="100" fx:id="close"/>
 			</HBox>
 		</VBox>
 	</bottom>

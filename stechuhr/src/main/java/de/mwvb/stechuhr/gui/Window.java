@@ -2,6 +2,7 @@ package de.mwvb.stechuhr.gui;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.Charset;
 
 import com.sun.javafx.scene.control.skin.TextAreaSkin;
 
@@ -118,10 +119,10 @@ public abstract class Window<CTR> {
 	private void onCloseRequest(final Stage stage) {
 		stage.setOnCloseRequest(event -> {
 			int mode = onClose();
-			if (mode == 1) { // Fenster ganz normal schlie√üen
+			if (mode == 1) { // Fenster ganz normal schlieﬂen
 				StechuhrApplication.getConfig().saveWindowPosition(getName(), new StageAdapter(stage));
 			} else {
-				event.consume(); // Fenster nicht schlie√üen
+				event.consume(); // Fenster nicht schlieﬂen
 				if (mode == 2) { // Fenster ausblenden
 					stage.setIconified(true);
 				}
@@ -130,15 +131,16 @@ public abstract class Window<CTR> {
 	}
 
 	/**
-	 * @return 0: Fenster nicht schlie√üen, 1: Fenster ganz normal schlie√üen, 2: Fenster ausblenden
+	 * @return 0: Fenster nicht schlieﬂen, 1: Fenster ganz normal schlieﬂen, 2: Fenster ausblenden
 	 */
 	protected int onClose() {
-		return 1; // Schlie√üen ok
+		return 1; // Schlieﬂen ok
 	}
 	
 	protected Parent root() {
 		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource(getClass().getSimpleName() + ".fxml"));
+			FXMLLoader loader = new FXMLLoader(Charset.forName("windows-1252"));
+			loader.setLocation(getClass().getResource(getClass().getSimpleName() + ".fxml"));
 			controller = createController();
 			loader.setController(controller);
 			return loader.load();
@@ -160,7 +162,7 @@ public abstract class Window<CTR> {
 	
 	public static void errorAlert(Exception ex) {
 		Alert alert = new Alert(AlertType.ERROR);
-		alert.setTitle("Entschuldigung, das h√§tte nicht passieren d√ºrfen.");
+		alert.setTitle("Entschuldigung, das h‰tte nicht passieren d¸rfen.");
 		alert.setHeaderText("Die Stechuhr hat ein Problem festgestellt.");
 		if (ex.getMessage() == null || ex.getMessage().isEmpty()) {
 			alert.setContentText("Es ist ein " + ex.getClass().getSimpleName() + " Fehler aufgetreten.");

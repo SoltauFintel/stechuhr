@@ -13,24 +13,24 @@ import de.mwvb.stechuhr.gui.Window;
 import javafx.scene.control.TextInputDialog;
 
 /**
- * ÃœberprÃ¼fen, ob am vorigen Arbeitstag STOP ausgefÃ¼hrt worden ist.
- * Falls nicht: mit Benutzerinteraktion STOP nachtrÃ¤glich durchfÃ¼hren.
+ * Überprüfen, ob am vorigen Arbeitstag STOP ausgeführt worden ist.
+ * Falls nicht: mit Benutzerinteraktion STOP nachträglich durchführen.
  */
 public class VortagCheck {
 	
 	/**
-	 * PrÃ¼ft, ob der Vortag gestoppt werden muss und fÃ¼hrt ggf. Stop mit Benutzerinteraktion durch.
+	 * Prüft, ob der Vortag gestoppt werden muss und führt ggf. Stop mit Benutzerinteraktion durch.
 	 * 
 	 * @param model StechuhrModel des aktuellen Tages
 	 * @return
 	 * 0: Vortag wurde korrekt gestoppt.<br>
-	 * 1: Vortag wurde nun nachtrÃ¤glich gestoppt.<br>
+	 * 1: Vortag wurde nun nachträglich gestoppt.<br>
 	 * -1: Vortag muss gestoppt werden; Aktion wurde aber durch Anwender abgebrochen<br>
-	 * -2: Es gibt bereits Stunden fÃ¼r den aktuellen Tag,<br>
+	 * -2: Es gibt bereits Stunden für den aktuellen Tag,<br>
 	 * -3: Es gibt keine Vortag-Daten.<br>
 	 */
 	public int check(StechuhrModel model) {
-		if (!model.getStundenliste().isEmpty()) return -2; // Stop wird nur als vergessen angesehen, wenn es noch keine Stunden fÃ¼r den akt. Tag gibt.
+		if (!model.getStundenliste().isEmpty()) return -2; // Stop wird nur als vergessen angesehen, wenn es noch keine Stunden für den akt. Tag gibt.
 		
 		LocalDate vortagDate = sucheVortag();
 		if (vortagDate == null) return -3; // Es wurde keine Vortagsdatei mit vertretbarem Aufwand gefunden.
@@ -42,7 +42,7 @@ public class VortagCheck {
 	
 	/**
 	 * @return liefert i.d.R. das Datum vom Vortag bzw. vom letzten Freitag. Aber wenn der Benutzer Urlaub gemacht hat,
-	 * ist die LÃ¼cke grÃ¶ÃŸer. Zur Vermeidung einer Endlosschleife wird max. 100 Tage zurÃ¼ck gesucht.
+	 * ist die Lücke größer. Zur Vermeidung einer Endlosschleife wird max. 100 Tage zurück gesucht.
 	 */
 	private LocalDate sucheVortag() {
 		StechuhrDAO access = getAccess();
@@ -72,13 +72,13 @@ public class VortagCheck {
 
 	private int vortagWurdeNichtGestoppt(final StechuhrModel vmodel, final LocalDate vortagDate) {
 		LocalTime nichtVor = vmodel.getStundenliste().get(vmodel.getStundenliste().size() - 1).getUhrzeit();
-		String vorschlag = "17:15"; // TODO Diese Uhrzeit kÃ¶nnte man aus Altdaten erraten.
+		String vorschlag = "17:15"; // TODO Diese Uhrzeit könnte man aus Altdaten erraten.
 		if (LocalTime.parse(vorschlag).isBefore(nichtVor)) {
 			vorschlag = nichtVor.toString();
 		}
 		LocalTime feierabendUhrzeit = ermittleFeierabendUhrzeit(vortagDate, vorschlag, nichtVor);
 		if (feierabendUhrzeit != null) {
-			// STOP durchfÃ¼hren
+			// STOP durchführen
 			Stunden stop = new Stunden(feierabendUhrzeit);
 			stop.setTicket(Stunden.STOP);
 			vmodel.getStundenliste().add(stop);
@@ -108,9 +108,9 @@ public class VortagCheck {
 	Optional<String> askForVortagEndeUhrzeit(LocalDate d, String vorschlag) {
 		TextInputDialog dialog = new TextInputDialog(vorschlag);
 		dialog.setTitle("Vortag");
-		dialog.setHeaderText("Am " + StechuhrUtils.formatWTDate(d) + " wurde nicht auf STOP gedrÃ¼ckt."
+		dialog.setHeaderText("Am " + StechuhrUtils.formatWTDate(d) + " wurde nicht auf STOP gedrückt."
 				+ "\nDies kann jetzt nachgeholt werden."
-				+ "\nWie spÃ¤t wurde an dem Tag Feierabend gemacht?");
+				+ "\nWie spät wurde an dem Tag Feierabend gemacht?");
 		dialog.setContentText("Feierabend Uhrzeit:");
 		return dialog.showAndWait();
 	}

@@ -99,7 +99,7 @@ public class Stundenrundung {
 	}
 
 	/**
-	 * Den grÃ¶ÃŸten Wert suchen. Falls alle gleich groÃŸ sind: den letzten nehmen.
+	 * Den größten Wert suchen. Falls alle gleich groß sind: den letzten nehmen.
 	 * @return Index
 	 */
 	private int sucheGroesstenWert(List<GerundeteDauer> neueListe, List<Integer> ausschluss) {
@@ -118,7 +118,7 @@ public class Stundenrundung {
 	}
 	
 	/**
-	 * Ã„ndert die Dauer mit Index index um den Minutenwert additiv. Die neue Liste wird zurÃ¼ck gegeben.
+	 * Ändert die Dauer mit Index index um den Minutenwert additiv. Die neue Liste wird zurück gegeben.
 	 */
 	private List<GerundeteDauer> ersetze(List<GerundeteDauer> list, int index, int additiv) {
 		List<GerundeteDauer> ret = new ArrayList<>();

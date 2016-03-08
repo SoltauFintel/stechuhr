@@ -1,11 +1,20 @@
 package de.mwvb.stechuhr.base;
 
+import java.io.File;
+import java.io.IOException;
 import java.time.LocalDate;
 
 import org.junit.Assert;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.TemporaryFolder;
+
+import de.mwvb.base.xml.XMLDocument;
+import de.mwvb.base.xml.XMLElement;
 
 public class StechuhrUtilsTest {
+	@Rule
+	public TemporaryFolder temp = new TemporaryFolder();
 
 	@Test
 	public void testZweistellig_0() {
@@ -70,5 +79,23 @@ public class StechuhrUtilsTest {
 		Assert.assertFalse(StechuhrUtils.nurZiffern("A"));
 		Assert.assertFalse(StechuhrUtils.nurZiffern("1.4"));
 		Assert.assertFalse(StechuhrUtils.nurZiffern("-6"));
+	}
+	
+	// Der Test klappt in Eclipse, aber trotzdem habe ich zur Laufzeit Encoding-Probleme in der Anwendung. :(
+	@Test
+	public void testUmlaute() throws IOException {
+		File file = temp.newFile("test.xml");
+		String dn = file.getAbsolutePath();
+
+		XMLDocument dok = new XMLDocument("<test/>");
+		XMLElement e = dok.getElement().add("item");
+		String text = "Die übergenaue Bärbel Janßen möchte Umlaute haben!";
+		e.setText(text);
+		e.setValue("id", "Ä");
+		dok.saveFile(dn);
+		
+		XMLDocument loaded = XMLDocument.load(dn);
+		Assert.assertEquals(text, loaded.getChildren().get(0).getText());
+		Assert.assertEquals("Ä", loaded.getChildren().get(0).getValue("id"));
 	}
 }

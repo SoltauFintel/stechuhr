@@ -27,7 +27,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 /**
- * Stechuhr-EintrÃ¤ge bearbeiten
+ * Stechuhr-Einträge bearbeiten
  * 
  * @author Marcus Warm
  */
@@ -58,7 +58,7 @@ public class BearbeitenWindowController {
 			save.setDefaultButton(true);
 			addSaveButtonListeners();
 			addDeleteKeyListener();
-			Platform.runLater(() -> leistung.requestFocus()); // Annahme: Man mÃ¶chte i.d.R. eine Leistung eingeben
+			Platform.runLater(() -> leistung.requestFocus()); // Annahme: Man möchte i.d.R. eine Leistung eingeben
 		} catch (Exception e) {
 			Window.errorAlert(e);
 		}
@@ -143,7 +143,7 @@ public class BearbeitenWindowController {
 		try {
 			int i = grid.getSelectionModel().getSelectedIndex();
 			if (i < 0) {
-				return; // Nicht speichern, wenn kein Stechuhreintrag gewÃ¤hlt ist.
+				return; // Nicht speichern, wenn kein Stechuhreintrag gewählt ist.
 			}
 			Stunden stunden = grid.getItems().get(i);
 			if (stunden == null) {
@@ -173,7 +173,7 @@ public class BearbeitenWindowController {
 		}
 	}
 
-	/** Eingaben Ã¼bernehmen, inkl. Persistierung */
+	/** Eingaben übernehmen, inkl. Persistierung */
 	private void save(final Stunden stunden, final String eingegebeneUhrzeit, final String nr) {
 		stunden.setUhrzeit(LocalTime.parse(eingegebeneUhrzeit));
 		stunden.setTicket(nr);
@@ -201,18 +201,18 @@ public class BearbeitenWindowController {
 	
 	private boolean shallDelete(String ticket) {
 		Alert alert = new Alert(AlertType.CONFIRMATION);
-		alert.setTitle("L\u00F6schen");
+		alert.setTitle("Löschen");
 		alert.setHeaderText("");
-		alert.setContentText("Hiermit l\u00F6schst Du unwiderruflich den " + ticket + " Datensatz.");
+		alert.setContentText("Hiermit löschst Du unwiderruflich den " + ticket + " Datensatz.");
 		
-		ButtonType loeschenBtn = new ButtonType("L\u00F6schen", ButtonData.OK_DONE);
-		ButtonType nichtLoeschenBtn = new ButtonType("Nicht l\u00F6schen", ButtonData.CANCEL_CLOSE);
+		ButtonType loeschenBtn = new ButtonType("Löschen", ButtonData.OK_DONE);
+		ButtonType nichtLoeschenBtn = new ButtonType("Nicht löschen", ButtonData.CANCEL_CLOSE);
 		alert.getButtonTypes().clear();
 		alert.getButtonTypes().addAll(loeschenBtn, nichtLoeschenBtn);
 		
-		// Fenster Ã¼ber BearbeitenWindow zentrieren
+		// Fenster über BearbeitenWindow zentrieren
 		Stage stage = getStage();
-		alert.setX(stage.getX() + (stage.getWidth() - 434) / 2d); // Alert-FenstergrÃ¶ÃŸe noch unbekannt, daher mit 434 x 141 fest einprogrammiert.
+		alert.setX(stage.getX() + (stage.getWidth() - 434) / 2d); // Alert-Fenstergröße noch unbekannt, daher mit 434 x 141 fest einprogrammiert.
 		alert.setY(stage.getY() + (stage.getHeight() - 141) / 2d);
 		
 		Optional<ButtonType> result = alert.showAndWait();

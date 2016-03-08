@@ -10,7 +10,7 @@ import de.mwvb.stechuhr.entity.Stunden;
 import de.mwvb.stechuhr.service.stundenrundung.Stundenrundung;
 
 /**
- * HTML-Bericht erzeugen, der die Exportstunden enthält
+ * HTML-Bericht erzeugen, der die Exportstunden enth�lt
  */
 public class HTMLExport extends AbstractExport {
 	private StringBuilder sb;
@@ -18,7 +18,7 @@ public class HTMLExport extends AbstractExport {
 	public void export(List<Exportstunden> exportstunden) {
 		if (exportstunden.isEmpty()) return;
 		sb = new StringBuilder();
-		sb.append("<html><head><title>");
+		sb.append("<!doctype html><html lang=\"de\"><head><meta charset=\"windows-1252\"><title>");
 		sb.append(exportstunden.get(0).getTagString());
 		sb.append(" - Stunden</title><style>* { font-family: Verdana; } .w { font-size: 8pt; }</style></head>\n<body>");
 		sb.append("<h2>Stunden vom ");
@@ -42,8 +42,8 @@ public class HTMLExport extends AbstractExport {
 		sb.append(summe.toDezimalString());
 		sb.append("</b></td><td>Summe ohne Pause</td><td></td></tr>");
 		
-		// Wenn der Benutzer in eine <tr> klickt, soll die grau hinterlegt werden. Beim 2. Klick wieder weiß.
-		// Im Idealfall soll die Markierung verschwinden, wenn der Benutzer eine weitere Zeile anklickt. TODO Das noch besser lösen.
+		// Wenn der Benutzer in eine <tr> klickt, soll die grau hinterlegt werden. Beim 2. Klick wieder wei�.
+		// Im Idealfall soll die Markierung verschwinden, wenn der Benutzer eine weitere Zeile anklickt. TODO Das noch besser l�sen.
 		String farbe = "yellow";
 		sb.append("\n</table>\n<p><a class='w' href='https://github.com/SoltauFintel/stechuhr'>Stechuhr</a></p>"
 				+ "\n<script>function changeColor(o){o.style.backgroundColor=(o.style.backgroundColor=='" + farbe
@@ -53,14 +53,7 @@ public class HTMLExport extends AbstractExport {
 	}
 	
 	private String htmlEncode(String text) {
-		return text == null ? "" : text.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
-				.replace("ä", "&auml;")
-				.replace("ö", "&ouml;")
-				.replace("ü", "&uuml;")
-				.replace("Ä", "&Auml;")
-				.replace("Ö", "&Ouml;")
-				.replace("Ü", "&Uuml;")
-				.replace("ß", "&szlig;");
+		return text == null ? "" : text.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;");
 	}
 	
 	@Override

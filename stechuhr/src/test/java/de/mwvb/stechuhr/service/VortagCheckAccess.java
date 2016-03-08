@@ -10,7 +10,7 @@ import de.mwvb.stechuhr.dao.StechuhrDAO;
 import de.mwvb.stechuhr.entity.StechuhrModel;
 
 /**
- * Hilfsklasse fÃ¼r VortagCheckTest
+ * Hilfsklasse für VortagCheckTest
  */
 public class VortagCheckAccess extends StechuhrDAO {
 	public List<LocalDate> existingDays = new ArrayList<>();

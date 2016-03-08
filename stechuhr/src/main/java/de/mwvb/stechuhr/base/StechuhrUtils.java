@@ -41,7 +41,7 @@ public class StechuhrUtils {
 	}
 	
 	/**
-	 * Es wird solange die Nummer erhÃ¶ht, bis ein Dateiname kreiert wird, der noch nicht im Dateisystem existiert.
+	 * Es wird solange die Nummer erhöht, bis ein Dateiname kreiert wird, der noch nicht im Dateisystem existiert.
 	 * @param vorne inkl. Pfad
 	 * @param hinten
 	 * @return Dateiname bestehend aus vorne + Nummer + hinten. Die Datei gibt es noch nicht.
@@ -78,7 +78,7 @@ public class StechuhrUtils {
 
 	/**
 	 * @param zahl
-	 * @return true wenn zahl aus mindestens einer Ziffer besteht und ausschlieÃŸlich nur Ziffern enthÃ¤lt
+	 * @return true wenn zahl aus mindestens einer Ziffer besteht und ausschließlich nur Ziffern enthält
 	 */
 	public static boolean nurZiffern(String zahl) {
 		if (zahl == null) {

@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import de.mwvb.stechuhr.base.StechuhrUtils;
 
 /**
- * Fertiger Stundendatensatz fÃ¼r Export
+ * Fertiger Stundendatensatz für Export
  */
 public class Exportstunden {
 	private LocalDate tag;

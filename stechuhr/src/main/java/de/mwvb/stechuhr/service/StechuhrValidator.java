@@ -6,7 +6,7 @@ import de.mwvb.stechuhr.base.StechuhrUtils;
 import de.mwvb.stechuhr.entity.Stunden;
 import de.mwvb.stechuhr.gui.Window;
 
-// TODO Testcase (Window.alert ggf. anders l√∂sen)
+// TODO Testcase (Window.alert ggf. anders lˆsen)
 /**
  * Alle Validierungen
  */
@@ -51,7 +51,7 @@ public class StechuhrValidator {
 	}
 	
 	/**
-	 * @param i Index des aktuell gew√§hlten Stechuhreintrags
+	 * @param i Index des aktuell gew‰hlten Stechuhreintrags
 	 * @return null wenn Validierung nicht ok
 	 */
 	public static String validateUhrzeit(String eingegebeneUhrzeit, Stunden davorItem) {
@@ -61,14 +61,14 @@ public class StechuhrValidator {
 			return null; // Validierung nicht ok.
 		}
 		
-		// weitere Validierung: Nicht vor Vorg√§ngeruhrzeit?
+		// weitere Validierung: Nicht vor Vorg‰ngeruhrzeit?
 		LocalTime davor = LocalTime.MIDNIGHT;
 		if (davorItem != null) {
 			davor = davorItem.getUhrzeit();
 		}
 		if (LocalTime.parse(eingegebeneUhrzeit).isBefore(davor)) {
 			Window.alert("Bitte gebe eine Uhrzeit nach " + davor.toString() + " ein!"
-					+ "\nAlternativ kann auch der Vorg√§ngerdatensatz ge√§ndert werden.");
+					+ "\nAlternativ kann auch der Vorg‰ngerdatensatz ge‰ndert werden.");
 			return null;
 		}
 		return eingegebeneUhrzeit;

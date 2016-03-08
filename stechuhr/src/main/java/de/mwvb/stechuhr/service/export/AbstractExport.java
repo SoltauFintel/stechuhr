@@ -18,7 +18,7 @@ public abstract class AbstractExport implements Export {
 	public void export(List<Exportstunden> exportstunden) {
 		try {
 			File file = getExportFile(exportstunden.get(0).getTag());
-			OutputStreamWriter w = new OutputStreamWriter(new FileOutputStream(file), Charset.forName("UTF-8"));
+			OutputStreamWriter w = new OutputStreamWriter(new FileOutputStream(file), Charset.forName("windows-1252"));
 			try {
 				write(w);
 			} finally {

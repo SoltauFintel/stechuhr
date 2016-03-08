@@ -13,17 +13,16 @@ import java.util.List;
 import de.mwvb.base.xml.XMLDocument;
 import de.mwvb.base.xml.XMLElement;
 import de.mwvb.stechuhr.base.StechuhrUtils;
-import de.mwvb.stechuhr.base.XMLDocumentUTF8;
 import de.mwvb.stechuhr.entity.StechuhrModel;
 import de.mwvb.stechuhr.entity.Stunden;
 
 /**
- * alleinige Klasse fÃ¼r Persistierung
+ * alleinige Klasse für Persistierung
  * 
  * @author Marcus Warm
  */
 public class StechuhrDAO { // TODO DAO zerlegen: Stechuhr-File, Exporteur, Config-Files
-	/** Dateiversion fÃ¼r den Fall, dass sich das Dateiformat zukÃ¼nftig mal Ã¤ndern kÃ¶nnte. */
+	/** Dateiversion für den Fall, dass sich das Dateiformat zukünftig mal ändern könnte. */
 	private static final int DATEI_VERSION = 0;
 	private static String pfad;
 	
@@ -39,7 +38,7 @@ public class StechuhrDAO { // TODO DAO zerlegen: Stechuhr-File, Exporteur, Confi
 		StechuhrModel model = new StechuhrModel(tag);
 		File file = getStechuhrModelFile(tag);
 		if (file.exists()) {
-			XMLDocument dok = XMLDocumentUTF8.load(file.getAbsolutePath());
+			XMLDocument dok = XMLDocument.load(file.getAbsolutePath());
 			for (XMLElement e : dok.getChildren()) {
 				Stunden s = new Stunden();
 				s.setTag(tag);
@@ -59,7 +58,7 @@ public class StechuhrDAO { // TODO DAO zerlegen: Stechuhr-File, Exporteur, Confi
 			throw new RuntimeException("Fehler bei save(). Verzeichnis konnte nicht erstellt werden: " + file.getParentFile().getAbsolutePath());
 		}
 		
-		XMLDocument dok = new XMLDocumentUTF8("<Stechuhr version=\"" + DATEI_VERSION + "\"/>");
+		XMLDocument dok = new XMLDocument("<?xml version=\"1.0\" encoding=\"windows-1252\"?><Stechuhr version=\"" + DATEI_VERSION + "\"/>");
 		XMLElement root = dok.getElement();
 		root.setValue("tag", model.getTagString());
 		for (Stunden s : model.getStundenliste()) {
@@ -75,7 +74,7 @@ public class StechuhrDAO { // TODO DAO zerlegen: Stechuhr-File, Exporteur, Confi
 	public void delete(StechuhrModel model) {
 		File file = getStechuhrModelFile(model.getTag());
 		if (file.exists() && !file.delete()) {
-			throw new RuntimeException("Fehler bei delete(). Datei konnte nicht gelÃ¶scht werden: " + file.getAbsolutePath());
+			throw new RuntimeException("Fehler bei delete(). Datei konnte nicht gelöscht werden: " + file.getAbsolutePath());
 		}
 	}
 	

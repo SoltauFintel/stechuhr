@@ -81,7 +81,7 @@ public class Stunden {
 		this.dauer = dauer;
 	}
 
-	public String getDauerGerundet() { // fÃ¼r Bearbeiten-Fenster
+	public String getDauerGerundet() { // für Bearbeiten-Fenster
 		if (getDauer().isEmpty()) {
 			return "";
 		}

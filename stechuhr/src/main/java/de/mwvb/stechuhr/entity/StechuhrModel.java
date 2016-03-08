@@ -13,11 +13,11 @@ import de.mwvb.stechuhr.service.export.Exportstunden;
 import de.mwvb.stechuhr.service.stundenrundung.Stundenrundung;
 
 /**
- * Tagesdatum und alle Stechuhr-EintrÃ¤ge
+ * Tagesdatum und alle Stechuhr-Einträge
  * 
  * @author Marcus Warm
  */
-public class StechuhrModel { // TODO Fachlogik herauslÃ¶sen!
+public class StechuhrModel { // TODO Fachlogik herauslösen!
 	private final LocalDate tag;
 	private final List<Stunden> stundenliste = new ArrayList<Stunden>();
 	private final Leistungen leistungen;
@@ -73,7 +73,7 @@ public class StechuhrModel { // TODO Fachlogik herauslÃ¶sen!
 	}
 	
 	// TODO Aus den stop() Methoden eine eigene Fachlogik Klasse machen! ExportstundenTest muss dann entsprechend umbenannt werden.
-	// TODO Stechuhr-Datei nach STOP umbenennen? Wenn Anwender erneut Stechuhr starten wÃ¼rde, wÃ¼rde er mit nackter Datei anfangen.
+	// TODO Stechuhr-Datei nach STOP umbenennen? Wenn Anwender erneut Stechuhr starten würde, würde er mit nackter Datei anfangen.
 	public void stop() {
 		List<Exportstunden> export = createExportstunden();
 		optimieren(export);
@@ -131,9 +131,9 @@ public class StechuhrModel { // TODO Fachlogik herauslÃ¶sen!
 			}
 		} while (nochmal);
 		for (int i = export.size() - 1; i >= 0; i--) {
-			// TODO 0:00 Stunden lÃ¶schen (+Testcase)
+			// TODO 0:00 Stunden löschen (+Testcase)
 			if (export.get(i).getTicket().equals(Stunden.STOP)) {
-				export.remove(i); // TODO FÃ¼r diese Codezeile einen Testcase schreiben!
+				export.remove(i); // TODO Für diese Codezeile einen Testcase schreiben!
 			}
 		}
 	}

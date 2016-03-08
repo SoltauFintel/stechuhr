@@ -13,7 +13,7 @@ import de.mwvb.stechuhr.entity.Stunden;
  * @author Marcus Warm
  */
 public class Leistungen implements Iterable<String> {
-	/** Liste begrenzt - auch damit nicht mehr verwendete EintrÃ¤ge verschwinden */
+	/** Liste begrenzt - auch damit nicht mehr verwendete Einträge verschwinden */
 	public static final int MAX_ANZAHL = 99;
 	private final LeistungenDAO dao;
 	private Leistung first;
@@ -31,7 +31,7 @@ public class Leistungen implements Iterable<String> {
 	}
 
 	/**
-	 * Datei lÃ¶schen
+	 * Datei löschen
 	 * @param dateiname
 	 */
 	public static void delete(String dateiname) {
@@ -74,7 +74,7 @@ public class Leistungen implements Iterable<String> {
 			throw new IllegalArgumentException("Argument ticket darf nicht null oder leer sein!");
 		}
 		if (Stunden.PAUSE.equals(ticket) || Stunden.STOP.equals(ticket)) {
-			// Leistung spielt fÃ¼r diese beiden Sondertickets keine Rolle und wird daher nicht gespeichert.
+			// Leistung spielt für diese beiden Sondertickets keine Rolle und wird daher nicht gespeichert.
 			return;
 		}
 		if (leistung == null) {

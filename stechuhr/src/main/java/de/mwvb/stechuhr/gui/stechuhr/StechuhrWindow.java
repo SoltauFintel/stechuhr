@@ -50,7 +50,7 @@ public class StechuhrWindow extends Window<StechuhrWindowController> {
 				controller.onPause();
 			} else if (KeyCode.F2.equals(code)) {
 				controller.onBearbeiten();
-			} else if (KeyCode.ENTER.equals(code)) { // Workaround fÃ¼r Combobox-ENTER
+			} else if (KeyCode.ENTER.equals(code)) { // Workaround für Combobox-ENTER
 				if (scene.focusOwnerProperty().get() instanceof ComboBox) {
 					controller.onPlay();
 					event.consume();

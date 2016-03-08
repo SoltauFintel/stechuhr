@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="windows-1252"?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
@@ -27,7 +27,7 @@
 						<ComboBox editable="true" fx:id="ticket"></ComboBox>
 						<HBox spacing="12">
 							<Button minWidth="57" fx:id="play" onAction="#onPlay">
-								<tooltip><Tooltip text="Play (TÃ¤tigkeit beginnen) / F5"/></tooltip>
+								<tooltip><Tooltip text="Play (Tätigkeit beginnen) / F5"/></tooltip>
 								<graphic>
 									<ImageView style="-fx-background-color: transparent;">
 										<Image url="de/mwvb/stechuhr/gui/stechuhr/play.gif"/>

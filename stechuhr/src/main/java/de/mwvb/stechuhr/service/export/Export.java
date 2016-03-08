@@ -3,7 +3,7 @@ package de.mwvb.stechuhr.service.export;
 import java.util.List;
 
 /**
- * Implementierer kÃ¶nnen Stunden exportieren
+ * Implementierer können Stunden exportieren
  */
 public interface Export {
 

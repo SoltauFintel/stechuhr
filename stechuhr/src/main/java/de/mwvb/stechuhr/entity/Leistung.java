@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Entity fÃ¼r Leistungen/LeistungenDAO.
+ * Entity für Leistungen/LeistungenDAO.
  */
 public class Leistung {
 	private final String leistung;
@@ -23,7 +23,7 @@ public class Leistung {
 	}
 
 	/**
-	 * Konstruktor fÃ¼r Ladeoperation
+	 * Konstruktor für Ladeoperation
 	 */
 	public Leistung(String leistung) {
 		this.leistung = leistung;
@@ -44,7 +44,7 @@ public class Leistung {
 	}
 	
 	/**
-	 * @param x Ticketnummer <p>GroÃŸ/Kleinschreibung ist egal.
+	 * @param x Ticketnummer <p>Groß/Kleinschreibung ist egal.
 	 * @return true wenn x in getTickets() enthalten ist.
 	 */
 	public boolean contains(String x) {
@@ -52,7 +52,7 @@ public class Leistung {
 	}
 
 	/**
-	 * @return nÃ¤chstes Element in der vorwÃ¤rts verketteten Liste
+	 * @return nächstes Element in der vorwärts verketteten Liste
 	 */
 	public Leistung next() {
 		return next;

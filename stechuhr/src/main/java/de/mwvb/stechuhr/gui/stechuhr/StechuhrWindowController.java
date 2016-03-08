@@ -131,7 +131,7 @@ public class StechuhrWindowController {
 		ticket.getItems().addAll(StechuhrApplication.getConfig().getOldTickets());
 		ticket.getEditor().addEventFilter(KeyEvent.KEY_PRESSED, event -> {
 			KeyCode code = event.getCode();
-			if (KeyCode.ENTER.equals(code)) { // Klappt ab Java 8u60 nicht mehr! Durch Workaround in StechuhrWindow gelÃ¶st.
+			if (KeyCode.ENTER.equals(code)) { // Klappt ab Java 8u60 nicht mehr! Durch Workaround in StechuhrWindow gelöst.
 				onPlay();
 			} else if (KeyCode.ESCAPE.equals(code)) {
 				minimize();
