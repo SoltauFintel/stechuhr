@@ -24,14 +24,15 @@ public class StechuhrApplication extends Application {
 	private static StechuhrConfig config;
 	
 	public static void main(String[] args) {
-		StechuhrDAO.init();
-		config = new StechuhrConfig();
-		StechuhrWindow.setModel(new StechuhrDAO().load(StechuhrModel.today()));
 		launch(StechuhrApplication.class, new String[] {});
 	}
 
+	// TODO Wenn in dieser Methode ein Fehler auftritt, muss ein Fehlerdialog angezeigt werden!
 	@Override
 	public void start(Stage stage) {
+		StechuhrDAO.init();
+		config = new StechuhrConfig();
+		StechuhrWindow.setModel(new StechuhrDAO().load(StechuhrModel.today()));
 		initExporteure();
 		new StechuhrWindow().show(stage, false, null);
 	}
