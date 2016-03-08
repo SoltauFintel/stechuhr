@@ -8,6 +8,9 @@ import com.sun.javafx.scene.control.skin.TextAreaSkin;
 import de.mwvb.stechuhr.StechuhrApplication;
 import de.mwvb.stechuhr.base.StechuhrUtils;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.BoundingBox;
+import javafx.geometry.Bounds;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -20,6 +23,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.stage.Modality;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 /**
@@ -40,7 +44,7 @@ public abstract class Window<CTR> {
 		}
 		keyBindings(scene);
 		initWindow(stage);
-		StechuhrApplication.getConfig().loadWindowPosition(getName(), new StageAdapter(stage));
+		StechuhrApplication.getConfig().loadWindowPosition(getName(), new StageAdapter(stage), computeAllScreenBounds());
 		onCloseRequest(stage);
 		if (modal) {
 			stage.initModality(Modality.APPLICATION_MODAL);
@@ -61,7 +65,30 @@ public abstract class Window<CTR> {
 	protected void initWindow(Stage stage) {
 		// Template-Methode
 	}
-	
+
+	private Bounds computeAllScreenBounds() { // Quelle: http://stackoverflow.com/a/26204372
+		double minX = Double.POSITIVE_INFINITY;
+		double minY = Double.POSITIVE_INFINITY;
+		double maxX = Double.NEGATIVE_INFINITY;
+		double maxY = Double.NEGATIVE_INFINITY;
+		for (Screen screen : Screen.getScreens()) {
+			Rectangle2D screenBounds = screen.getBounds();
+			if (screenBounds.getMinX() < minX) {
+				minX = screenBounds.getMinX();
+			}
+			if (screenBounds.getMinY() < minY) {
+				minY = screenBounds.getMinY();
+			}
+			if (screenBounds.getMaxX() > maxX) {
+				maxX = screenBounds.getMaxX();
+			}
+			if (screenBounds.getMaxY() > maxY) {
+				maxY = screenBounds.getMaxY();
+			}
+		}
+		return new BoundingBox(minX, minY, maxX - minX, maxY - minY);
+	}
+
 	public static void disableTabKey(final TextArea textArea) {
 		textArea.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
 			if (event.getCode().equals(KeyCode.TAB)) {

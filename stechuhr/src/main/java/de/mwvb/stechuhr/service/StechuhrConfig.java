@@ -5,6 +5,7 @@ import java.util.List;
 
 import de.mwvb.stechuhr.dao.StechuhrDAO;
 import de.mwvb.stechuhr.gui.StageAdapter;
+import javafx.geometry.Bounds;
 
 /**
  * Laden, Speichern und ggf. Vorhalten von:
@@ -61,7 +62,7 @@ public class StechuhrConfig {
 		new StechuhrDAO().save("WindowPosition-" + name, arr);
 	}
 
-	public void loadWindowPosition(String name, StageAdapter stage) {
+	public void loadWindowPosition(String name, StageAdapter stage, Bounds allScreenBounds) {
 		List<String> data = new StechuhrDAO().load("WindowPosition-" + name);
 		if (data.size() > 0 && data.get(0).contains(";")) {
 			String w[] = data.get(0).split(";");
@@ -71,6 +72,29 @@ public class StechuhrConfig {
 				stage.setWidth(Double.parseDouble(w[2]));
 				stage.setHeight(Double.parseDouble(w[3]));
 			}
+		}
+		if (allScreenBounds != null) {
+			fensterSichtbarAufMonitor(stage, allScreenBounds);
+		}
+	}
+
+	private void fensterSichtbarAufMonitor(StageAdapter stage, Bounds allScreenBounds) {
+		// Dies ist gerade wichtig beim Wechsel von 2-Monitor (Büro) auf 1-Monitor (HomeOffice/RemoteDesktop).
+		double x = stage.getX();
+		double y = stage.getY();
+		double w = stage.getWidth();
+		double h = stage.getHeight();
+		if (x < allScreenBounds.getMinX()) {
+			stage.setX(allScreenBounds.getMinX());
+		}
+		if (x + w > allScreenBounds.getMaxX()) {
+			stage.setX(allScreenBounds.getMaxX() - w);
+		}
+		if (y < allScreenBounds.getMinY()) {
+			stage.setY(allScreenBounds.getMinY());
+		}
+		if (y + h > allScreenBounds.getMaxY()) {
+			stage.setY(allScreenBounds.getMaxY() - h);
 		}
 	}
 }
