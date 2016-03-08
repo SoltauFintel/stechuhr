@@ -36,22 +36,26 @@ public abstract class Window<CTR> {
 	public static boolean testmodus = false;
 	
 	public final void show(final Stage stage, boolean modal, final javafx.stage.Window owner) {
-		stage.getIcons().add(new Image(getIcon()));
-		Scene scene = new Scene(root());
-		stage.setScene(scene);
-		if (owner != null) {
-			stage.initOwner(owner);
-		}
-		keyBindings(scene);
-		initWindow(stage);
-		StechuhrApplication.getConfig().loadWindowPosition(getName(), new StageAdapter(stage), computeAllScreenBounds());
-		onCloseRequest(stage);
-		if (modal) {
-			stage.initModality(Modality.APPLICATION_MODAL);
-			stage.showAndWait();
-		} else {
-			stage.show();
-			displayed();
+		try {
+			stage.getIcons().add(new Image(getIcon()));
+			Scene scene = new Scene(root());
+			stage.setScene(scene);
+			if (owner != null) {
+				stage.initOwner(owner);
+			}
+			keyBindings(scene);
+			initWindow(stage);
+			StechuhrApplication.getConfig().loadWindowPosition(getName(), new StageAdapter(stage), computeAllScreenBounds());
+			onCloseRequest(stage);
+			if (modal) {
+				stage.initModality(Modality.APPLICATION_MODAL);
+				stage.showAndWait();
+			} else {
+				stage.show();
+				displayed();
+			}
+		} catch (Exception e) {
+			Window.errorAlert(e);
 		}
 	}
 	

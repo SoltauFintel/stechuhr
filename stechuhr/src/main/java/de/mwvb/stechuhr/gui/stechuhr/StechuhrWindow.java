@@ -72,7 +72,11 @@ public class StechuhrWindow extends Window<StechuhrWindowController> {
 
 	@Override
 	protected void displayed() {
-		new VortagCheck().check(StechuhrWindow.getModel());
+		try {
+			new VortagCheck().check(StechuhrWindow.getModel());
+		} catch (Exception e) {
+			Window.errorAlert(e);
+		}
 	}
 	
 	@Override
