@@ -5,7 +5,7 @@
 
 Stechuhr zur einfachen Erfassung von Arbeitsstunden des aktuellen Tages
 
-:arrow_down: ![Download stechuhr-0.3.jar](https://github.com/SoltauFintel/stechuhr/releases/download/0.3/stechuhr-0.3.jar)
+:arrow_down: ![Download stechuhr-0.3.1.jar](https://github.com/SoltauFintel/stechuhr/releases/download/0.3.1/stechuhr-0.3.1.jar)
 
 ## Beschreibung
 
