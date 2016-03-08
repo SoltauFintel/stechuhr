@@ -1,12 +1,7 @@
 package de.mwvb.stechuhr;
 
-import de.mwvb.stechuhr.dao.StechuhrDAO;
-import de.mwvb.stechuhr.entity.StechuhrModel;
 import de.mwvb.stechuhr.gui.stechuhr.StechuhrWindow;
 import de.mwvb.stechuhr.service.StechuhrConfig;
-import de.mwvb.stechuhr.service.export.CSVExport;
-import de.mwvb.stechuhr.service.export.ExportManager;
-import de.mwvb.stechuhr.service.export.HTMLExport;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -27,22 +22,16 @@ public class StechuhrApplication extends Application {
 		launch(StechuhrApplication.class, new String[] {});
 	}
 
-	// TODO Wenn in dieser Methode ein Fehler auftritt, muss ein Fehlerdialog angezeigt werden!
 	@Override
 	public void start(Stage stage) {
-		StechuhrDAO.init();
-		config = new StechuhrConfig();
-		StechuhrWindow.setModel(new StechuhrDAO().load(StechuhrModel.today()));
-		initExporteure();
 		new StechuhrWindow().show(stage, false, null);
-	}
-	
-	protected void initExporteure() {
-		ExportManager.getInstance().register(new CSVExport());
-		ExportManager.getInstance().register(new HTMLExport());
 	}
 	
 	public static StechuhrConfig getConfig() {
 		return config;
+	}
+
+	public static void setConfig(StechuhrConfig pConfig) {
+		config = pConfig;
 	}
 }

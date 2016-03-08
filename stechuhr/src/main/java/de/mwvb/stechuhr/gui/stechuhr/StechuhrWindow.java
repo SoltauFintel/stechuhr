@@ -3,9 +3,14 @@ package de.mwvb.stechuhr.gui.stechuhr;
 import java.io.InputStream;
 
 import de.mwvb.stechuhr.StechuhrApplication;
+import de.mwvb.stechuhr.dao.StechuhrDAO;
 import de.mwvb.stechuhr.entity.StechuhrModel;
 import de.mwvb.stechuhr.gui.Window;
+import de.mwvb.stechuhr.service.StechuhrConfig;
 import de.mwvb.stechuhr.service.VortagCheck;
+import de.mwvb.stechuhr.service.export.CSVExport;
+import de.mwvb.stechuhr.service.export.ExportManager;
+import de.mwvb.stechuhr.service.export.HTMLExport;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.input.KeyCode;
@@ -15,6 +20,24 @@ import javafx.stage.Stage;
 public class StechuhrWindow extends Window<StechuhrWindowController> {
 	private static StechuhrModel model;
 	
+	public StechuhrWindow() {
+		try {
+			// Programminitialisierung
+			StechuhrDAO.init();
+			StechuhrApplication.setConfig(new StechuhrConfig());
+			StechuhrWindow.setModel(new StechuhrDAO().load(StechuhrModel.today()));
+			initExporteure();
+		} catch (Exception e) {
+			errorAlert(e);
+			System.exit(-1); // um Folge-Fehlerdialoge zu unterbinden
+		}
+	}
+	
+	protected void initExporteure() {
+		ExportManager.getInstance().register(new CSVExport());
+		ExportManager.getInstance().register(new HTMLExport());
+	}
+
 	public static void setModel(StechuhrModel pModel) {
 		model = pModel;
 	}
