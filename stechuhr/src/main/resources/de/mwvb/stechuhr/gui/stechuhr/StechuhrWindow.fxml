@@ -63,19 +63,19 @@
 					</VBox>
 					<VBox spacing="12" alignment="BOTTOM_LEFT">
 						<padding><Insets top="12" bottom="12"/></padding>
-						<Button minWidth="100" fx:id="quick1"/>
-						<Button minWidth="100" fx:id="quick2"/>
-						<Button minWidth="100" fx:id="quick3"/>
-						<Button minWidth="100" fx:id="quick4"/>
-						<Button minWidth="100" fx:id="quick5"/>
+						<Button minWidth="100" maxWidth="100" fx:id="quick1"/>
+						<Button minWidth="100" maxWidth="100" fx:id="quick2"/>
+						<Button minWidth="100" maxWidth="100" fx:id="quick3"/>
+						<Button minWidth="100" maxWidth="100" fx:id="quick4"/>
+						<Button minWidth="100" maxWidth="100" fx:id="quick5"/>
 					</VBox>
 					<VBox spacing="12" alignment="BOTTOM_LEFT">
 						<padding><Insets top="12" bottom="12"/></padding>
-						<Button minWidth="100" fx:id="quick6"/>
-						<Button minWidth="100" fx:id="quick7"/>
-						<Button minWidth="100" fx:id="quick8"/>
-						<Button minWidth="100" fx:id="quick9"/>
-						<Button minWidth="100" fx:id="quick10"/>
+						<Button minWidth="100" maxWidth="100" fx:id="quick6"/>
+						<Button minWidth="100" maxWidth="100" fx:id="quick7"/>
+						<Button minWidth="100" maxWidth="100" fx:id="quick8"/>
+						<Button minWidth="100" maxWidth="100" fx:id="quick9"/>
+						<Button minWidth="100" maxWidth="100" fx:id="quick10"/>
 					</VBox>
 				</HBox>
 			</center>
