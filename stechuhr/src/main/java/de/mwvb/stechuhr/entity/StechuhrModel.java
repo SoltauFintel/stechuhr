@@ -3,6 +3,7 @@ package de.mwvb.stechuhr.entity;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -171,5 +172,38 @@ public class StechuhrModel { // TODO Fachlogik herauslösen!
 	
 	public Leistungen getLeistungen() {
 		return leistungen;
+	}
+
+	public Dauer getDauerOhnePausen(LocalTime now) {
+		int minuten = 0;
+		int n = stundenliste.size() - 1;
+		for (int i = 0; i < n; i++) {
+			if (stundenliste.get(i).isNotPause()) {
+				LocalTime bis = stundenliste.get(i + 1).getUhrzeit();
+				if (now.isBefore(bis)) {
+					minuten += Duration.between(stundenliste.get(i).getUhrzeit(), now).toMinutes();
+					return new Dauer(minuten);
+				}
+				minuten += Duration.between(stundenliste.get(i).getUhrzeit(), bis).toMinutes();
+			}
+		}
+		if (stundenliste.get(n).isNotPause()) {
+			Duration d = Duration.between(stundenliste.get(n).getUhrzeit(), now);
+			minuten += d.toMinutes();
+		}
+		return new Dauer(minuten);
+	}
+
+	public LocalTime getFeierabendUhrzeit() {
+		if (stundenliste.isEmpty()) {
+			return null;
+		}
+		int pausenzeit = 0;
+		for (int i = 0; i < stundenliste.size() - 1; i++) {
+			if (stundenliste.get(i).isPause()) {
+				pausenzeit += Duration.between(stundenliste.get(i).getUhrzeit(), stundenliste.get(i + 1).getUhrzeit()).toMinutes();
+			}
+		}
+		return stundenliste.get(0).getUhrzeit().plus(8, ChronoUnit.HOURS).plus(pausenzeit, ChronoUnit.MINUTES); 
 	}
 }

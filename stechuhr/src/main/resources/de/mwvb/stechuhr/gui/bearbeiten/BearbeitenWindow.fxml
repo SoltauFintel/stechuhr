@@ -48,6 +48,7 @@
 			<HBox spacing="12">
 				<Button text="_Speichern" minWidth="100" fx:id="save" onAction="#onSave"/>
 				<Button text="Löschen" minWidth="100" fx:id="delete" onAction="#onDelete"/>
+				<Label fx:id="info"/>
 				<Pane HBox.hgrow="ALWAYS"/>
 				<Button onAction="#onClose" text="Schließen" minWidth="100" fx:id="close"/>
 			</HBox>

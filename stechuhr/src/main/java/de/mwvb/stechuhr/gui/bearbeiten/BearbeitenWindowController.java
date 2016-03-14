@@ -19,6 +19,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -49,6 +50,8 @@ public class BearbeitenWindowController {
 	private Button close;
 	@FXML
 	private TableView<Stunden> grid;
+	@FXML
+	private Label info;
 	
 	@FXML
 	protected void initialize() {
@@ -58,6 +61,7 @@ public class BearbeitenWindowController {
 			save.setDefaultButton(true);
 			addSaveButtonListeners();
 			addDeleteKeyListener();
+			updateInfo();
 			Platform.runLater(() -> leistung.requestFocus()); // Annahme: Man möchte i.d.R. eine Leistung eingeben
 		} catch (Exception e) {
 			Window.errorAlert(e);
@@ -245,6 +249,7 @@ public class BearbeitenWindowController {
 		
 		grid.getColumns().get(0).setVisible(false);  // Workaround fï¿½r Refresh der Zeile
 		grid.getColumns().get(0).setVisible(true);
+		updateInfo();
 		
 		new StechuhrDAO().save(StechuhrWindow.getModel());
 	}
@@ -257,6 +262,16 @@ public class BearbeitenWindowController {
 		} catch (Exception e) {
 			Window.errorAlert(e);
 		}
+	}
+
+	private void updateInfo() {
+		String a = "Summe: " + StechuhrWindow.getModel().getDauerOhnePausen(LocalTime.now());
+		String b = "";
+		LocalTime fa = StechuhrWindow.getModel().getFeierabendUhrzeit();
+		if (fa != null) {
+			b = " / Feierabend um " + fa.toString() + " Uhr";
+		}
+		info.setText(a + b);
 	}
 	
 	private Stage getStage() {

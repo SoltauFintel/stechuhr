@@ -53,6 +53,14 @@ public class Stunden {
 		this.ticket = ticket;
 	}
 
+	public boolean isPause() {
+		return PAUSE.equals(ticket);
+	}
+
+	public boolean isNotPause() {
+		return !PAUSE.equals(ticket);
+	}
+	
 	public String getLeistung() {
 		return leistung;
 	}
