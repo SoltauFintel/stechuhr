@@ -177,6 +177,9 @@ public class StechuhrModel { // TODO Fachlogik herauslösen!
 	public Dauer getDauerOhnePausen(LocalTime now) {
 		int minuten = 0;
 		int n = stundenliste.size() - 1;
+		if (n < 0) {
+			return null;
+		}
 		for (int i = 0; i < n; i++) {
 			if (stundenliste.get(i).isNotPause()) {
 				LocalTime bis = stundenliste.get(i + 1).getUhrzeit();

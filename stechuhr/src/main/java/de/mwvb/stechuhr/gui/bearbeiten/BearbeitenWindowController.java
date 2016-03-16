@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import de.mwvb.stechuhr.StechuhrApplication;
 import de.mwvb.stechuhr.dao.StechuhrDAO;
+import de.mwvb.stechuhr.entity.Dauer;
 import de.mwvb.stechuhr.entity.Stunden;
 import de.mwvb.stechuhr.gui.StageAdapter;
 import de.mwvb.stechuhr.gui.Window;
@@ -265,7 +266,12 @@ public class BearbeitenWindowController {
 	}
 
 	private void updateInfo() {
-		String a = "Summe: " + StechuhrWindow.getModel().getDauerOhnePausen(LocalTime.now());
+		Dauer dauerOhnePausen = StechuhrWindow.getModel().getDauerOhnePausen(LocalTime.now());
+		if (dauerOhnePausen == null) {
+			info.setText("");
+			return;
+		}
+		String a = "Summe: " + dauerOhnePausen;
 		String b = "";
 		LocalTime fa = StechuhrWindow.getModel().getFeierabendUhrzeit();
 		if (fa != null) {

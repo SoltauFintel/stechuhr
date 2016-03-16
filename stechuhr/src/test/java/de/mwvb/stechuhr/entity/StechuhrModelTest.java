@@ -119,4 +119,16 @@ public class StechuhrModelTest extends AbstractStundenTest {
 		// Verify
 		Assert.assertEquals("16:15", fa.toString());
 	}
+
+	@Test
+	public void testGetDauerOhnePausen_ohneDaten() {
+		// Prepare
+		model = new StechuhrModel(LocalDate.of(2016, 3, 14));
+		
+		// Test
+		Dauer dauer = model.getDauerOhnePausen(LocalTime.of(15, 0));
+		
+		// Verify
+		Assert.assertNull(dauer);
+	}
 }
