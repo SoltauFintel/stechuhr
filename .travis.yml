@@ -6,6 +6,7 @@ jdk:
 env:  
   global:  
   - TERM=dumb
+  - LANG=de.windows-1252
 
 before_install:
   - sudo apt-get update
