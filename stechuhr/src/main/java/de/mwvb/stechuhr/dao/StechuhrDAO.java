@@ -38,7 +38,7 @@ public class StechuhrDAO { // TODO DAO zerlegen: Stechuhr-File, Exporteur, Confi
 		StechuhrModel model = new StechuhrModel(tag);
 		File file = getStechuhrModelFile(tag);
 		if (file.exists()) {
-			XMLDocument dok = XMLDocument.load(file.getAbsolutePath());
+			XMLDocument dok = StechuhrUtils.loadXMLFile(file.getAbsolutePath());
 			for (XMLElement e : dok.getChildren()) {
 				Stunden s = new Stunden();
 				s.setTag(tag);

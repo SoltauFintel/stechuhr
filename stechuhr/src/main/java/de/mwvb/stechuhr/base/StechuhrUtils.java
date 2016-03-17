@@ -1,15 +1,22 @@
 package de.mwvb.stechuhr.base;
 
 import java.io.File;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
-public class StechuhrUtils {
+import de.mwvb.base.xml.XMLDocument;
+
+public final class StechuhrUtils {
 
 	private StechuhrUtils() {
 	}
@@ -91,5 +98,18 @@ public class StechuhrUtils {
 			}
 		}
 		return zahl.length() > 0;
+	}
+	
+	/**
+	 * Encoding-sicherer Workaround für XMLDocument.load(dateiname)
+	 */
+	public static XMLDocument loadXMLFile(String dateiname) {
+		try {
+			Path file = Paths.get(dateiname);
+			byte[] bytes = Files.readAllBytes(file);
+			return new XMLDocument(new String(bytes, Charset.forName("windows-1252")));
+		} catch (IOException e) {
+			throw new RuntimeException("Fehler beim Laden der Datei " + dateiname, e);
+		}
 	}
 }

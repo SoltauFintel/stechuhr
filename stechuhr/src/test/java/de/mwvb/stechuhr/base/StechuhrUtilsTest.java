@@ -94,8 +94,8 @@ public class StechuhrUtilsTest {
 		e.setValue("id", "Ä");
 		dok.saveFile(dn);
 		
-		XMLDocument loaded = XMLDocument.load(dn);
-		Assert.assertEquals(text, loaded.getChildren().get(0).getText());
-		Assert.assertEquals("Ä", loaded.getChildren().get(0).getValue("id"));
+		XMLDocument loaded = StechuhrUtils.loadXMLFile(dn);
+		Assert.assertEquals("Check 1 failed", text, loaded.getChildren().get(0).getText());
+		Assert.assertEquals("Check 2 failed", "Ä", loaded.getChildren().get(0).getValue("id"));
 	}
 }

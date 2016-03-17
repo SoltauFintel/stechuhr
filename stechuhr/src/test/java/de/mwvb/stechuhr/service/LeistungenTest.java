@@ -212,12 +212,12 @@ public class LeistungenTest {
 		String leistung = "groﬂe BÈspr‰chung";
 		Leistungen leistungen = Leistungen.open("TEST");
 		leistungen.add("Spaﬂ", leistung);
-		Assert.assertEquals(leistung, leistungen.getFirst());
-		Assert.assertEquals(leistung, leistungen.getLeistungForTicket("Spaﬂ"));
+		Assert.assertEquals("Check 1 failed", leistung, leistungen.getFirst());
+		Assert.assertEquals("Check 2 failed", leistung, leistungen.getLeistungForTicket("Spaﬂ"));
 		
 		Leistungen geladen = Leistungen.open("TEST");
-		Assert.assertEquals(leistung, geladen.getFirst());
-		Assert.assertEquals(leistung, geladen.getLeistungForTicket("Spaﬂ"));
+		Assert.assertEquals("Check 3 failed", leistung, geladen.getFirst());
+		Assert.assertEquals("Check 4 failed", leistung, geladen.getLeistungForTicket("Spaﬂ"));
 	}
 
 	@Test
