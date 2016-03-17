@@ -57,7 +57,7 @@ public class LeistungenDAO {
 			
 			p = p.next();
 		}
-		dok.saveFile(dateiname);
+		StechuhrUtils.saveXMLFile(dateiname, dok);
 	}
 	
 	public void delete() {

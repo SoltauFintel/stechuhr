@@ -68,7 +68,7 @@ public class StechuhrDAO { // TODO DAO zerlegen: Stechuhr-File, Exporteur, Confi
 			e.setValue("leistung", s.getLeistung());
 			e.setMultiLineValue("notizPrivat", s.getNotizPrivat());
 		}
-		dok.saveFile(file.getAbsolutePath());
+		StechuhrUtils.saveXMLFile(file.getAbsolutePath(), dok);
 	}
 	
 	public void delete(StechuhrModel model) {

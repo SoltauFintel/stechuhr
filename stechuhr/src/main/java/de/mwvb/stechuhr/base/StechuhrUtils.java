@@ -1,7 +1,9 @@
 package de.mwvb.stechuhr.base;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.nio.charset.Charset;
@@ -110,6 +112,16 @@ public final class StechuhrUtils {
 			return new XMLDocument(new String(bytes, Charset.forName("windows-1252")));
 		} catch (IOException e) {
 			throw new RuntimeException("Fehler beim Laden der Datei " + dateiname, e);
+		}
+	}
+	
+	public static void saveXMLFile(String dateiname, XMLDocument doc) {
+		try {
+			OutputStreamWriter w = new OutputStreamWriter(new FileOutputStream(new File(dateiname)), Charset.forName("windows-1252"));
+			w.write(doc.getXML());
+			w.close();
+		} catch (IOException e) {
+			throw new RuntimeException("Fehler beim Speichern der Datei " + dateiname, e);
 		}
 	}
 }
