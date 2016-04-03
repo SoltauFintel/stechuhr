@@ -144,7 +144,7 @@ public class StechuhrWindowController {
 		List<Stunden> list = StechuhrWindow.getModel().getStundenliste();
 		if (!list.isEmpty()) {
 			Stunden s = list.get(list.size() - 1);
-			ticket.getEditor().setText(s.getTicket());
+			ticket.setValue(s.getTicket());
 			updateInfo();
 		}
 	}
@@ -152,7 +152,7 @@ public class StechuhrWindowController {
 	@FXML
 	public void onPlay() {
 		try {
-			String nr = StechuhrValidator.validateTicket(ticket.getEditor().getText());
+			String nr = StechuhrValidator.validateTicket(ticket.getValue());
 			if (nr != null) {
 				updateOldTickets(nr);
 				newEntry(nr);
@@ -215,7 +215,7 @@ public class StechuhrWindowController {
 		StechuhrWindow.getModel().getStundenliste().add(stunden);
 		updateInfo();
 		new StechuhrDAO().save(StechuhrWindow.getModel());
-		ticket.getEditor().setText(nr);
+		ticket.setValue(nr); // NICHT ticket.getEditor().setText() verwenden!
 	}
 	
 	@FXML
