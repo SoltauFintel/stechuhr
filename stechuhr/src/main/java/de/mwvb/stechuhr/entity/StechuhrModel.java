@@ -98,7 +98,7 @@ public class StechuhrModel { // TODO Fachlogik herauslösen!
 			}
 
 			Exportstunden x = new Exportstunden();
-			x.setTag(tag);
+			x.setTagDate(tag);
 			x.setLeistung(a.getLeistung());
 			x.setTicket(a.getTicket());
 			x.setStunden((int) s);

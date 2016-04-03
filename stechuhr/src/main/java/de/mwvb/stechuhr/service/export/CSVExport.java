@@ -23,7 +23,7 @@ public class CSVExport extends AbstractExport {
 	}
 
 	public static String toFileString(Exportstunden x) {
-		return x.getTagString() + " ; " + x.getSSMM() + " ; " + x.getDezimaldauer() + " ; " + x.getTicket() + " ; " + x.getLeistung();
+		return x.getTag() + " ; " + x.getSSMM() + " ; " + x.getDezimaldauer() + " ; " + x.getTicket() + " ; " + x.getLeistung();
 	}
 	
 	@Override

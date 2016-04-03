@@ -9,8 +9,6 @@ import org.junit.Test;
 
 import de.mwvb.stechuhr.AbstractStundenTest;
 import de.mwvb.stechuhr.entity.Stunden;
-import de.mwvb.stechuhr.service.export.Exportstunden;
-import de.mwvb.stechuhr.service.export.HTMLExport;
 
 /**
  * Hilfsklasse, die HTMLExport aufruft, um immer die gleiche HTML-Datei zu erzeugen
@@ -23,7 +21,7 @@ public class HTMLExportTest extends AbstractStundenTest {
 		// Prepare
 		List<Exportstunden> exportstunden = new ArrayList<>();
 		Exportstunden s1 = new Exportstunden();
-		s1.setTag(datum);
+		s1.setTagDate(datum);
 		s1.setStunden(2);
 		s1.setMinuten(15);
 		s1.setTicket("4711");
@@ -31,14 +29,14 @@ public class HTMLExportTest extends AbstractStundenTest {
 		exportstunden.add(s1);
 
 		s1 = new Exportstunden();
-		s1.setTag(datum);
+		s1.setTagDate(datum);
 		s1.setStunden(0);
 		s1.setMinuten(30);
 		s1.setTicket(Stunden.PAUSE);
 		exportstunden.add(s1);
 
 		s1 = new Exportstunden();
-		s1.setTag(datum);
+		s1.setTagDate(datum);
 		s1.setStunden(2);
 		s1.setMinuten(0);
 		s1.setTicket("Service");

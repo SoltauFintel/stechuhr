@@ -38,9 +38,21 @@ public final class StechuhrUtils {
 	 * @return datum als String im Format TT.MM.JJJJ
 	 */
 	public static String formatDate(LocalDate datum) {
-		return datum.format(DateTimeFormatter.ofPattern("dd.MM.yyyy", Locale.GERMAN));
+		return datum.format(getDatePattern());
 	}
 
+	/**
+	 * @param datum String im Format TT.MM.JJJJ
+	 * @return LocalDate
+	 */
+	public static LocalDate toDate(String datum) {
+		return LocalDate.parse(datum, getDatePattern());
+	}
+
+	private static DateTimeFormatter getDatePattern() {
+		return DateTimeFormatter.ofPattern("dd.MM.yyyy", Locale.GERMAN);
+	}
+	
 	/**
 	 * @param date darf nicht null sein
 	 * @return Wochentag TT.MM.JJJJ

@@ -19,10 +19,10 @@ public class HTMLExport extends AbstractExport {
 		if (exportstunden.isEmpty()) return;
 		sb = new StringBuilder();
 		sb.append("<!doctype html><html lang=\"de\"><head><meta charset=\"windows-1252\"><title>");
-		sb.append(exportstunden.get(0).getTagString());
+		sb.append(exportstunden.get(0).getTag());
 		sb.append(" - Stunden</title><style>* { font-family: Verdana; } .w { font-size: 8pt; }</style></head>\n<body>");
 		sb.append("<h2>Stunden vom ");
-		sb.append(StechuhrUtils.formatWTDate(exportstunden.get(0).getTag()));
+		sb.append(StechuhrUtils.formatWTDate(exportstunden.get(0).getTagDate()));
 		sb.append("</h2>\n<table border='1' cellpadding='7' cellspacing='0'>\n<tr><th>Dauer</th><th>Ticket</th><th>Leistung</th></tr>");
 		Stundenrundung rundung = new Stundenrundung(); // Diese Klasse kann Stunden summieren.
 		for (Exportstunden x : exportstunden) {
