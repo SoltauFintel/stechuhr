@@ -5,7 +5,7 @@
 
 Stechuhr zur einfachen Erfassung von Arbeitsstunden des aktuellen Tages
 
-:arrow_down: ![Download stechuhr-0.3.1.jar](https://github.com/SoltauFintel/stechuhr/releases/download/0.3.1/stechuhr-0.3.1.jar)
+:arrow_down: ![Download stechuhr-0.4.0.jar](https://github.com/SoltauFintel/stechuhr/releases/download/0.4.0/stechuhr-0.4.0.jar)
 
 ## Beschreibung
 
@@ -15,7 +15,8 @@ ist wie ein Kassettenrekorder aufgebaut: **Play / Pause / Stop**.
 
 Bei jeder Eingabe des Tickets klickt man Play an. Dann läuft die Zeit für dieses Arbeitsthema.
 Zu Beginn der Mittagspause klickt man auf Pause. Damit unterbricht man die Arbeit am Arbeitsthema.
-Nach der Pause wählt man die vorige Ticketnummer aus der Combobox und klickt erneut auf Play.
+Nach der Pause klickt man wieder auf Play und setzt so das vorige Thema fort. Alternativ wählt man
+zuvor ein Ticket aus der Combobox.
 Zum Feierabend hin klickt man einfach auf Stop. Damit endet das aktuelle Arbeitsthema für diesen Tag.
 Die Stunden werden für den Export vorbereitet, optimiert, gerundet und als Text- und HTML-Datei ausgegeben.
 Die Stechuhr wird dann beendet.
