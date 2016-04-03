@@ -43,6 +43,20 @@ public class StechuhrModel { // TODO Fachlogik herauslösen!
 	public List<Stunden> getStundenliste() {
 		return stundenliste;
 	}
+	
+	/**
+	 * @return aktuelle Ticketnummer oder null wenn Stundenliste leer ist
+	 */
+	public String getCurrentTicket() {
+		return stundenliste.isEmpty() ? null : stundenliste.get(stundenliste.size() - 1).getTicket();
+	}
+
+	/**
+	 * @return vorige Ticketnummer oder null wenn Stundenliste höchstens einen Eintrag hat
+	 */
+	public String getPreviousTicket() {
+		return stundenliste.size() <= 1 ? null : stundenliste.get(stundenliste.size() - 2).getTicket();
+	}
 
 	public void calculateDauer() {
 		stundenliste.sort((a, b) -> a.getUhrzeit().compareTo(b.getUhrzeit()));

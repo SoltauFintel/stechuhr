@@ -141,18 +141,25 @@ public class StechuhrWindowController {
 	}
 
 	private void showCurrentTicket() {
-		List<Stunden> list = StechuhrWindow.getModel().getStundenliste();
-		if (!list.isEmpty()) {
-			Stunden s = list.get(list.size() - 1);
-			ticket.setValue(s.getTicket());
+		String currentTicket = StechuhrWindow.getModel().getCurrentTicket();
+		if (currentTicket != null) {
+			ticket.setValue(currentTicket);
 			updateInfo();
 		}
 	}
-
+	
+	// Achtung: Diese Methode hat Aufrufer in dieser Klasse!
 	@FXML
 	public void onPlay() {
 		try {
-			String nr = StechuhrValidator.validateTicket(ticket.getValue());
+			String nr;
+			if (Stunden.PAUSE.equals(StechuhrWindow.getModel().getCurrentTicket()) && Stunden.PAUSE.equals(ticket.getValue())) {
+				// Sondermodus: Wenn man in PAUSE ist und dann PLAY drückt, wird das vorige Ticket reaktiviert.
+				// Es ist übrigens nun bewusst so programmiert, dass man bei aktiver PAUSE nicht ein 2. Mal die PAUSE mit PLAY starten kann.
+				nr = StechuhrWindow.getModel().getPreviousTicket();
+			} else {
+				nr = StechuhrValidator.validateTicket(ticket.getValue());
+			}
 			if (nr != null) {
 				updateOldTickets(nr);
 				newEntry(nr);
