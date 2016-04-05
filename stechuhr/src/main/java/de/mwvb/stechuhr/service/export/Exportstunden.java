@@ -8,7 +8,6 @@ import de.mwvb.stechuhr.base.StechuhrUtils;
  * Fertiger Stundendatensatz für Export
  */
 public class Exportstunden extends ExportstundenBase {
-	private static final long serialVersionUID = 2409526743014672806L;
 
 	public LocalDate getTagDate() {
 		return StechuhrUtils.toDate(getTag());

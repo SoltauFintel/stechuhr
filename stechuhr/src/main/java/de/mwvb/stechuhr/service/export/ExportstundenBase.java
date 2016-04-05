@@ -6,7 +6,6 @@ import java.io.Serializable;
  * Gemeinsame Stundenklasse mit Server. Diese Klasse soll von der Stechuhr nicht direkt verwendet werden, sondern Exportstunden.
  */
 public class ExportstundenBase implements Serializable {
-	private static final long serialVersionUID = 4210753242372538499L;
 	private String tag;
 	protected int stunden;
 	protected int minuten;
