@@ -158,7 +158,8 @@ public class StechuhrWindowController {
 				// Es ist übrigens nun bewusst so programmiert, dass man bei aktiver PAUSE nicht ein 2. Mal die PAUSE mit PLAY starten kann.
 				nr = StechuhrWindow.getModel().getPreviousTicket();
 			} else {
-				nr = StechuhrValidator.validateTicket(ticket.getValue());
+				nr = StechuhrValidator.validateTicket(ticket.getEditor().getText()); /* Nicht ticket.getValue(), da sonst Mausklick
+				auf Play Button die von Hand eingegebene Ticketnr. nicht übernehmen würde! */
 			}
 			if (nr != null) {
 				updateOldTickets(nr);
