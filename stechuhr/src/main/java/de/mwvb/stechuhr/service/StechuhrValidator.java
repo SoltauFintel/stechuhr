@@ -80,14 +80,13 @@ public class StechuhrValidator {
 	 * @return Ticket wenn ok, sonst null. Es wurde in dem Fall eine entsprechende Meldung ausgegeben.
 	 */
 	public static String validateTicket(String ticket) {
-		ticket = ticket.trim();
-		if (ticket.isEmpty()) {
+		if (ticket == null || ticket.trim().isEmpty()) {
 			Window.alert("Bitte Ticketnummer eingeben!");
 			return null;
 		} else if (ticket.contains(";")) {
 			Window.alert("Das Zeichen \";\" ist in der Ticketnummer nicht erlaubt!");
 			return null;
 		}
-		return ticket;
+		return ticket.trim();
 	}
 }
