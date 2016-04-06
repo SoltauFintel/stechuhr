@@ -12,6 +12,18 @@ public class ExportstundenBase implements Serializable {
 	private String ticket;
 	private String leistung;
 
+	public ExportstundenBase() {
+	}
+
+	/** Kopierkonstruktor */
+	public ExportstundenBase(ExportstundenBase s) {
+		setLeistung(s.getLeistung());
+		setMinuten(s.getMinuten());
+		setStunden(s.getStunden());
+		setTag(s.getTag());
+		setTicket(s.getTicket());
+	}
+
 	public String getTag() {
 		return tag;
 	}
