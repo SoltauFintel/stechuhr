@@ -248,7 +248,7 @@ public class BearbeitenWindowController {
 	private void updateGrid_andSave() {
 		StechuhrWindow.getModel().calculateDauer();
 		
-		grid.getColumns().get(0).setVisible(false);  // Workaround fï¿½r Refresh der Zeile
+		grid.getColumns().get(0).setVisible(false);  // Workaround für Refresh der Zeile
 		grid.getColumns().get(0).setVisible(true);
 		updateInfo();
 		
