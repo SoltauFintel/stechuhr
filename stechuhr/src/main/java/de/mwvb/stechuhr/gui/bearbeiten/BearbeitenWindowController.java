@@ -12,7 +12,6 @@ import de.mwvb.stechuhr.gui.Window;
 import de.mwvb.stechuhr.gui.stechuhr.StechuhrWindow;
 import de.mwvb.stechuhr.service.StechuhrValidator;
 import javafx.application.Platform;
-import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -44,10 +43,6 @@ public class BearbeitenWindowController {
 	@FXML
 	private TextArea notizPrivat;
 	@FXML
-	private Button save;
-	@FXML
-	private Button delete;
-	@FXML
 	private Button close;
 	@FXML
 	private TableView<Stunden> grid;
@@ -59,7 +54,6 @@ public class BearbeitenWindowController {
 		try {
 			Window.disableTabKey(notizPrivat);
 			fillLeistungCombobox();
-			save.setDefaultButton(true);
 			addSaveButtonListeners();
 			addDeleteKeyListener();
 			updateInfo();
@@ -79,19 +73,7 @@ public class BearbeitenWindowController {
 	private void addSaveButtonListeners() {
 		grid.getSelectionModel().selectedItemProperty().addListener((a, b, sel) -> {
 			display((Stunden) sel);
-			save.setDisable(true);
 		});
-		save.setDisable(true);
-		ChangeListener<? super String> listener = (observable, oldValue, newValue) -> {
-			if (!grid.getSelectionModel().getSelectedIndices().isEmpty()) {
-				save.setDisable(false);
-			}
-		};
-		this.uhrzeit.textProperty().addListener(listener);
-		this.ticket.textProperty().addListener(listener);
-		this.leistung.getEditor().textProperty().addListener(listener); // Texteingabe
-		this.leistung.valueProperty().addListener(listener); // Auswahl in Liste
-		this.notizPrivat.textProperty().addListener(listener);
 	}
 
 	private void addDeleteKeyListener() {
@@ -119,8 +101,6 @@ public class BearbeitenWindowController {
 			if (index >= 0) {
 				grid.getSelectionModel().select(index);
 				Platform.runLater(() -> grid.scrollTo(index));
-			} else {
-				delete.setDisable(true);
 			}
 		} catch (Exception e) {
 			Window.errorAlert(e);
@@ -172,7 +152,6 @@ public class BearbeitenWindowController {
 			uhrzeit.setText(eingegebeneUhrzeit);
 			ticket.setText(nr);
 			leistung.getEditor().setText(stunden.getLeistung());
-			save.setDisable(true);
 		} catch (Exception e) {
 			Window.errorAlert(e);
 		}
@@ -232,8 +211,6 @@ public class BearbeitenWindowController {
 			ticket.setText("");
 			leistung.getEditor().setText("");
 			notizPrivat.setText("");
-			save.setDisable(true);
-			delete.setDisable(true);
 		} else {
 			int neuerIndex = grid.getSelectionModel().getSelectedIndex() + 1;
 			if (neuerIndex >= grid.getItems().size()) {
