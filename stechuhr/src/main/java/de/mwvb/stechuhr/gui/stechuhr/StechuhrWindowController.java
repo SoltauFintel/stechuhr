@@ -160,6 +160,10 @@ public class StechuhrWindowController {
 			} else {
 				nr = StechuhrValidator.validateTicket(ticket.getEditor().getText()); /* Nicht ticket.getValue(), da sonst Mausklick
 				auf Play Button die von Hand eingegebene Ticketnr. nicht übernehmen würde! */
+				
+                if (isNumeric(nr)) {
+                    nr = "XDEV-" + nr;
+                }
 			}
 			if (nr != null) {
 				updateOldTickets(nr);
@@ -169,6 +173,19 @@ public class StechuhrWindowController {
 			Window.errorAlert(e);
 		}
 	}
+	
+    private boolean isNumeric(String nr) {
+        if (nr == null) {
+            return false;
+        }
+        for (int i = 0; i < nr.length(); i++) {
+            char c = nr.charAt(i);
+            if (!(c >= '0' && c <= '9')) {
+                return false;
+            }
+        }
+        return !nr.isEmpty();
+    }
 
 	@FXML
 	public void onPause() {
