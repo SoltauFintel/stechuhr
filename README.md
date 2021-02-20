@@ -47,6 +47,6 @@ lokale Festplatte (Verzeichnis *user*/stechuhr) geschrieben.
 Ant-Datei build.xml (Taget build) ausführen. Die ausführbare Anwendung liegt dann im Ordner stechuhr/build/libs
 und kann im Windows-Explorer durch Doppelklicken auf stechuhr-x.x.jar gestartet werden.
 
-Tooling: Java 8 >=u40, GUI mit JavaFX, Build mit Gradle 2.10, Ant, Travis CI und codecov, IDE: Eclipse Mars.2, SCM+Bugtracker: github
+Tooling: Java 8 >=u40, GUI mit JavaFX, Build mit Gradle 3.5, Ant, Travis CI und codecov, IDE: Eclipse 2019.06, SCM+Bugtracker: github
 
 [Test Code Coverage](https://codecov.io/github/SoltauFintel/stechuhr)
