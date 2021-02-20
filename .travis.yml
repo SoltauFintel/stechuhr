@@ -7,6 +7,6 @@ cache:
 
 script:
   - cd stechuhr
-  - gradlew check jacocoTestReport fatJar
+  - ./gradlew check jacocoTestReport fatJar
 
 after_success: codecov
