@@ -161,7 +161,7 @@ public class BearbeitenWindowController {
 	private void save(final Stunden stunden, final String eingegebeneUhrzeit, final String nr) {
 		stunden.setUhrzeit(LocalTime.parse(eingegebeneUhrzeit));
 		stunden.setTicket(nr);
-		String eingegebeneLeistung = leistung.getEditor().getText().trim();
+		String eingegebeneLeistung = leistung.getEditor().getText().trim().replace(";", ",");
 		stunden.setLeistung(eingegebeneLeistung);
 		stunden.setNotizPrivat(notizPrivat.getText());
 
