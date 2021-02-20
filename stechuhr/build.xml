@@ -4,14 +4,14 @@
 	<target name="build">
 		<gradle task="check jacocoTestReport fatJar"/>
 	</target>
+    <target name="fatJar">
+        <gradle task="fatJar"/>
+    </target>
 	<target name="eclipse">
 		<gradle task="eclipse"/>
 	</target>
 	<target name="clean">
 		<gradle task="clean"/>
-	</target>
-	<target name="compile">
-		<gradle task="compileJava compileTestJava"/>
 	</target>
 	<target name="test">
 		<gradle task="check jacocoTestReport"/>
@@ -21,7 +21,7 @@
 		<attribute name="task"/>
 		<sequential>
 	        <exec executable="cmd" failonerror="true">
-	        	<arg line="/c gradlew.bat @{task}"/>
+	        	<arg line="/c gradlew.bat -g C:\jarcache\gradle @{task}"/>
 	        </exec>
 		</sequential>
 	</macrodef>
