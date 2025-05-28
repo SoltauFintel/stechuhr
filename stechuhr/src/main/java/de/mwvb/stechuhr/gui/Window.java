@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.Charset;
 
-import com.sun.javafx.scene.control.skin.TextAreaSkin;
-
 import de.mwvb.stechuhr.StechuhrApplication;
 import de.mwvb.stechuhr.base.StechuhrUtils;
 import javafx.fxml.FXMLLoader;
@@ -97,12 +95,13 @@ public abstract class Window<CTR> {
 	public static void disableTabKey(final TextArea textArea) {
 		textArea.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
 			if (event.getCode().equals(KeyCode.TAB)) {
-				TextAreaSkin skin = (TextAreaSkin) textArea.getSkin();
-				if (event.isShiftDown()) {
-					skin.getBehavior().traversePrevious();
-				} else {
-					skin.getBehavior().traverseNext();
-				}
+System.out.println("textArea.getSkin(): " + textArea.getSkin().getClass());
+//				TextAreaSkin skin = (TextAreaSkin) textArea.getSkin();
+//				if (event.isShiftDown()) {
+//					skin.getBehavior().traversePrevious();
+//				} else {
+//					skin.getBehavior().traverseNext();
+//				}
 				event.consume();
 			}
 		});

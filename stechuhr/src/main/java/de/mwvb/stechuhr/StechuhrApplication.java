@@ -8,17 +8,18 @@ import javafx.stage.Stage;
 /**
  * Stechuhr
  * 
- * <p>Startklasse, Java 8
+ * <p>Startklasse, Java 17
  * 
  * @author Marcus Warm
  * @since 21.02.2016
  */
 public class StechuhrApplication extends Application {
 	public static final String APP_NAME = "Stechuhr";
-	public static final String APP_VERSION = "1.0.0";
+	public static final String APP_VERSION = "2.0.0";
 	private static StechuhrConfig config;
 	
 	public static void main(String[] args) {
+	    System.out.println(APP_NAME + " v" + APP_VERSION);
 		launch(StechuhrApplication.class, new String[] {});
 	}
 

@@ -1,30 +1,45 @@
-apply plugin: 'java'
-apply plugin: 'eclipse'
-//apply plugin: 'pmd'
-//apply plugin: 'findbugs'
+plugins {
+    id 'java'
+    id 'org.openjfx.javafxplugin' version '0.1.0'
+    id 'application'
+    id 'eclipse'
+}
 
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+        vendor = JvmVendorSpec.ADOPTIUM
+    }
+}
+
+dependencies {
+    implementation 'de.mwvb:xmldocument:0.1.0'
+
+    testImplementation 'junit:junit:4.12'
+}
+
+javafx {
+    version = '17.0.10'
+    modules = [ 'javafx.controls', 'javafx.fxml' ]
+}
 
 project.description = 'Stechuhr - einfache Stundenerfassung'
 group = 'de.mwvb.stechuhr'
-version = '0.4.1'
-
-dependencies {
-    compile 'de.mwvb:xmldocument:0.1.0'
-
-    testCompile 'junit:junit:4.12'
-}
+version = '2.0.0'
 
 repositories {
     mavenCentral()
 }
 
 compileJava {
-    options.encoding = "windows-1252"
+    options.encoding = 'windows-1252'
 }
 compileTestJava {
-    options.encoding = "windows-1252"
+    options.encoding = 'windows-1252'
+}
+
+application {
+    mainClass = 'de.mwvb.stechuhr.StechuhrApplication'
 }
 
 // Mit diesem task wird die Anwendung gebaut. Man erhaelt dann eine doppelklickbare StandAlone-JAR.
@@ -32,45 +47,8 @@ task fatJar(type: Jar) {
     manifest {
         attributes 'Main-Class': 'de.mwvb.stechuhr.StechuhrApplication'
     }
-    baseName = project.name
-    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    archiveBaseName.set(project.name)
+    from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
     with jar
-}
-
-apply plugin: 'jacoco'
-
-jacoco {
-    toolVersion = '0.7.1.201405082137'
-}
-
-jacocoTestReport {
-    reports {
-        xml.enabled true
-        html.enabled true
-    }
-    afterEvaluate {
-        classDirectories = files(classDirectories.files.collect {
-            fileTree(dir: it, exclude: ['**/gui/**']) /* Dateien aus den gui Packages kann
-            man eh nicht gescheit testen, insbesondere nicht auf Travis CI. */
-        })
-    }
-}
-
-test {
-    testLogging { // bessere Fehleranzeige beim Travis CI Build
-        exceptionFormat = 'full'
-        events 'failed', 'standardOut', 'standardError'
-    }
-    jacoco {
-        append = false
-        destinationFile = file("$buildDir/jacoco/jacocoTest.exec")
-        classDumpFile = file("$buildDir/jacoco/classpathdumps")
-    }
-}
-
-tasks.withType(FindBugs) {
-    reports {
-        xml.enabled = false
-        html.enabled = true
-    }
 }
